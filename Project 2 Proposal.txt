@@ -1,0 +1,53 @@
+A good project 2 has 3 layers:
+
+1. Frontend 	(With different roles)
+2. Middle Tier 	(Must manipulate data)
+3. Backend	(Good schema)
+
+A project 2 should have:
+2+ or more user roles (2 is a bare minimum)
+A database schema with more than 4 tables.
+Must have a theme
+Interactive front-end.
+	*Could have reports, but this is optional.
+
+	Proposal
+		-> Name of product
+		-> 3-5 sentences describing the application
+		-> List of roles and their permissions/powers/abilities (What they can do)
+		-> 10+ User stories (Try for 15 or 16)
+
+
+2 Sprints
+	-> 1 for each week.
+	-> Work done in user stories. Each sprint will have multiple user stories.
+
+Trello Board
+	Product Backlog		Sprint Backlog		In-Progress		Testing		Peer-Review		
+
+If someone is assigned a user story in one of these categories, then they cannot have a user story elsewhere.
+
+Each user story corresponds to a feature. User stories can be assigned points. Usually rated on the 
+fibonacci, TShirt, or num scale.
+		Fibonacci
+		1,2,3,5,8
+		TShrt
+		xS S M L xL
+		Num (Can't use Num)
+		1 2 3 4 5
+
+At the end, compile a burn down chart.
+
+IMS
+
+
+
+
+
+
+
+
+
+
+
+
