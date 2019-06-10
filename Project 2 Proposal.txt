@@ -1,53 +1,99 @@
-A good project 2 has 3 layers:
-
-1. Frontend 	(With different roles)
-2. Middle Tier 	(Must manipulate data)
-3. Backend	(Good schema)
-
-A project 2 should have:
-2+ or more user roles (2 is a bare minimum)
-A database schema with more than 4 tables.
-Must have a theme
-Interactive front-end.
-	*Could have reports, but this is optional.
-
-	Proposal
-		-> Name of product
-		-> 3-5 sentences describing the application
-		-> List of roles and their permissions/powers/abilities (What they can do)
-		-> 10+ User stories (Try for 15 or 16)
-
-
-2 Sprints
-	-> 1 for each week.
-	-> Work done in user stories. Each sprint will have multiple user stories.
-
-Trello Board
-	Product Backlog		Sprint Backlog		In-Progress		Testing		Peer-Review		
-
-If someone is assigned a user story in one of these categories, then they cannot have a user story elsewhere.
-
-Each user story corresponds to a feature. User stories can be assigned points. Usually rated on the 
-fibonacci, TShirt, or num scale.
-		Fibonacci
-		1,2,3,5,8
-		TShrt
-		xS S M L xL
-		Num (Can't use Num)
-		1 2 3 4 5
-
-At the end, compile a burn down chart.
-
-IMS
 
 
 
+Banking Application
+____________________
+*Note: Customer and employees are users. Guests have neither a customer or employee account.
+*Note: Employees are seperated into customer representatives, loan officers, and managers.
+*Note: Streth goal of comments on things like disputes.
+____________________
+
+Title: Green Bank App
+Description:
+	Green Bank App is an online bank account management system that focuses on ease of use. It provides portable web access to customer account 
+information including transactions and credit lines. Customers have the ability to dispute and manage transactions. 
+Gathers business intelligence for employee managers. The application is designed for simple use, with easy access to features.
+	
+
+	Green Bank App is an online bank account management system. The application is simple to use, with accessibility in mind.
+It provides portable web access to customer account information, their transactions and credit lines. Customers have the ability to
+manage their transactions as well as apply for additional accounts. Our Application gathers Business Intelligence on our user base and 
+provides analytics for employee managers to optimize their buisiness strategy. 
+____________________ 
+User Stories
+____________________
+As a guest I can open a checking or savings account.
+As a guest I can register as a customer with a checkings or savings account.
+
+As a customer and employee I can log into the system.
+As a customer, I can view the banking accounts in my name.
+As a customer, I can apply for a credit line.
+As a customer, I can open a checking or a savings account without employee approval.
+As a customer, I can view past transactions on an account.
+As a customer, I can filter transactions into deposits or withdrawals.
+As a customer, I can dispute a transaction.
+As a customer, I can view my monthly account statements.
+As a customer, I can fill out a form to send a customer representative an email.
+
+
+As a loan officer, I can approve credit line requests to send them to the manager.
+As a loan officer, I can reject credit line requests.
+
+
+
+As a customer representative, I can view customer dispute requests.
+As a customer representative, I can approve disputes to send them to the manager.
+As a customer representative, I can reject disputes.
+As a manager, I can view approved or rejected disputes by customer representatives.
+As a manager, I can view approved or rejected credit lines by loan officers.
+
+---Stretch Goals---
+-Manager has the ability to view reports on employees such as number of approved/rejected disputes.
+______
+
+
+
+E-Commerce
+____________________
+
+Title:  Ice
+
+Description: 
+	Ice is an accessible web store that focuses on online purchasing. Users can browse the catalog of available video games.
+The application provides to customers the tools to review and rate products. The application congregates and provides user analytics to
+system administrators. 
+
+____________________
+
+User Stories
+
+____________________
+
+1.) As a guest, I can view all the products.
+2.) As a guest, I can sign up for a customer account.
+3.) As a guest, I can view details of individual products.
+
+4.) As an employee, I can add products to the store.
+5.) As a customer representative employee, I can respond to user queries.
+6.) As an employee, I can view developers of the video games.
+7.) As an employee, I can delete products from the store.
+8.) As an employee, I can edit the product.
+
+9.) As a customer, I can ask questions to the customer representative.
+10.) As a customer, I can add or remove products from my cart.
+11.) As a customer, I can check out my cart.
+12.) As a customer, I can write a review on the product I bought.
+13.) As a customer, I can rate a product that I bought.
+
+14.) As a system, I prevent customers from writing a review without a rating and vice-versa.
+15.) As a system, I can filter by products.
+16.) As a system, I can filter by developers.
 
 
 
 
 
 
-
-
+Insurance
+____________________
 
