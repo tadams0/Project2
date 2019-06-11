@@ -1,4 +1,4 @@
-drop table user cascade constraints;
+drop table bankuser cascade constraints;
 drop table employee cascade constraints;
 drop table customer cascade constraints;
 drop table account cascade constraints;
@@ -35,7 +35,7 @@ create sequence CREDIT_SCORE_SEQ;
 
 
 
-create table user(
+create table bankuser(
     user_id number(20) primary key,
     username varchar2(30) not null unique,
     user_password varchar2(30) not null,
@@ -45,7 +45,7 @@ create table user(
     phone number(20) not null,
     address varchar2(200) not null,
     city varchar2(50) not null,
-    state varchar2(50) not null,
+    add_state varchar2(50) not null,
     country varchar2(100) not null,
     zip varchar2(100) not null
 );
@@ -56,13 +56,13 @@ create table employee(
     user_id number(20) not null,
     manager_id number(20) default 0,
     employee_type varchar2(30) not null,
-    constraint fk_employee_user foreign key (user_id) references user(user_id)
+    constraint fk_employee_user foreign key (user_id) references bankuser(user_id)
 );
 
 create table customer(
     customer_id number(20) primary key,
     user_id number(20) not null,
-    constraint fk_customer_user foreign key (user_id) references user(user_id)
+    constraint fk_customer_user foreign key (user_id) references bankuser(user_id)
 
 );
 
@@ -88,7 +88,7 @@ create table transaction(
 create table account_customer(
     account_id number(20) not null,
     customer_id number(20) not null,
-    constraint pk_account_customer (account_id, customer_id),
+    primary key (account_id, customer_id),
     constraint fk_account_table foreign key (account_id) references account(account_id),
     constraint fk_customer_table foreign key (customer_id) references customer(customer_id)
 );
