@@ -1,17 +1,54 @@
 package com.greenbank.beans;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="bankuser")
 public class UserInfo {
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="bankuser")
+	@SequenceGenerator(name="bankuser", sequenceName="user_seq", allocationSize=1)
+	@Column(name="user_id")
 	private int id;
+	
+	@Column(name="username")
 	private String username;
+	
+	@Column(name="user_password")
 	private String password;
+	
+	@Column(name="first_name")
 	private String firstName;
+	
+	@Column(name="last_name")
 	private String lastName;
+	
+	@Column(name="email")
 	private String email;
+	
+	@Column(name="phone")
 	private String phoneNumber;
+	
+	@Column(name="address")
 	private String address;
+	
+	@Column(name="city")
 	private String city;
+	
+	@Column(name="add_state")
 	private String state;
+	
+	@Column(name="country")
 	private String country;
+	
+	@Column(name="zip")
 	private String zipcode;
 	
 	public UserInfo() {

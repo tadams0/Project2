@@ -1,7 +1,24 @@
 package com.greenbank.beans;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="customer")
 public class Customer {
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="customer")
+	@SequenceGenerator(name="customer", sequenceName="customer_seq", allocationSize=1)
+	@Column(name="customer_id")
 	private int id;
+	
+	@Column(name="user_id")
 	private UserInfo userInfo;
 	
 	public Customer() {

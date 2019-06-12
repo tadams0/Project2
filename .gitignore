@@ -1,6 +1,10 @@
 # Compiled class file
 *.class
 
+# Hibernate files
+*.cfg.xml
+
+
 # Log file
 *.log
 
@@ -69,3 +73,4 @@ testem.log
 .DS_Store
 Thumbs.db
 
+/bin/
