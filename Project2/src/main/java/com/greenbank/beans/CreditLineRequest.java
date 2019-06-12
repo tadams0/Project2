@@ -1,11 +1,30 @@
 package com.greenbank.beans;
 
+import javax.persistence.*;
+
+@Entity
+@Table
 public class CreditLineRequest {
+	@Id
+	@Column(name="credit_request_id")
+	@SequenceGenerator(name="creditLineRequestGenerator",sequenceName="CREDIT_REQUEST_SEQ",allocationSize=1)
+	@GeneratedValue(generator="creditLineRequestGenerator", strategy=GenerationType.SEQUENCE)
 	private int id;
+	
+	@OneToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@JoinColumn(name="customer_id")
 	private Customer customer;
+	
+	@OneToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@JoinColumn(name="employee_id")
 	private Employee employee;
+
+	@Column(name="credit_apr")
 	private int creditAPR;
+
+	@Column(name="credit_max")
 	private int creditMax;
+	
 	public CreditLineRequest() {
 		super();
 	}

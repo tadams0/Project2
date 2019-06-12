@@ -1,10 +1,30 @@
 package com.greenbank.beans;
 
+import javax.persistence.*;
+
+@Entity
+@Table
 public class Inquiry {
+
+	@Id
+	@Column(name="inquiry_id")
+	@SequenceGenerator(name="inquiryGenerator",sequenceName="INQUIRY_SEQ",allocationSize=1)
+	@GeneratedValue(generator="inquiryGenerator", strategy=GenerationType.SEQUENCE)
 	private int id;
+	
+
+	@OneToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@JoinColumn(name="employee_id")
 	private Employee employee;
+
+	@OneToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@JoinColumn(name="customer_id")
 	private Customer customer;
+	
+	@Column(name="status")
 	private String status;
+	
+	@Column(name="question")
 	private String question;
 	
 	public Inquiry() {

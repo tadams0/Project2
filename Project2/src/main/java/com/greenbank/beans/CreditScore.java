@@ -1,9 +1,23 @@
 package com.greenbank.beans;
 
+import javax.persistence.*;
+
+@Entity
+@Table
 public class CreditScore {
+	@Id
+	@Column(name="credit_score_id")
+	@SequenceGenerator(name="creditScoreGenerator",sequenceName="CREDIT_SCORE_SEQ",allocationSize=1)
+	@GeneratedValue(generator="creditScoreGenerator", strategy=GenerationType.SEQUENCE)
 	private int id;
+
+	@OneToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@JoinColumn(name="customer_id")
 	private Customer customer;
+	
+	@Column(name="credit_score_estimation")
 	private int creditScore;
+	
 	public CreditScore() {
 		super();
 	}

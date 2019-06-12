@@ -2,17 +2,29 @@ package com.greenbank.beans;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
+@Entity
+@Table
 public class Transaction {
+	@Id
+	@Column(name="transaction_id")
+	@SequenceGenerator(name="transactionGenerator",sequenceName="TRANSACTION_SEQ",allocationSize=1)
+	@GeneratedValue(generator="transactionGenerator", strategy=GenerationType.SEQUENCE)
 	private int id;
+	
+	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@JoinColumn(name="account_id")
 	private Account account;
-	//@Column(name = "creation_date", columnDefinition="DATETIME")
-	//@Temporal(TemporalType.DATE)
+	
+	@Column(name = "creation_date")
+	@Temporal(TemporalType.DATE)
 	private Date date;
+	
+	@Column(name="transaction_balace")
 	private double balance;
+	
+	@Column(name="transaction_name")
 	private String name;
 	
 	public Transaction() {
