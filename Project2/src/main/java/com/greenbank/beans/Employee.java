@@ -9,12 +9,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="employee")
-public class Employee {
+@PrimaryKeyJoinColumn(name="user_id")
+public class Employee extends UserInfo {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="employee")
