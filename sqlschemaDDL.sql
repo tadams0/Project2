@@ -42,7 +42,7 @@ create table bankuser(
     first_name varchar2(30) not null,
     last_name varchar2(30) not null,
     email varchar2(30),
-    phone number(20) not null,
+    phone varchar2(20) not null,
     address varchar2(200) not null,
     city varchar2(50) not null,
     add_state varchar2(50) not null,
@@ -69,9 +69,9 @@ create table customer(
 create table account(
     account_id number(20) primary key,
     account_type varchar2(30) not null,
-    balance number(20) default 0,
-    date_opened varchar2(25) not null,
-    date_closed varchar2(25) not null,
+    balance number(20,2) default 0,
+    date_opened date not null,
+    date_closed date not null,
     customer_id number(20) not null,
     constraint fk_account_customer foreign key (customer_id) references customer(customer_id)
 );
@@ -79,8 +79,8 @@ create table account(
 create table transaction(
     transaction_id number(20) primary key,
     account_id number(20) not null,
-    creation_date varchar2(25) not null,
-    transaction_balance number(20) not null,
+    creation_date date not null,
+    transaction_balance number(20,2) not null,
     transaction_name varchar2(100) not null,
     constraint fk_transaction_account foreign key (account_id) references account(account_id)
 );
@@ -98,7 +98,7 @@ create table inquiry(
     employee_id number(20) not null,
     customer_id number(20) not null,
     status varchar2(50),
-    quetsion varchar2(1000),
+    question varchar2(1000),
     constraint fk_inquiry_employee foreign key (employee_id) references employee(employee_id),
     constraint fk_inquiry_customer foreign key (customer_id) references customer(customer_id)
 );
