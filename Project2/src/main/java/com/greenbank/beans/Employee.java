@@ -1,10 +1,38 @@
 package com.greenbank.beans;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="employee")
 public class Employee {
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="employee")
+	@SequenceGenerator(name="employee", sequenceName="employee_seq", allocationSize=1)
+	@Column(name="employee_id")
 	private int id;
+	
+	@OneToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@JoinColumn(name="user_id")
 	private UserInfo userInfo;
+	
+	@OneToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@JoinColumn(name="employee_id")
 	private Employee manager;
+	
+	@Column(name="employee_type")
 	private String employeeType;
+	
 	public Employee() {
 		super();
 	}
