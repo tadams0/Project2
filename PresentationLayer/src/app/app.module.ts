@@ -4,20 +4,23 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './core/login/login.component';
-import { CreditformComponent } from './core/creditform/creditform.component';
+import { CreditFormComponent } from './core/creditform/creditform.component';
+import { CreditRequestService } from './core/creditform/services/credit-request-service.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    CreditformComponent
+    CreditFormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    CreditRequestService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
