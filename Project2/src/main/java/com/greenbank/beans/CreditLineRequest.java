@@ -17,7 +17,7 @@ public class CreditLineRequest {
 	
 	@OneToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinColumn(name="employee_id")
-	private Employee employee;
+	private Employee employeeApprover; //The person who must approve.
 
 	@Column(name="credit_apr")
 	private int creditAPR;
@@ -28,36 +28,47 @@ public class CreditLineRequest {
 	public CreditLineRequest() {
 		super();
 	}
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public Customer getCustomer() {
 		return customer;
 	}
+
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
-	public Employee getEmployee() {
-		return employee;
+
+	public Employee getEmployeeApprover() {
+		return employeeApprover;
 	}
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
+
+	public void setEmployeeApprover(Employee employeeApprover) {
+		this.employeeApprover = employeeApprover;
 	}
+
 	public int getCreditAPR() {
 		return creditAPR;
 	}
+
 	public void setCreditAPR(int creditAPR) {
 		this.creditAPR = creditAPR;
 	}
+
 	public int getCreditMax() {
 		return creditMax;
 	}
+
 	public void setCreditMax(int creditMax) {
 		this.creditMax = creditMax;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -65,10 +76,11 @@ public class CreditLineRequest {
 		result = prime * result + creditAPR;
 		result = prime * result + creditMax;
 		result = prime * result + ((customer == null) ? 0 : customer.hashCode());
-		result = prime * result + ((employee == null) ? 0 : employee.hashCode());
+		result = prime * result + ((employeeApprover == null) ? 0 : employeeApprover.hashCode());
 		result = prime * result + id;
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -87,19 +99,19 @@ public class CreditLineRequest {
 				return false;
 		} else if (!customer.equals(other.customer))
 			return false;
-		if (employee == null) {
-			if (other.employee != null)
+		if (employeeApprover == null) {
+			if (other.employeeApprover != null)
 				return false;
-		} else if (!employee.equals(other.employee))
+		} else if (!employeeApprover.equals(other.employeeApprover))
 			return false;
 		if (id != other.id)
 			return false;
 		return true;
 	}
+
 	@Override
 	public String toString() {
-		return "CreditLineRequest [id=" + id + ", customer=" + customer + ", employee=" + employee + ", creditAPR="
-				+ creditAPR + ", creditMax=" + creditMax + "]";
+		return "CreditLineRequest [id=" + id + ", customer=" + customer + ", employeeApprover=" + employeeApprover
+				+ ", creditAPR=" + creditAPR + ", creditMax=" + creditMax + "]";
 	}
-	
 }
