@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './core/login/login.component';
 import { CreditFormComponent } from './core/creditform/creditform.component';
 import { CreditRequestService } from './core/creditform/services/credit-request-service.service';
+import { UserService } from './shared/user.service';
+import { UrlService } from './shared/url.service';
 
 
 
@@ -24,7 +26,9 @@ import { CreditRequestService } from './core/creditform/services/credit-request-
     FormsModule
   ],
   providers: [
-    CreditRequestService
+    CreditRequestService,
+    UserService,
+    UrlService
   ],
   bootstrap: [AppComponent]
 })

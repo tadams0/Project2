@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from './login.service';
-// import { UserInfo } from 'src/app/shared/beans/userinfo';
+import { CurrentUser } from 'src/app/shared/beans/currentuser';
+import { UserService } from 'src/app/shared/user.service';
 
 @Component({
   selector: 'app-login',
@@ -8,20 +8,38 @@ import { LoginService } from './login.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  value1 = '';
-  value2 = '';
- // public dude: UserInfo;
+  public loggedUser: CurrentUser;
+  public username: string;
+  public password: string;
+  constructor( private userService: UserService ) { }
 
-
-  constructor(private loginService: LoginService ) {}
   ngOnInit() {
+    
   }
 
-  onEnter1(value1: string) {
-     this.value1 = value1; }
+  login(username: string, password: string): void {
+    this.username = username;
+    this.password = password;
+    console.log("logging in "+this.username+" "+this.password)
+    this.userService.login(this.username, this.password).subscribe(
+      resp => {
+        this.loggedUser = resp;
+      }
+    );
+  }
 
-  onEnter2(value2: string) {
-     this.value2 = value2; }
+  logout(): void {
+    this.userService.logout().subscribe();
+    this.loggedUser = null;
+    this.username = null;
+    this.password = null;
+  }
+
+  // onEnter1(value1: string) {
+  //    this.value1 = value1; }
+
+  // onEnter2(value2: string) {
+  //    this.value2 = value2; }
 
 
      

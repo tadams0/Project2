@@ -3,22 +3,26 @@
   <h4>BankApp</h4>
   <p class="lead">Welcome</p>
   <hr class="my-4">
+
     <div class="form-group">
       <label for="inputUser">Username</label>
       <input #inputUsername
-      (keydown.enter)="onEnter1(inputUsername.value)"
+      (keydown.enter)="login(inputUsername.value, inputPassword.value)"
         class="form-text" type="text"/>
-      <p>{{value1}}</p>
     </div>
+ 
+
     <div class="form-group">
       <label for="inputPassword">Password:</label>
-      <input  
-      (keydown.enter)="onEnter2(inputPassword.value)"
-        #inputPassword class="form-text" type="password" name="pass"/>
-      <p>{{value2}}</p>
+      <input  #inputPassword 
+      (keydown.enter)="login(inputUsername.value, inputPassword.value)"
+      class="form-text" type="password" name="pass"/>
+      <p>{{password}}</p>
     </div>
+
+
     <div class="buttons">
-      <button  (click)="login()" id="login" type="button" class="btn btn-primary">LogIn</button>
+      <button  (click)="login(inputUsername.value, inputPassword.value)" id="login" type="button" class="btn btn-primary">LogIn</button>
       <button  (click)="register()" id="register" type="button" class="btn btn-warning">Create and Account</button>
     </div>
     <a href="https://www.w3schools.com">Forgot Password?</a>

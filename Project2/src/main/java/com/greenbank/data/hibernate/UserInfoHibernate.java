@@ -4,6 +4,8 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.greenbank.beans.UserInfo;
 import com.greenbank.data.UserInfoDAO;
@@ -12,10 +14,11 @@ import com.greenbank.utils.HibernateUtil;
 import com.greenbank.utils.LogUtil;
 
 
-
+@Component
 public class UserInfoHibernate implements UserInfoDAO{
 
-	private HibernateUtil hu = HibernateUtil.getInstance();
+	@Autowired
+	private HibernateUtil hu;
 
 	@Override
 	public int addUser(UserInfo user) {

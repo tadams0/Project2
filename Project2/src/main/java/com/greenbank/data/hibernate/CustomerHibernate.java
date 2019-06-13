@@ -8,13 +8,18 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.greenbank.beans.Customer;
 import com.greenbank.data.CustomerDAO;
 import com.greenbank.utils.HibernateUtil;
 
+@Component
 public class CustomerHibernate implements CustomerDAO{
-	HibernateUtil hu = HibernateUtil.getInstance();
+
+	@Autowired
+	private HibernateUtil hu;
 	private Logger log = Logger.getLogger(CustomerHibernate.class);
 	
 	@Override

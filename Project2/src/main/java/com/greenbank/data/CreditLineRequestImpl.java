@@ -9,14 +9,26 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.greenbank.beans.CreditLineRequest;
 import com.greenbank.beans.Employee;
 import com.greenbank.utils.HibernateUtil;
 
+@Component
 public class CreditLineRequestImpl implements CreditLineRequestDao {
-	private static HibernateUtil hu = HibernateUtil.getInstance();
+	
+	@Autowired
+	private static HibernateUtil hu;
+	
+	
+  
+	public CreditLineRequestImpl() {
+		super();
+	}
 
 	@Override
 	public List<CreditLineRequest> getRequestsByManager(Employee manager) {
@@ -29,6 +41,7 @@ public class CreditLineRequestImpl implements CreditLineRequestDao {
 	}
  
 	private ArrayList<CreditLineRequest> getRequestsByID(String column, int id) {
+		System.out.println(hu);
 		Session s = hu.getSession();
 		CriteriaBuilder builder = s.getCriteriaBuilder();
 		CriteriaQuery<CreditLineRequest> criteria = builder.createQuery(CreditLineRequest.class);
@@ -39,6 +52,22 @@ public class CreditLineRequestImpl implements CreditLineRequestDao {
 		
 		ArrayList<CreditLineRequest> requests =  (ArrayList<CreditLineRequest>) s.createQuery(criteria).getResultList();
 		return new ArrayList<CreditLineRequest>(requests);
+	}
+
+	@Override
+	public int addRequest(CreditLineRequest req) {
+		Session s = hu.getSession();
+		org.hibernate.Transaction t = s.beginTransaction();
+		int id = 0;
+		try {
+			id = (int) s.save(req);
+			t.commit();
+		} catch(HibernateException e) {
+			t.rollback();
+		} finally {
+			s.close();
+		}
+		return id;
 	}
 	
 }
