@@ -7,6 +7,8 @@ import java.util.Set;
 import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -15,8 +17,11 @@ import com.greenbank.data.EmployeeDAO;
 import com.greenbank.utils.HibernateUtil;
 
 
+@Component
 public class EmployeeHibernate implements EmployeeDAO {
-	HibernateUtil hu = HibernateUtil.getInstance();
+
+	@Autowired
+	private HibernateUtil hu;
 	private Logger log = Logger.getLogger(CustomerHibernate.class);
 	
 	@Override
