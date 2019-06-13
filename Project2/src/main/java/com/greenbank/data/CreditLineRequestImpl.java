@@ -10,13 +10,17 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 import org.hibernate.Session;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.greenbank.beans.CreditLineRequest;
 import com.greenbank.beans.Employee;
 import com.greenbank.utils.HibernateUtil;
 
+@Component
 public class CreditLineRequestImpl implements CreditLineRequestDao {
-	private static HibernateUtil hu = HibernateUtil.getInstance();
+	@Autowired
+	private static HibernateUtil hu;
 
 	@Override
 	public List<CreditLineRequest> getRequestsByManager(Employee manager) {
@@ -29,6 +33,7 @@ public class CreditLineRequestImpl implements CreditLineRequestDao {
 	}
  
 	private ArrayList<CreditLineRequest> getRequestsByID(String column, int id) {
+		System.out.println(hu);
 		Session s = hu.getSession();
 		CriteriaBuilder builder = s.getCriteriaBuilder();
 		CriteriaQuery<CreditLineRequest> criteria = builder.createQuery(CreditLineRequest.class);

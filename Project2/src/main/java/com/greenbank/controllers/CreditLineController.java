@@ -1,4 +1,4 @@
-package com.greenbank.driver;
+package com.greenbank.controllers;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -22,14 +22,16 @@ import com.greenbank.data.CreditLineRequestImpl;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping(value="/creditline")
+//@RequestMapping(value="/creditline")
 public class CreditLineController {
-	private CreditLineRequestDao creditLineDao = new CreditLineRequestImpl();
+	@Autowired
+	private CreditLineRequestDao creditLineDao;
 	   //@Autowired
 	    //ExampleService exampleService;
 
-		@RequestMapping(method=RequestMethod.GET)
-	    public ArrayList<CreditLineRequest> postResponseController(HttpSession session) {
+		//@RequestMapping(method=RequestMethod.GET)
+	@RequestMapping("/creditline")
+	public ArrayList<CreditLineRequest> postResponseController(HttpSession session) {
 	    	List<CreditLineRequest> requests = creditLineDao.getRequestsAvailableToAll();
 	        return new ArrayList<CreditLineRequest>(requests); //requests.get(0);
 	     }
