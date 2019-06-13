@@ -74,6 +74,14 @@ public class Customer{
 	public String toString() {
 		return "Customer [id=" + id + ", userInfo=" + userInfo + "]";
 	}
+
+	public String getUsername() {
+		return userInfo.getUsername();
+	}
+	
+	public String getPassword() {
+		return userInfo.getPassword();
+	}
 	
 	
 }

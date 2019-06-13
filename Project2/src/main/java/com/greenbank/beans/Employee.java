@@ -62,6 +62,15 @@ public class Employee {
 	public void setEmployeeType(String employeeType) {
 		this.employeeType = employeeType;
 	}
+
+	public String getUsername() {
+		return userInfo.getUsername();
+	}
+	
+	public String getPassword() {
+		return userInfo.getPassword();
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
