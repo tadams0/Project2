@@ -10,7 +10,8 @@ import com.greenbank.data.UserInfoDAO;
 import com.greenbank.utils.HibernateUtil;
 
 import com.greenbank.utils.LogUtil;
-import com.revature.beans.User;
+
+
 
 public class UserInfoHibernate implements UserInfoDAO{
 
@@ -49,25 +50,44 @@ public class UserInfoHibernate implements UserInfoDAO{
 
 	@Override
 	public UserInfo getUser(UserInfo u) {
-		 
-		return null;
+		Session s = hu.getSession();
+		UserInfo ret = s.get(UserInfo.class, u.getId());
+		if(ret==null) {
+			String query = "from userinfo u where u.username=:username and u.user_password=:password";
+			Query<UserInfo> q = s.createQuery(query, UserInfo.class);
+			q.setParameter("username", u.getUsername());
+			q.setParameter("password", u.getPassword());
+			ret = q.getSingleResult();
+		}
+		s.close();
+		return ret;
 	}
 
 	@Override
 	public UserInfo getUserById(UserInfo u) {
-		 
-		return null;
+		Session s = hu.getSession();
+		UserInfo ret = s.get(UserInfo.class, u.getId());
+		s.close();
+		return ret;
 	}
 
 	@Override
 	public void deleteUser(UserInfo user) {
-		 
+		 Session s = hu.getSession();
+		 Transaction t = s.beginTransaction();
+		 s.delete(user.getId());
+		 t.commit();
+		 s.close();
 		
 	}
 
 	@Override
 	public void updateUser(UserInfo user) {
-		 
+		 Session s = hu.getSession();
+		 Transaction t = s.beginTransaction();
+		 s.update(user.getId());
+		 t.commit();
+		 s.close();
 		
 	}
 	

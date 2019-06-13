@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { CreditRequestService } from './services/credit-request-service.service';
 
 @Component({
   selector: 'app-creditform',
   templateUrl: './creditform.component.html',
   styleUrls: ['./creditform.component.css']
 })
-export class CreditformComponent implements OnInit {
+export class CreditFormComponent implements OnInit {
 
-  constructor() { }
+  constructor(private creditService : CreditRequestService ) { }
 
   ngOnInit() {
   }
