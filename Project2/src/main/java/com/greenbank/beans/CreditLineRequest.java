@@ -68,7 +68,7 @@ public class CreditLineRequest {
 	public void setCreditMax(int creditMax) {
 		this.creditMax = creditMax;
 	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -114,4 +114,6 @@ public class CreditLineRequest {
 		return "CreditLineRequest [id=" + id + ", customer=" + customer + ", employeeApprover=" + employeeApprover
 				+ ", creditAPR=" + creditAPR + ", creditMax=" + creditMax + "]";
 	}
+
+	
 }

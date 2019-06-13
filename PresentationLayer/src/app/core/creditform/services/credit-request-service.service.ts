@@ -20,7 +20,7 @@ export class CreditRequestService {
 
   addRequest(request : CreditLineRequest): Observable<CreditLineRequest> {
     const body = JSON.stringify(request);
-    const headers = new HttpHeaderResponse({'Content-Type': 'application/json'});
+    const headers = new HttpHeaders({'Content-Type': 'application/json'});
     return this.http.post('http://localhost:8080/Project2/creditline', body, {headers, withCredentials: true}).pipe(map((resp)=>resp as CreditLineRequest));
   } 
 

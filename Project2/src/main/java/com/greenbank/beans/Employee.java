@@ -15,8 +15,8 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="employee")
-//@PrimaryKeyJoinColumn(name="user_id")
-public class Employee extends UserInfo {
+@PrimaryKeyJoinColumn(name="user_id")
+public class Employee {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="employee")
@@ -28,10 +28,10 @@ public class Employee extends UserInfo {
 	@JoinColumn(name="user_id")
 	private UserInfo userInfo;
 	
-	@OneToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@OneToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	@JoinColumn(name="manager_id")
 	private Employee manager;
-	
+	 
 	@Column(name="employee_type")
 	private String employeeType;
 	

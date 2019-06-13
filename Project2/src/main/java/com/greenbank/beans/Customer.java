@@ -15,8 +15,8 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="customer")
-//@PrimaryKeyJoinColumn(name="user_id")
-public class Customer extends UserInfo{
+@PrimaryKeyJoinColumn(name="user_id")
+public class Customer{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="customerGenerator")
