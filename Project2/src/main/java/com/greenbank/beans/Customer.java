@@ -15,12 +15,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="customer")
-@PrimaryKeyJoinColumn(name="user_id")
+//@PrimaryKeyJoinColumn(name="user_id")
 public class Customer extends UserInfo{
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="customer")
-	@SequenceGenerator(name="customer", sequenceName="customer_seq", allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="customerGenerator")
+	@SequenceGenerator(name="customerGenerator", sequenceName="customer_seq", allocationSize=1)
 	@Column(name="customer_id")
 	private int id;
 	

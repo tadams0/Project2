@@ -22,9 +22,7 @@ import com.greenbank.utils.HibernateUtil;
 public class CreditLineRequestImpl implements CreditLineRequestDao {
 	
 	@Autowired
-	private static HibernateUtil hu;
-	
-	
+	private HibernateUtil hu;
   
 	public CreditLineRequestImpl() {
 		super();

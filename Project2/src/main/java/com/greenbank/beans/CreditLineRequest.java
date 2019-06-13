@@ -3,7 +3,7 @@ package com.greenbank.beans;
 import javax.persistence.*;
 
 @Entity
-@Table
+@Table(name="credit_request")
 public class CreditLineRequest {
 	@Id
 	@Column(name="credit_request_id")

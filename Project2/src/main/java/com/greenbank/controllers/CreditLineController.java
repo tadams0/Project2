@@ -21,7 +21,7 @@ import com.greenbank.beans.CreditLineRequest;
 import com.greenbank.data.CreditLineRequestDao;
 import com.greenbank.data.CreditLineRequestImpl;
 
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 //@RequestMapping(value="/creditline")
 public class CreditLineController {
@@ -36,4 +36,12 @@ public class CreditLineController {
 	    	List<CreditLineRequest> requests = creditLineDao.getRequestsAvailableToAll();
 	        return new ArrayList<CreditLineRequest>(requests); //requests.get(0);
 	     }
+	
+	public CreditLineRequest addRequest(@RequestBody CreditLineRequest request)
+	{
+		if (creditLineDao.addRequest(request) > 0)
+			return request;
+		else
+			return null;
+	}
 }

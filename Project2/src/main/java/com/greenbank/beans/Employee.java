@@ -15,7 +15,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="employee")
-@PrimaryKeyJoinColumn(name="user_id")
+//@PrimaryKeyJoinColumn(name="user_id")
 public class Employee extends UserInfo {
 	
 	@Id
@@ -29,7 +29,7 @@ public class Employee extends UserInfo {
 	private UserInfo userInfo;
 	
 	@OneToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
-	@JoinColumn(name="employee_id")
+	@JoinColumn(name="manager_id")
 	private Employee manager;
 	
 	@Column(name="employee_type")

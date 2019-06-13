@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CreditLineRequest } from 'src/app/shared/beans/CreditLineRequest';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaderResponse, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -14,7 +14,14 @@ export class CreditRequestService {
   }  
   
   getRequest(id:number): Observable<CreditLineRequest> {
-    return this.http.get('https://localhost:8080/creditline').pipe(
+    return this.http.get('https://localhost:8080/Project2/creditline').pipe(
        map( resp => resp as CreditLineRequest ) );
   }
+
+  addRequest(request : CreditLineRequest): Observable<CreditLineRequest> {
+    const body = JSON.stringify(request);
+    const headers = new HttpHeaderResponse({'Content-Type': 'application/json'});
+    return this.http.post('http://localhost:8080/Project2/creditline', body, {headers, withCredentials: true}).pipe(map((resp)=>resp as CreditLineRequest));
+  } 
+
 }
