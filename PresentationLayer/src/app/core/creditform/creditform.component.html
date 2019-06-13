@@ -1,3 +1,11 @@
-<p>
-  creditform works!
+<p id = "maintext">
+You can open up a new credit line, simply click the button below to request one.
 </p>
+<p id ="footnote">
+    Note it may take a few days to be approved by a loan officer.
+</p>
+
+<input class="btn btn-primary" type="submit" value="Request new credit line" (click)="onSubmit()">
+<div id ="submissionText">
+    {{resultText}}
+</div>

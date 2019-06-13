@@ -7,8 +7,10 @@ import com.greenbank.beans.Customer;
 public interface CustomerDAO {
 
 	public void addCustomer(Customer customer);
-	
+
 	public Customer getCustomer(Customer cust);
+	
+	public Customer getCustomerById(int id);
 	
 	public Set<Customer> getCustomers();
 	

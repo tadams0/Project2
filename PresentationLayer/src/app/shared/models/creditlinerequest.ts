@@ -2,9 +2,9 @@ import { Customer } from './customer';
 import { Employee } from './employee';
 
 export class CreditLineRequest{
-   private id : number;
-   private customer : Customer;
-   private employee : Employee;
-   private creditAPR : number;
-   private creditMax : number;
+   public id : number;
+   public customer : Customer;
+   public employee : Employee;
+   public creditAPR : number;
+   public creditMax : number;
 }
