@@ -14,14 +14,13 @@ export class LoginComponent implements OnInit {
   constructor( private userService: UserService ) { }
 
   ngOnInit() {
-    this.userService.login(null, null).subscribe(
-      resp => {
-        this.loggedUser = resp;
-      }
-    );
+    
   }
 
-  login(): void {
+  login(username: string, password: string): void {
+    this.username = username;
+    this.password = password;
+    console.log("logging in "+this.username+" "+this.password)
     this.userService.login(this.username, this.password).subscribe(
       resp => {
         this.loggedUser = resp;
@@ -36,4 +35,24 @@ export class LoginComponent implements OnInit {
     this.password = null;
   }
 
+  // onEnter1(value1: string) {
+  //    this.value1 = value1; }
+
+  // onEnter2(value2: string) {
+  //    this.value2 = value2; }
+
+
+     
+  // login(){
+  //   this.loginService.login(this.value1, this.value2).subscribe(
+  //     resp => {
+  //       this.dude =  resp;
+  //       console.log(this.dude);
+  //     });
+
+  // }
+
+  register(){
+
+  }
 }

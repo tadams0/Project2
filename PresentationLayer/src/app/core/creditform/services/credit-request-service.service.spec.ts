@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { CreditRequestServiceService } from './credit-request-service.service';
+import { CreditRequestService } from './credit-request-service.service';
 
-describe('CreditRequestServiceService', () => {
+describe('CreditRequestService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: CreditRequestServiceService = TestBed.get(CreditRequestServiceService);
+    const service: CreditRequestService = TestBed.get(CreditRequestService);
     expect(service).toBeTruthy();
   });
 });

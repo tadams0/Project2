@@ -19,9 +19,14 @@ export class UserService {
   constructor( private urlSource: UrlService, private http: HttpClient ) { }
 
   login(username: string, password: string): Observable<CurrentUser> {
+    
     if ( username && password ) {
       // actually log in
       const body = `user=${username}&pass=${password}`; // "user=rorr&pass=pswd"
+
+      console.log(this.appUrl +" "+body+" "+
+      {headers: this.headers, withCredentials: true});
+      
       return this.http.post(this.appUrl, body,
         {headers: this.headers, withCredentials: true})
         .pipe( map( resp => {
