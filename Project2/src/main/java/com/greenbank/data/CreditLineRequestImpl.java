@@ -38,6 +38,17 @@ public class CreditLineRequestImpl implements CreditLineRequestDao {
         query.setParameter(":id", manager.getId());
 		requests = new ArrayList<CreditLineRequest>(query.getResultList());
 		return requests;
+	}	
+	
+	@Override
+	public List<CreditLineRequest> getRequestsByManagerID(int id) {
+		ArrayList<CreditLineRequest> requests = null;
+		Session session = hu.getSession();
+		String hqlString = "from com.greenbank.beans.CreditLineRequest req where req.id=:id";
+		Query<CreditLineRequest> query = session.createQuery(hqlString, CreditLineRequest.class);
+        query.setParameter(":id", id);
+		requests = new ArrayList<CreditLineRequest>(query.getResultList());
+		return requests;
 	}
 
 	@Override

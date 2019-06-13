@@ -8,9 +8,8 @@ import { CreditLineRequest } from 'src/app/shared/models/creditlinerequest';
   styleUrls: ['./creditform.component.css']
 })
 export class CreditFormComponent implements OnInit {
-  //@Input() request: CreditLineRequest;
   public resultText : string;
-  constructor(private creditService : CreditRequestService ) { }
+  constructor(private creditService : CreditRequestService) { }
 
   ngOnInit() {
     this.resultText = '';

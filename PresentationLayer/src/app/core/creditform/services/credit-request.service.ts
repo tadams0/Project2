@@ -13,9 +13,9 @@ export class CreditRequestService {
 
   }  
   
-  getRequest(id:number): Observable<CreditLineRequest> {
-    return this.http.get('https://localhost:8080/Project2/creditline').pipe(
-       map( resp => resp as CreditLineRequest ) );
+  getRequestsForAll(): Observable<CreditLineRequest[]> {
+    return this.http.get('http://localhost:8080/Project2/creditline').pipe(
+       map( resp => resp as CreditLineRequest[] ) );
   }
 
   addRequest(request : CreditLineRequest): Observable<CreditLineRequest> {

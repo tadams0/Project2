@@ -1,14 +1,14 @@
 export class UserInfo{
    private id : number;
-   private username : string;
-   private password : string;
-   private firstName : string;
-   private lastName : string;
-   private email : string;
-   private phoneNumber : string;
-   private address : string;
-   private city : string;
-   private state : string;
-   private country : string;
-   private zip : string;
+   public username : string;
+   public password : string;
+   public firstName : string;
+   public lastName : string;
+   public email : string;
+   public phoneNumber : string;
+   public address : string;
+   public city : string;
+   public state : string;
+   public country : string;
+   public zip : string;
 }

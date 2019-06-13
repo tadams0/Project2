@@ -35,9 +35,9 @@ public class CreditLineController {
 	private CustomerDAO customerDao;
 
 	@GetMapping
-	public ArrayList<CreditLineRequest> postResponseController(HttpSession session) {
-	    	List<CreditLineRequest> requests = creditLineDao.getRequestsAvailableToAll();
-	        return new ArrayList<CreditLineRequest>(requests); //requests.get(0);
+	public ArrayList<CreditLineRequest> getRequestsAvailableToAll(HttpSession session) {
+    	List<CreditLineRequest> requests = creditLineDao.getRequestsAvailableToAll();
+        return new ArrayList<CreditLineRequest>(requests);
 	}
 
 	@PostMapping
