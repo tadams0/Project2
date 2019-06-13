@@ -23,20 +23,19 @@ import com.greenbank.data.CreditLineRequestImpl;
 
 @CrossOrigin(origins = "http://localhost:4200/")
 @RestController
-//@RequestMapping(value="/creditline")
+@RequestMapping(value="/creditline")
 public class CreditLineController {
+	
 	@Autowired
 	private CreditLineRequestDao creditLineDao;
-	   //@Autowired
-	    //ExampleService exampleService;
 
-		//@RequestMapping(method=RequestMethod.GET)
-	@RequestMapping("/creditline")
+	@GetMapping
 	public ArrayList<CreditLineRequest> postResponseController(HttpSession session) {
 	    	List<CreditLineRequest> requests = creditLineDao.getRequestsAvailableToAll();
 	        return new ArrayList<CreditLineRequest>(requests); //requests.get(0);
-	     }
-	
+	}
+
+	@PostMapping
 	public CreditLineRequest addRequest(@RequestBody CreditLineRequest request)
 	{
 		if (creditLineDao.addRequest(request) > 0)

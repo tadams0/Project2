@@ -7,7 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './core/login/login.component';
 import { CreditFormComponent } from './core/creditform/creditform.component';
-import { CreditRequestService } from './core/creditform/services/credit-request-service.service';
+import { CreditRequestService } from './core/creditform/services/credit-request.service';
 import { UserService } from './shared/user.service';
 import { UrlService } from './shared/url.service';
 

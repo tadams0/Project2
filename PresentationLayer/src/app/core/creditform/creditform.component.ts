@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CreditRequestService } from './services/credit-request-service.service';
+import { CreditRequestService } from './services/credit-request.service';
 
 @Component({
   selector: 'app-creditform',

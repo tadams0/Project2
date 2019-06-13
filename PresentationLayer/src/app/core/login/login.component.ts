@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CurrentUser } from 'src/app/shared/beans/currentuser';
+import { CurrentUser } from 'src/app/shared/models/currentuser';
 import { UserService } from 'src/app/shared/user.service';
 
 @Component({

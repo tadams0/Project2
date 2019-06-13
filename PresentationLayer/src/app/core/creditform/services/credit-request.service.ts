@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CreditLineRequest } from 'src/app/shared/beans/CreditLineRequest';
-import { HttpClient, HttpHeaderResponse, HttpHeaders } from '@angular/common/http';
+import { CreditLineRequest } from 'src/app/shared/models/CreditLineRequest';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -21,7 +21,8 @@ export class CreditRequestService {
   addRequest(request : CreditLineRequest): Observable<CreditLineRequest> {
     const body = JSON.stringify(request);
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.post('http://localhost:8080/Project2/creditline', body, {headers, withCredentials: true}).pipe(map((resp)=>resp as CreditLineRequest));
+    return this.http.post('http://localhost:8080/Project2/creditline', body, 
+    {headers, withCredentials: true}).pipe(map((resp)=>resp as CreditLineRequest));
   } 
 
 }

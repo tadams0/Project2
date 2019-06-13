@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { CreditRequestService } from './credit-request-service.service';
+import { CreditRequestService } from './credit-request.service';
 
 describe('CreditRequestService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));

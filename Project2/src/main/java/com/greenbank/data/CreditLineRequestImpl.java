@@ -31,41 +31,22 @@ public class CreditLineRequestImpl implements CreditLineRequestDao {
 
 	@Override
 	public List<CreditLineRequest> getRequestsByManager(Employee manager) {
-		return getRequestsByID("employee_id", manager.getId());
+		ArrayList<CreditLineRequest> requests = null;
+		Session session = hu.getSession();
+		String hqlString = "from com.greenbank.beans.CreditLineRequest req where req.id=:id";
+		Query<CreditLineRequest> query = session.createQuery(hqlString, CreditLineRequest.class);
+        query.setParameter(":id", manager.getId());
+		requests = new ArrayList<CreditLineRequest>(query.getResultList());
+		return requests;
 	}
 
 	@Override
 	public List<CreditLineRequest> getRequestsAvailableToAll() {
-		return getRequestsByID("employee_id", 0);
-	}
- 
-	private ArrayList<CreditLineRequest> getRequestsByID(String column, int id) {
-		/*
-		Session s = hu.getSession();
-		CriteriaBuilder builder = s.getCriteriaBuilder();
-		CriteriaQuery<CreditLineRequest> criteria = builder.createQuery(CreditLineRequest.class);
-		
-		Root<CreditLineRequest> root = criteria.from(CreditLineRequest.class);
-		
-		criteria.select(root);//.where(builder.equal(root.get(column), ""+id));
-		
-		ArrayList<CreditLineRequest> requests =  (ArrayList<CreditLineRequest>) s.createQuery(criteria).getResultList();
-		return new ArrayList<CreditLineRequest>(requests);
-		*/
-		// HQL - an interface of Hibernate
-		/*
-		 * Hibernate Query Language An object based query language for querying
-		 * relational databases without any knowledge of their underlying schemas or of
-		 * SQL. We can perform DQL and DML
-		 */
 		ArrayList<CreditLineRequest> requests = null;
-		Session s = hu.getSession();
-		String query = "from com.greenbank.beans.CreditLineRequest";
-		Query<CreditLineRequest> q = s.createQuery(query, CreditLineRequest.class);
+		Session session = hu.getSession();
+		String query = "from com.greenbank.beans.CreditLineRequest req where req.employeeApprover=null";
+		Query<CreditLineRequest> q = session.createQuery(query, CreditLineRequest.class);
 		requests = new ArrayList<CreditLineRequest>(q.getResultList());
-		
-		System.out.println("Request ARRAY: ");
-		System.out.println(requests);
 		return requests;
 	}
 
