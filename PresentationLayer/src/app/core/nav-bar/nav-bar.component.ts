@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserService } from 'src/app/shared/user/user.service';
+import { UserService } from 'src/app/shared/user.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -8,10 +8,9 @@ import { UserService } from 'src/app/shared/user/user.service';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit {
-  title = 'Richard\'s BookStore';
+  title = 'GreenBank is the best';
 
-  constructor( public route: Router, private userService: UserService) { }
-
+  constructor( public route: Router, private userService: UserService) { } 
   ngOnInit() {
   }
 

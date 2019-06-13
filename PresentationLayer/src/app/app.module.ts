@@ -8,17 +8,23 @@ import { CreditFormComponent } from './core/creditform/creditform.component';
 import { CreditRequestService } from './core/creditform/services/credit-request-service.service';
 import { UserService } from './shared/user.service';
 import { UrlService } from './shared/url.service';
+import { NavBarComponent } from './core/nav-bar/nav-bar.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    CreditFormComponent
+    CreditFormComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
     CreditRequestService,
