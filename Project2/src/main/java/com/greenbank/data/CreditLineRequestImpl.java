@@ -23,7 +23,13 @@ public class CreditLineRequestImpl implements CreditLineRequestDao {
 	
 	@Autowired
 	private static HibernateUtil hu;
- 
+	
+	
+  
+	public CreditLineRequestImpl() {
+		super();
+	}
+
 	@Override
 	public List<CreditLineRequest> getRequestsByManager(Employee manager) {
 		return getRequestsByID("employee_id", manager.getId());
