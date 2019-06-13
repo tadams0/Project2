@@ -1,9 +1,15 @@
-package com.greenbank.data;
+package com.greenbank.data.hibernate;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -12,11 +18,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.greenbank.beans.Account;
 import com.greenbank.beans.Customer;
+import com.greenbank.data.AccountDao;
 import com.greenbank.utils.HibernateUtil;
-import com.revature.beans.Genre;
-import com.revature.beans.User;
 
-public class AccountImpl implements AccountDao {
+public class AccountHibernate implements AccountDao {
 	
 	@Autowired
 	private static HibernateUtil hu;
@@ -48,15 +53,25 @@ public class AccountImpl implements AccountDao {
 	@Override
 	public Account getAccountByCustomerId(Customer customer) {
 		Session s = hu.getSession();
-		Customer ret = s.get(Customer.class, customer.getId());
-		if(ret==null) {
-			String query = "from Account a where a.customer_id=:id";
-			Query<Account> q = s.createQuery(query, Account.class);
-			q.setParameter("id", customer.getId());
-			Account account = q.getSingleResult();
-		}
-		s.close();
-		return account;
+		CriteriaBuilder critBuilder = s.getCriteriaBuilder();
+		CriteriaQuery<Account> query = critBuilder.createQuery(Account.class);
+		Root<Account> root = query.from(Account.class);
+		query.select(root).where(critBuilder.equal(root.get("customer_id"), customer.getId()));
+		Query<Account> q = s.createQuery(query);
+		
+		return q.getSingleResult();
+	}
+	
+	@Override
+	public ArrayList<Account> getAccountsByCustomerId(Customer customer){
+		Session s = hu.getSession();
+		CriteriaBuilder critBuilder = s.getCriteriaBuilder();
+		CriteriaQuery<Account> query = critBuilder.createQuery(Account.class);
+		Root<Account> root = query.from(Account.class);
+		query.select(root).where(critBuilder.equal(root.get("customer_id"), customer.getId()));
+		ArrayList<Account> accountList = (ArrayList<Account>) s.createQuery(query).getResultList();
+		
+		return accountList;
 	}
 
 	@Override

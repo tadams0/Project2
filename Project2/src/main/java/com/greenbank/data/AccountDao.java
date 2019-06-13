@@ -1,5 +1,6 @@
 package com.greenbank.data;
 
+import java.util.ArrayList;
 import java.util.Set;
 
 import com.greenbank.beans.Account;
@@ -14,7 +15,7 @@ public interface AccountDao {
 	public Account getAccount(Account account);
 	public Account getAccountByCustomerId(Customer customer);
 	public Set<Account> getAccounts();
-	public Set<Account> getAccountsByCustomerId(Customer customer);
+	public ArrayList<Account> getAccountsByCustomerId(Customer customer);
 	
 	//Update
 	public void updateAccount(Account account);
