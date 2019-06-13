@@ -74,3 +74,4 @@ testem.log
 Thumbs.db
 
 /bin/
+/.metadata/
