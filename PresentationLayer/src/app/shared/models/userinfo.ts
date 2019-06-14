@@ -10,5 +10,5 @@ export class UserInfo{
    public city : string;
    public state : string;
    public country : string;
-   public zip : string;
+   public zipcode : string;
 }

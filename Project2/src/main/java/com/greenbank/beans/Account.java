@@ -19,12 +19,12 @@ public class Account {
 	@Column(name="balance")
 	private double balance;
 
-	//@Column(name = "date_opened")
-	//@Temporal(TemporalType.DATE)
+	@Column(name = "date_opened")
+	@Temporal(TemporalType.DATE)
 	private Date dateOpened;
 
-	//@Column(name = "date_closed")
-	//@Temporal(TemporalType.DATE)
+	@Column(name = "date_closed")
+	@Temporal(TemporalType.DATE)
 	private Date dateClosed;
 
 	@OneToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
