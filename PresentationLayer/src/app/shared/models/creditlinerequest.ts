@@ -7,4 +7,5 @@ export class CreditLineRequest{
    public employee : Employee;
    public creditAPR : number;
    public creditMax : number;
+   public status : string;
 }

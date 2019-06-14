@@ -9,7 +9,7 @@
         <ul class="navbar-nav mr-auto">
             <li  class="nav-item">
                 <a *ngIf="route.url!=='/form'" class="nav-link" routerLink="/form">
-                  Request Credit Line
+                Request Credit Line
                 </a>
                 <span *ngIf="route.url==='/form'" class="nav-link font-weight-bold">
                 Request Credit Line
@@ -23,7 +23,7 @@
                     <a class="nav-link" routerLink="/genres">Add Genre</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" routerLink="/authors">Authors</a>
+                <a class="nav-link" routerLink="/pendingrequests">View Credit Line Requests</a>
             </li>
             <li *ngIf="isEmployee()" class="nav-item">
                 <a class="nav-link" routerLink="/purch">Purchases</a>
