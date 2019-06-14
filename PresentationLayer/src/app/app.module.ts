@@ -13,6 +13,7 @@ import { UrlService } from './shared/url.service';
 import { CreditRequestComponent } from './core/credit-request/credit-request.component';
 import { CreditRequestListComponent } from './core/credit-request-list/credit-request-list.component';
 import { CreateAccountComponent } from './core/register/create-account.component';
+import { NavBarComponent } from './shared/nav-bar/nav-bar.component';
 
 
 
@@ -23,7 +24,8 @@ import { CreateAccountComponent } from './core/register/create-account.component
     CreditFormComponent,
     CreditRequestComponent,
     CreditRequestListComponent,
-    CreateAccountComponent
+    CreateAccountComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,
