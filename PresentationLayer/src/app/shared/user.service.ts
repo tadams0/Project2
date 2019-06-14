@@ -26,7 +26,7 @@ export class UserService {
 
       console.log(this.appUrl +" "+body+" "+
       {headers: this.headers, withCredentials: true});
-      
+
       return this.http.post(this.appUrl, body,
         {headers: this.headers, withCredentials: true})
         .pipe( map( resp => {
@@ -50,6 +50,8 @@ export class UserService {
         }));
     }
   }
+
+  
   logout(): Observable<object> {
     return this.http.delete(this.appUrl, {withCredentials: true}).pipe(
       map(success => {

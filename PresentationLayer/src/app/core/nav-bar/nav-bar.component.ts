@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserService } from 'src/app/shared/user/user.service';
+import { UserService } from 'C:/Users/andre/Project2/PresentationLayer/src/app/shared/user.service';
 
 @Component({
   selector: 'app-nav-bar',
