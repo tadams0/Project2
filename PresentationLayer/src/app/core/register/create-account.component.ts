@@ -26,16 +26,16 @@ export class CreateAccountComponent implements OnInit {
 
   ngOnInit() {
   this.username = null;
-  this.password =null;
+  this.password = null;
   this.firstName = null;
-  this.lastName  =null;
-  this.email=null;
-  this.phoneNumber=null;
-  this.address=null;
-  this.city=null;
-  this.state=null;
-  this.country=null;
-  this.zip=null;
+  this.lastName  = null;
+  this.email = null;
+  this.phoneNumber = null;
+  this.address = null;
+  this.city = null;
+  this.state = null;
+  this.country = null;
+  this.zip = null;
   }
 
   submitInfo(): void {

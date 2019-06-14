@@ -6,5 +6,7 @@ import com.greenbank.beans.Account;
 import com.greenbank.beans.Customer;
 
 public interface AccountDao {
-	//Set<Account> getAccountsByCustomer(Customer customer);
+
+	int addAccount(Account account);
+
 }

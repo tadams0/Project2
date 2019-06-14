@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CurrentUser } from 'src/app/shared/models/currentuser';
 import { UserService } from 'src/app/shared/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ export class LoginComponent implements OnInit {
   public loggedUser: CurrentUser;
   public username: string;
   public password: string;
-  constructor( private userService: UserService ) { }
+  constructor( private userService: UserService, private router: Router ) { }
 
   ngOnInit() {
     
@@ -35,24 +36,7 @@ export class LoginComponent implements OnInit {
     this.password = null;
   }
 
-  // onEnter1(value1: string) {
-  //    this.value1 = value1; }
-
-  // onEnter2(value2: string) {
-  //    this.value2 = value2; }
-
-
-     
-  // login(){
-  //   this.loginService.login(this.value1, this.value2).subscribe(
-  //     resp => {
-  //       this.dude =  resp;
-  //       console.log(this.dude);
-  //     });
-
-  // }
-
-  register(){
-
+  register() {
+    this.router.navigate(['./register']);
   }
 }
