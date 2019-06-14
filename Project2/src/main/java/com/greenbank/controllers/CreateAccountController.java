@@ -1,7 +1,8 @@
 package com.greenbank.controllers;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.http.HttpSession;
 
@@ -18,7 +19,7 @@ import com.greenbank.beans.Customer;
 import com.greenbank.beans.UserInfo;
 import com.greenbank.data.AccountDao;
 import com.greenbank.data.CustomerDAO;
-import com.greenbank.data.UserInfoDAO;
+
 
 
 @CrossOrigin(origins = "*")
@@ -27,31 +28,37 @@ import com.greenbank.data.UserInfoDAO;
 public class CreateAccountController {
 	
 	@Autowired
-	private AccountDao accountDAO;
+	private AccountDao accountDao;
 
 	@Autowired
 	private CustomerDAO customerDAO;
-	
+
 	@GetMapping
 	public String getRequestsAvailableToAll(HttpSession session) {
         return new String("Service Available");
 	}
 
 	@PostMapping
-	public String addRequest(@RequestBody UserInfo request, String  accountType)
+	public String addUser(@RequestBody UserInfo user)
 	{
 		System.out.println("POST REQUEST RECIEVED!");
-		System.out.println(request);
+		System.out.println(user);
 
 		//create Customer with UserInfo
 		Customer newCustomer = new Customer();
-		newCustomer.setUserInfo(request);
+		newCustomer.setUserInfo(user);
 		customerDAO.addCustomer(newCustomer);
 		//create Account tied to new Customer
 		Account newAccount = new Account();
-		newAccount.setAccountType(accountType);
+		//mark with Date
+		DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
+		Date dateOpened = new Date();
+		System.out.println(df.format(dateOpened));
+		//newAccount.setAccountType(accountType);
+		newAccount.setAccountType("Checking");
+		newAccount.setDateOpened(dateOpened);
 		newAccount.setPrimaryAccountHolder(newCustomer);
-		accountDAO.addAccount(newAccount);
+		accountDao.addAccount(newAccount);
 		
 		return new String("Creating Account");
 	}

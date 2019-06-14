@@ -20,7 +20,7 @@ export class CreateAccountComponent implements OnInit {
   public  city : string;
   public state : string;
   public country : string;
-  public zip : string;
+  public zipcode : string;
 
   constructor(private RegistrationService: RegistrationService) { }
 
@@ -35,13 +35,26 @@ export class CreateAccountComponent implements OnInit {
   this.city = null;
   this.state = null;
   this.country = null;
-  this.zip = null;
+  this.zipcode = null;
+
+  
+  this.username = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);;
+  this.password = "allalaa";
+  this.firstName = "lalalallala";
+  this.lastName  = "lelellelelelee";
+  this.email = "lolll@lolol.lol";
+  this.phoneNumber = "12345";
+  this.address = "dawdaw";
+  this.city = "awdwad";
+  this.state = "dwawa";
+  this.country = "awdawds";
+  this.zipcode = "1234";
+  
   }
 
   submitInfo(): void {
-    console.log(this.username);
-
     this.makeUser();
+    let accountType = "Checking";
     console.log(this.user);
     this.RegistrationService.register(this.user).subscribe(
       resp => {
@@ -61,7 +74,7 @@ export class CreateAccountComponent implements OnInit {
     this.user.city = this.city;
     this.user.state = this.state;
     this.user.country = this.country;
-    this.user.zip = this.zip;
+    this.user.zipcode = this.zipcode;
   }
 
 }

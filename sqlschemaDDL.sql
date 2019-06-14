@@ -71,7 +71,7 @@ create table account(
     account_type varchar2(30) not null,
     balance number(20,2) default 0,
     date_opened date not null,
-    date_closed date not null,
+    date_closed date,
     customer_id number(20) not null,
     constraint fk_account_customer foreign key (customer_id) references customer(customer_id)
 );

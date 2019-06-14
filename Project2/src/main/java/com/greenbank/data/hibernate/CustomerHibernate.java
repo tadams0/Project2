@@ -15,7 +15,7 @@ import com.greenbank.beans.Customer;
 import com.greenbank.data.CustomerDAO;
 import com.greenbank.utils.HibernateUtil;
 
-@Component
+//@Component
 public class CustomerHibernate implements CustomerDAO{
 
 	@Autowired

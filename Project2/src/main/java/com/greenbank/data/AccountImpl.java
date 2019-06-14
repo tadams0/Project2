@@ -3,12 +3,14 @@ package com.greenbank.data;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.greenbank.beans.Account;
 import com.greenbank.beans.CreditLineRequest;
 import com.greenbank.beans.Customer;
 import com.greenbank.utils.HibernateUtil;
 
+@Component
 public class AccountImpl implements AccountDao{
 
 	@Autowired

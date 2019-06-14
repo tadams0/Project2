@@ -1,17 +1,22 @@
 package com.greenbank.data;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.greenbank.beans.CreditLineRequest;
 import com.greenbank.beans.Customer;
 import com.greenbank.utils.HibernateUtil;
 
+@Component
 public class CustomerImpl implements CustomerDAO{
 
 	@Autowired
@@ -28,6 +33,7 @@ public class CustomerImpl implements CustomerDAO{
 		org.hibernate.Transaction t = s.beginTransaction();
 		int id = 0;
 		try {
+			System.out.println(customer);
 			id = (int) s.save(customer);
 			t.commit();
 		} catch(HibernateException e) {
@@ -39,8 +45,19 @@ public class CustomerImpl implements CustomerDAO{
 
 	@Override
 	public Customer getCustomer(Customer cust) {
-		return null;
-
+		Session s = hu.getSession();
+		Customer c;
+		
+		if(cust.getId()!=0) {
+			c = s.get(Customer.class, cust.getId());
+		} else {
+			String query = "from Customer c where c.username=:username and c.password=:password";
+			Query<Customer> q = s.createQuery(query, Customer.class);
+			q.setParameter("username", cust.getUsername());
+			q.setParameter("password", cust.getPassword());
+			c = q.getSingleResult();
+		}
+		return c;
 	}
 
 	@Override
@@ -57,20 +74,31 @@ public class CustomerImpl implements CustomerDAO{
 
 	@Override
 	public Set<Customer> getCustomers() {
-		// TODO Auto-generated method stub
-		return null;
+		Session s = hu.getSession();
+		String query = "from customer";
+		Query<Customer> q = s.createQuery(query, Customer.class);
+		List<Customer> custList = q.getResultList();
+		Set<Customer> custSet = new HashSet<Customer>();
+		custSet.addAll(custList);
+		return custSet;
 	}
 
 	@Override
 	public void deleteCustomer(Customer customer) {
-		// TODO Auto-generated method stub
-		
+		Session s = hu.getSession();
+		 Transaction t = s.beginTransaction();
+		 s.delete(customer.getId());
+		 t.commit();
+		 s.close();		
 	}
 
 	@Override
 	public void updateCustomer(Customer customer) {
-		// TODO Auto-generated method stub
-		
+		Session s = hu.getSession();
+		 Transaction t = s.beginTransaction();
+		 s.update(customer.getId());
+		 t.commit();
+		 s.close();
 	}
 
 }
