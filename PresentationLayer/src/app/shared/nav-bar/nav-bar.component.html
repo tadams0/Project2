@@ -8,11 +8,11 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li  class="nav-item">
-                <a *ngIf="route.url!=='/books'" class="nav-link" routerLink="/books">
-                  Books
+                <a *ngIf="route.url!=='/form'" class="nav-link" routerLink="/form">
+                  Request Credit Line
                 </a>
-                <span *ngIf="route.url==='/books'" class="nav-link font-weight-bold">
-                  Books
+                <span *ngIf="route.url==='/form'" class="nav-link font-weight-bold">
+                Request Credit Line
                 </span>
             </li>
             <li *ngIf="isEmployee()" class="nav-item">
@@ -32,9 +32,6 @@
                 <a class="nav-link" routerLink="/purch">Purchase History</a>
             </li>
         </ul>
-
-    <app-login></app-login>
     </div>
   </nav>
 
-  <router-outlet></router-outlet>
