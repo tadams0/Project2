@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CreditFormComponent } from './core/creditform/creditform.component';
 import { CreateAccountComponent } from './core/register/create-account.component';
+import { CreditRequestListComponent } from './core/credit-request-list/credit-request-list.component';
 
 
 const routes: Routes = [
@@ -22,8 +23,11 @@ const routes: Routes = [
   {
     path: 'register',
     component: CreateAccountComponent
+  },
+  {
+    path: 'pendingrequests',
+    component: CreditRequestListComponent
   }
-
 ];
 
 @NgModule({
