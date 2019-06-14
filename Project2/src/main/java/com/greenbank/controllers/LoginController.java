@@ -23,7 +23,7 @@ public class LoginController {
 	@RequestMapping(method=RequestMethod.GET)
 	public String goLogin(HttpSession session) {
 		if(session.getAttribute("user")!=null) {
-			return "redirect:home";
+			return "redirect:account";
 		}
 		return "static/login.html";
 	}
@@ -33,7 +33,7 @@ public class LoginController {
 		UserInfo u = ud.getUser(username, password);
 		if(u!=null) {
 			session.setAttribute("user", u);
-			return "redirect:home";
+			return "redirect:account";
 		}
 		return "redirect:login";
 	}

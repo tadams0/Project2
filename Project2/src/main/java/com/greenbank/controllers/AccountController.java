@@ -15,7 +15,7 @@ import com.greenbank.beans.Account;
 import com.greenbank.service.AccountService;
 
 @RestController
-@CrossOrigin(origins="http://localhost:8080")
+@CrossOrigin(origins="http://localhost:4200")
 @RequestMapping(value="/account")
 public class AccountController {
 	

@@ -7,4 +7,28 @@ export class Account{
    private dateOpened : Date;
    private dateClosed : Date;
    private primaryHolder : Customer;
+
+   getId() : number{
+      return this.id;
+   }
+
+   getAccountType() : string{
+      return this.accountType;
+   }
+
+   getBalance() : number{
+      return this.balance;
+   }
+
+   getDateOpened() : Date{
+      return this.dateOpened;
+   }
+
+   getDateClosed() : Date{
+      return this.dateClosed;
+   }
+
+   getPrimaryHolder() : Customer{
+      return this.primaryHolder;
+   }
 }

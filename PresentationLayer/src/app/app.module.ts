@@ -14,6 +14,7 @@ import { CreditRequestComponent } from './core/credit-request/credit-request.com
 import { CreditRequestListComponent } from './core/credit-request-list/credit-request-list.component';
 import { CreateAccountComponent } from './core/register/create-account.component';
 import { NavBarComponent } from './shared/nav-bar/nav-bar.component';
+import { DisplaybankaccountsComponent } from './core/displaybankaccounts/displaybankaccounts.component';
 
 
 
@@ -25,7 +26,8 @@ import { NavBarComponent } from './shared/nav-bar/nav-bar.component';
     CreditRequestComponent,
     CreditRequestListComponent,
     CreateAccountComponent,
-    NavBarComponent
+    NavBarComponent,
+    DisplaybankaccountsComponent
   ],
   imports: [
     BrowserModule,

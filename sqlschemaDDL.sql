@@ -132,3 +132,4 @@ create table credit_score(
     constraint fk_credit_score_customer foreign key (customer_id) references customer(customer_id)
 );
 
+commit;
