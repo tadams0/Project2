@@ -12,6 +12,7 @@ import { UserService } from './shared/user.service';
 import { UrlService } from './shared/url.service';
 import { CreditRequestComponent } from './core/credit-request/credit-request.component';
 import { CreditRequestListComponent } from './core/credit-request-list/credit-request-list.component';
+import { CreateAccountComponent } from './core/register/create-account.component';
 
 
 
@@ -21,7 +22,8 @@ import { CreditRequestListComponent } from './core/credit-request-list/credit-re
     LoginComponent,
     CreditFormComponent,
     CreditRequestComponent,
-    CreditRequestListComponent
+    CreditRequestListComponent,
+    CreateAccountComponent
   ],
   imports: [
     BrowserModule,
