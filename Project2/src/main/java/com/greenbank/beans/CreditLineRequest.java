@@ -3,7 +3,7 @@ package com.greenbank.beans;
 import javax.persistence.*;
 
 @Entity
-@Table
+@Table(name="credit_request")
 public class CreditLineRequest {
 	@Id
 	@Column(name="credit_request_id")
@@ -68,7 +68,7 @@ public class CreditLineRequest {
 	public void setCreditMax(int creditMax) {
 		this.creditMax = creditMax;
 	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -114,4 +114,6 @@ public class CreditLineRequest {
 		return "CreditLineRequest [id=" + id + ", customer=" + customer + ", employeeApprover=" + employeeApprover
 				+ ", creditAPR=" + creditAPR + ", creditMax=" + creditMax + "]";
 	}
+
+	
 }

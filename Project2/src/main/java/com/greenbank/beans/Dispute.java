@@ -1,7 +1,17 @@
 package com.greenbank.beans;
 
+import javax.persistence.*;
+
+//@Entity
+//@Table(name="dispute")
 public class Dispute {
+
+	//@Id
+	//@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="disputes")
+	//@SequenceGenerator(name="disputes", sequenceName="DISPUTE_SEQ", allocationSize=1)
+	//@Column(name="dispute_id")
 	private int id;
+	
 	private Customer customer;
 	private Transaction transaction;
 	private Employee employee; //The approver.

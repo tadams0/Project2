@@ -49,6 +49,14 @@ public class AccountHibernate implements AccountDao {
 		s.close();
 		return ret;
 	}
+	
+	@Override
+	public Account getAccount(int i) {
+		Session s = hu.getSession();
+		Account ret = s.get(Account.class, i);
+		s.close();
+		return ret;
+	}
 
 	@Override
 	public Account getAccountByCustomerId(Customer customer) {
@@ -69,6 +77,18 @@ public class AccountHibernate implements AccountDao {
 		CriteriaQuery<Account> query = critBuilder.createQuery(Account.class);
 		Root<Account> root = query.from(Account.class);
 		query.select(root).where(critBuilder.equal(root.get("customer_id"), customer.getId()));
+		ArrayList<Account> accountList = (ArrayList<Account>) s.createQuery(query).getResultList();
+		
+		return accountList;
+	}
+	
+	@Override
+	public ArrayList<Account> getAccountsByCustomerId(int i){
+		Session s = hu.getSession();
+		CriteriaBuilder critBuilder = s.getCriteriaBuilder();
+		CriteriaQuery<Account> query = critBuilder.createQuery(Account.class);
+		Root<Account> root = query.from(Account.class);
+		query.select(root).where(critBuilder.equal(root.get("customer_id"), i));
 		ArrayList<Account> accountList = (ArrayList<Account>) s.createQuery(query).getResultList();
 		
 		return accountList;

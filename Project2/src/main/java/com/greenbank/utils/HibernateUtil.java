@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 public class HibernateUtil {
 	private SessionFactory sessionFactory;
 
-	private HibernateUtil()
+	public HibernateUtil()
 	{
 		super();
 	}

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CreditformComponent } from './creditform.component';
+import { CreditFormComponent } from './creditform.component';
 
-describe('CreditformComponent', () => {
-  let component: CreditformComponent;
-  let fixture: ComponentFixture<CreditformComponent>;
+describe('CreditFormComponent', () => {
+  let component: CreditFormComponent;
+  let fixture: ComponentFixture<CreditFormComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CreditformComponent ]
+      declarations: [ CreditFormComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CreditformComponent);
+    fixture = TestBed.createComponent(CreditFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

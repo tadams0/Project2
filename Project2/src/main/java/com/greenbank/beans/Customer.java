@@ -16,11 +16,11 @@ import javax.persistence.Table;
 @Entity
 @Table(name="customer")
 @PrimaryKeyJoinColumn(name="user_id")
-public class Customer extends UserInfo{
+public class Customer{
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="customer")
-	@SequenceGenerator(name="customer", sequenceName="customer_seq", allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="customerGenerator")
+	@SequenceGenerator(name="customerGenerator", sequenceName="customer_seq", allocationSize=1)
 	@Column(name="customer_id")
 	private int id;
 	
@@ -73,6 +73,14 @@ public class Customer extends UserInfo{
 	@Override
 	public String toString() {
 		return "Customer [id=" + id + ", userInfo=" + userInfo + "]";
+	}
+
+	public String getUsername() {
+		return userInfo.getUsername();
+	}
+	
+	public String getPassword() {
+		return userInfo.getPassword();
 	}
 	
 	

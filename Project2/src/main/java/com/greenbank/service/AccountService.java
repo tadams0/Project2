@@ -14,9 +14,17 @@ import com.greenbank.data.hibernate.AccountHibernate;
 public class AccountService {
 	
 	AccountDao ad = new AccountHibernate();
+	
+	public int addAcount(Account account) {
+		return ad.addAccount(account);
+	}
 
 	public Account getAccount(Account account) {
 		return ad.getAccount(account);
+	}
+	
+	public Account getAccount(int i) {
+		return ad.getAccount(i);
 	}
 	
 	public Account getAccountByCustomerID(Customer customer) {
@@ -29,6 +37,10 @@ public class AccountService {
 	
 	public ArrayList<Account> getAccountsByCustomerId(Customer customer){
 		return ad.getAccountsByCustomerId(customer);
+	}
+	
+	public ArrayList<Account> getAccountsByCustomerId(int i){
+		return ad.getAccountsByCustomerId(i);
 	}
 	
 	public void updateAccount(Account account) {

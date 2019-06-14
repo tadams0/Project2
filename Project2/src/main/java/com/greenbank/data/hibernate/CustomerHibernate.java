@@ -84,5 +84,21 @@ public class CustomerHibernate implements CustomerDAO{
 		 s.close();
 		
 	}
+
+	@Override
+	public Customer getCustomerById(int id) {
+		Session s = hu.getSession();
+		Customer c;
+		
+		if(id!=0) {
+			c = s.get(Customer.class, id);
+		} else {
+			String query = "from Customer c where c.id=:id";
+			Query<Customer> q = s.createQuery(query, Customer.class);
+			q.setParameter("id", id);
+			c = q.getSingleResult();
+		}
+		return c;
+	}
 	
 }
