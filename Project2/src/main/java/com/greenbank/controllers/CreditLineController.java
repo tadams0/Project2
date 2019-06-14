@@ -18,27 +18,41 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.greenbank.beans.CreditLineRequest;
+import com.greenbank.beans.Customer;
 import com.greenbank.data.CreditLineRequestDao;
 import com.greenbank.data.CreditLineRequestImpl;
+import com.greenbank.data.CustomerDAO;
 
-@CrossOrigin(origins = "http://localhost:4200/")
+@CrossOrigin(origins = "*")
 @RestController
-//@RequestMapping(value="/creditline")
+@RequestMapping(value="/creditline")
 public class CreditLineController {
+	
 	@Autowired
 	private CreditLineRequestDao creditLineDao;
-	   //@Autowired
-	    //ExampleService exampleService;
-
-		//@RequestMapping(method=RequestMethod.GET)
-	@RequestMapping("/creditline")
-	public ArrayList<CreditLineRequest> postResponseController(HttpSession session) {
-	    	List<CreditLineRequest> requests = creditLineDao.getRequestsAvailableToAll();
-	        return new ArrayList<CreditLineRequest>(requests); //requests.get(0);
-	     }
 	
+	@Autowired
+	private CustomerDAO customerDao;
+
+	@GetMapping
+	public ArrayList<CreditLineRequest> getRequestsAvailableToAll(HttpSession session) {
+    	List<CreditLineRequest> requests = creditLineDao.getRequestsAvailableToAll();
+        return new ArrayList<CreditLineRequest>(requests);
+	}
+
+	@PostMapping
 	public CreditLineRequest addRequest(@RequestBody CreditLineRequest request)
 	{
+		System.out.println("");
+		System.out.println("POST REQUEST RECIEVED!");
+		System.out.println(request);
+		System.out.println("");
+		request.setCreditAPR(5);
+		request.setCreditMax(15);
+		Customer c = customerDao.getCustomerById(1);
+		System.out.println("Found customer: " + c);
+		request.setCustomer(c); //Get session user here.
+		request.setEmployeeApprover(null);
 		if (creditLineDao.addRequest(request) > 0)
 			return request;
 		else

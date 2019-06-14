@@ -7,9 +7,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './core/login/login.component';
 import { CreditFormComponent } from './core/creditform/creditform.component';
-import { CreditRequestService } from './core/creditform/services/credit-request-service.service';
+import { CreditRequestService } from './core/creditform/services/credit-request.service';
 import { UserService } from './shared/user.service';
 import { UrlService } from './shared/url.service';
+import { CreditRequestComponent } from './core/credit-request/credit-request.component';
+import { CreditRequestListComponent } from './core/credit-request-list/credit-request-list.component';
+import { CreateAccountComponent } from './core/register/create-account.component';
 
 
 
@@ -17,7 +20,10 @@ import { UrlService } from './shared/url.service';
   declarations: [
     AppComponent,
     LoginComponent,
-    CreditFormComponent
+    CreditFormComponent,
+    CreditRequestComponent,
+    CreditRequestListComponent,
+    CreateAccountComponent
   ],
   imports: [
     BrowserModule,

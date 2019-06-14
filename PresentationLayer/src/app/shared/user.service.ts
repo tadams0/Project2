@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { UrlService } from './url.service';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
-import { Employee } from './beans/employee';
-import { Customer } from './beans/customer';
+import { Employee } from './models/employee';
+import { Customer } from './models/customer';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { CurrentUser } from './beans/currentuser';
+import { CurrentUser } from './models/currentuser';
 
 @Injectable({
   providedIn: 'root'
