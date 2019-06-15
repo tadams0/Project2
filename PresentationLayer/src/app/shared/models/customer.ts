@@ -1,9 +1,13 @@
 import { UserInfo } from './userinfo';
-import { identifierModuleUrl } from '@angular/compiler';
 
 export class Customer{
-   private id : number;
+   public id : number;
    public userInfo : UserInfo;
+
+   Customer(){
+      this.id = 0;
+      this.userInfo = null;
+   }
 
    getId() : number {
       return this.id;

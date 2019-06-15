@@ -6,7 +6,7 @@ import java.util.Set;
 import com.greenbank.beans.Account;
 import com.greenbank.beans.Customer;
 
-public interface AccountDao {
+public interface AccountDAO {
 
 	//Create
 	public int addAccount(Account account);
@@ -24,5 +24,4 @@ public interface AccountDao {
 	
 	//Delete
 	public void deleteAccount(Account account);
-	
 }

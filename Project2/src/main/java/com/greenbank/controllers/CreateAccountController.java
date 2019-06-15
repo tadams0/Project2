@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.greenbank.beans.Account;
 import com.greenbank.beans.Customer;
 import com.greenbank.beans.UserInfo;
-import com.greenbank.data.AccountDao;
+import com.greenbank.data.AccountDAO;
 import com.greenbank.data.CustomerDAO;
 
 
@@ -28,7 +28,7 @@ import com.greenbank.data.CustomerDAO;
 public class CreateAccountController {
 	
 	@Autowired
-	private AccountDao accountDao;
+	private AccountDAO accountDao;
 
 	@Autowired
 	private CustomerDAO customerDAO;

@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { CreditFormComponent } from './core/creditform/creditform.component';
 import { CreateAccountComponent } from './core/register/create-account.component';
 import { CreditRequestListComponent } from './core/credit-request-list/credit-request-list.component';
+import { DisplaybankaccountsComponent } from './core/displaybankaccounts/displaybankaccounts.component';
 
 
 const routes: Routes = [
@@ -27,6 +28,10 @@ const routes: Routes = [
   {
     path: 'pendingrequests',
     component: CreditRequestListComponent
+  },
+  {
+    path: 'account',
+    component : DisplaybankaccountsComponent
   }
 ];
 

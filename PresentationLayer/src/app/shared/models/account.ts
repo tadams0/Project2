@@ -1,12 +1,12 @@
 import { Customer } from './customer';
 
 export class Account{
-   private id : number;
-   private accountType : string;
-   private balance : number;
-   private dateOpened : Date;
-   private dateClosed : Date;
-   private primaryHolder : Customer;
+   public id : number;
+   public accountType : string;
+   public balance : number;
+   public dateOpened : Date;
+   public dateClosed : Date;
+   public primaryHolder : Customer;
 
    getId() : number{
       return this.id;

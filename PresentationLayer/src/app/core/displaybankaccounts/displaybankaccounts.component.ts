@@ -10,19 +10,22 @@ import { UserInfo } from 'src/app/shared/models/userinfo';
   styleUrls: ['./displaybankaccounts.component.css']
 })
 export class DisplaybankaccountsComponent implements OnInit {
-  public userinfo : UserInfo;
-  public cust : Customer; 
-  public accounts : Account[];
+  public userinfo : UserInfo = new UserInfo();
+  public cust : Customer = new Customer(); 
+  public accounts : Account[] = [];
   constructor(private accountService : GetbankaccountsService) { }
 
   ngOnInit() {
-    this.cust.setId(1);
+    this.cust.id=1;
     this.cust.userInfo=this.userinfo;
+    console.log(this.cust);
+    this.loadAccounts();
   }
 
   loadAccounts() {
-    this.accountService.getAccountsForCustomer(this.cust).subscribe(resultArray => this.accounts = resultArray,
-    error => console.log("Error :: " + error));
+    this.accountService.getAccountsForCustomer(this.cust).subscribe(resultArray => {this.accounts = resultArray,
+    error => console.log("Error :: " + error)});
+    console.log(this.accounts);
     this.accounts.forEach(function (account){
       this.displayAccount(account);
     });

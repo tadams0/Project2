@@ -14,7 +14,7 @@ export class GetbankaccountsService {
   constructor(private http: HttpClient) { }
 
   getAccountsForCustomer(customer : Customer): Observable<Account[]> {
-    return this.http.get('http://localhost:8080/Project2/accounts/'+customer.getId()).pipe(
+    return this.http.get('http://localhost:8080/Project2/account').pipe(
        map( resp => resp as Account[] ) );
   }
 }

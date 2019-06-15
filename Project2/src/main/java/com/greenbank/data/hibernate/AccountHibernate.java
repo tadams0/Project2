@@ -9,22 +9,26 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
-import org.hibernate.Criteria;
+import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.greenbank.beans.Account;
 import com.greenbank.beans.Customer;
-import com.greenbank.data.AccountDao;
+import com.greenbank.data.AccountDAO;
 import com.greenbank.utils.HibernateUtil;
 
-public class AccountHibernate implements AccountDao {
+@Component
+public class AccountHibernate implements AccountDAO {
 	
 	@Autowired
-	private static HibernateUtil hu;
+	private HibernateUtil hu;
+	
+	private Logger log = Logger.getLogger(AccountHibernate.class);
 
 	@Override
 	public int addAccount(Account account) {
@@ -97,11 +101,13 @@ public class AccountHibernate implements AccountDao {
 	@Override
 	public Set<Account> getAccounts() {
 		Session s = hu.getSession();
-		String query = "FROM Account";
+		String query = "from Account";
+		log.trace(query);
 		Query<Account> q = s.createQuery(query, Account.class);
 		List<Account> accountList = q.getResultList();
 		Set<Account> accountSet = new HashSet<Account>();
 		accountSet.addAll(accountList);
+		log.trace(accountList);
 		return accountSet;
 	}
 
