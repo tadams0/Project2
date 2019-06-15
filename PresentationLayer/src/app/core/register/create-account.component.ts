@@ -68,7 +68,7 @@ export class CreateAccountComponent implements OnInit {
     this.user.password = this.password;
     this.user.firstName = this.firstName;
     this.user.lastName = this.lastName;
-    this.user.password = this.email;
+    this.user.email = this.email;
     this.user.phoneNumber = this.phoneNumber;
     this.user.address = this.address;
     this.user.city = this.city;
