@@ -1,9 +1,10 @@
-package com.greenbank.data.hibernate;
+package com.greenbank.data;
+
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -11,30 +12,35 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.greenbank.beans.CreditLineRequest;
 import com.greenbank.beans.Customer;
-import com.greenbank.data.CustomerDAO;
 import com.greenbank.utils.HibernateUtil;
 
-//@Component
-public class CustomerHibernate implements CustomerDAO{
+@Component
+public class CustomerImpl implements CustomerDAO{
 
 	@Autowired
 	private HibernateUtil hu;
-	private Logger log = Logger.getLogger(CustomerHibernate.class);
+	
+	public CustomerImpl() {
+		super();
+	}
+	
 	
 	@Override
 	public void addCustomer(Customer customer) {
-		 Session s = hu.getSession();
-		 Transaction t = s.beginTransaction();
-		 try {
-			 s.save(customer);
-			 t.commit();
-		 }catch(HibernateException e) {
-			 t.rollback();
-		 }finally {
-			 s.close();
-		 }
-		
+		Session s = hu.getSession();
+		org.hibernate.Transaction t = s.beginTransaction();
+		int id = 0;
+		try {
+			System.out.println(customer);
+			id = (int) s.save(customer);
+			t.commit();
+		} catch(HibernateException e) {
+			t.rollback();
+		} finally {
+			s.close();
+		}
 	}
 
 	@Override
@@ -52,7 +58,18 @@ public class CustomerHibernate implements CustomerDAO{
 			c = q.getSingleResult();
 		}
 		return c;
+	}
+
+	@Override
+	public Customer getCustomerById(int id) {
 		
+		ArrayList<Customer> requests = null;
+		Session session = hu.getSession();
+		String hqlString = "from com.greenbank.beans.CreditLineRequest req where req.id=:id";
+		Query<Customer> query = session.createQuery(hqlString, Customer.class);
+        query.setParameter(":id", id);
+		requests = new ArrayList<Customer>(query.getResultList());
+		return requests.get(0);
 	}
 
 	@Override
@@ -68,7 +85,7 @@ public class CustomerHibernate implements CustomerDAO{
 
 	@Override
 	public void deleteCustomer(Customer customer) {
-		 Session s = hu.getSession();
+		Session s = hu.getSession();
 		 Transaction t = s.beginTransaction();
 		 s.delete(customer.getId());
 		 t.commit();
@@ -77,28 +94,11 @@ public class CustomerHibernate implements CustomerDAO{
 
 	@Override
 	public void updateCustomer(Customer customer) {
-		 Session s = hu.getSession();
+		Session s = hu.getSession();
 		 Transaction t = s.beginTransaction();
 		 s.update(customer.getId());
 		 t.commit();
 		 s.close();
-		
 	}
 
-	@Override
-	public Customer getCustomerById(int id) {
-		Session s = hu.getSession();
-		Customer c;
-		
-		if(id!=0) {
-			c = s.get(Customer.class, id);
-		} else {
-			String query = "from Customer c where c.id=:id";
-			Query<Customer> q = s.createQuery(query, Customer.class);
-			q.setParameter("id", id);
-			c = q.getSingleResult();
-		}
-		return c;
-	}
-	
 }
