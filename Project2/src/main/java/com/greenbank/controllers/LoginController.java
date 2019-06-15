@@ -30,7 +30,7 @@ public class LoginController {
 		return "static/login.html";
 	}
 	@PostMapping
-	public UserInfo login(@RequestBody Login login, HttpSession session) {
+	public String login(@RequestBody Login login, HttpSession session) {
 		String username = login.getUsername();
 		String password = login.getPassword();
 		System.out.println(login);
@@ -38,7 +38,8 @@ public class LoginController {
 		UserInfo user = ud.getUser(username, password);
 		if(user!=null) {
 			session.setAttribute("user", user);
+			return "redirect:home";
 		}
-		return user;
+		return "redirect:login";
 	}
 }
