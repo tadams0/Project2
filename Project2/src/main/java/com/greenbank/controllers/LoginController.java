@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.greenbank.beans.Login;
 import com.greenbank.beans.UserInfo;
 import com.greenbank.data.UserInfoDAO;
 
@@ -28,8 +30,11 @@ public class LoginController {
 		return "static/login.html";
 	}
 	@PostMapping
-	public UserInfo login(String username, String password, HttpSession session) {
-		System.out.println(username+password);
+	public UserInfo login(@RequestBody Login login, HttpSession session) {
+		String username = login.getUsername();
+		String password = login.getPassword();
+		System.out.println(login);
+		System.out.println(username+" "+password);
 		UserInfo user = ud.getUser(username, password);
 		if(user!=null) {
 			session.setAttribute("user", user);

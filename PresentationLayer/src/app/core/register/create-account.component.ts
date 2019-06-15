@@ -39,7 +39,7 @@ export class CreateAccountComponent implements OnInit {
 
   
   this.username = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);;
-  this.password = "allalaa";
+  this.password = "password";
   this.firstName = "lalalallala";
   this.lastName  = "lelellelelelee";
   this.email = "lolll@lolol.lol";

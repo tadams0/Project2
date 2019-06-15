@@ -8,7 +8,7 @@
       <label for="inputUser">Username</label>
       <input #inputUsername
       (keydown.enter)="login(inputUsername.value, inputPassword.value)"
-        class="form-text" type="text"/>
+        class="form-text" type="text" name="username"/>
     </div>
  
 
@@ -16,7 +16,7 @@
       <label for="inputPassword">Password:</label>
       <input  #inputPassword 
       (keydown.enter)="login(inputUsername.value, inputPassword.value)"
-      class="form-text" type="password" name="pass"/>
+      class="form-text" type="password" name="password"/>
       <p>{{password}}</p>
     </div>
 

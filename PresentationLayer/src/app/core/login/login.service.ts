@@ -18,7 +18,7 @@ export class LoginService {
       // actually log in
       const body = `username=${username}&password=${password}`;
       const headers = new HttpHeaders({'Content-Type': 'application/json'});
-
+      console.log(body);
       return this.http.post('http://localhost:8080/Project2/register', body,
       {headers, withCredentials: true}).pipe(map((resp)=>resp as UserInfo));
     }

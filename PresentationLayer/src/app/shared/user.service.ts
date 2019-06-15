@@ -12,7 +12,7 @@ import { CurrentUser } from './models/currentuser';
 })
 export class UserService {
   private appUrl = this.urlSource.getURL() + '/login';
-  private headers = new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'});
+  private headers = new HttpHeaders({'Content-Type': 'application/json'});
   private employee: Employee;
   private customer: Customer;
 
@@ -22,7 +22,7 @@ export class UserService {
     
     if ( username && password ) {
       // actually log in
-      const body = `user=${username}&pass=${password}`; // "user=rorr&pass=pswd"
+      const body ={"username": username, "password": password}; // "user=rorr&pass=pswd"
 
       console.log(this.appUrl +" "+body+" "+
       {headers: this.headers, withCredentials: true});
