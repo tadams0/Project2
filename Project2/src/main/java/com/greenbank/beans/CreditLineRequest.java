@@ -25,6 +25,9 @@ public class CreditLineRequest {
 	@Column(name="credit_max")
 	private int creditMax;
 	
+	@Column(name="status")
+	private String status;
+	
 	public CreditLineRequest() {
 		super();
 	}
@@ -69,6 +72,16 @@ public class CreditLineRequest {
 		this.creditMax = creditMax;
 	}
 	
+	
+	
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -78,6 +91,7 @@ public class CreditLineRequest {
 		result = prime * result + ((customer == null) ? 0 : customer.hashCode());
 		result = prime * result + ((employeeApprover == null) ? 0 : employeeApprover.hashCode());
 		result = prime * result + id;
+		result = prime * result + ((status == null) ? 0 : status.hashCode());
 		return result;
 	}
 
@@ -106,14 +120,19 @@ public class CreditLineRequest {
 			return false;
 		if (id != other.id)
 			return false;
+		if (status == null) {
+			if (other.status != null)
+				return false;
+		} else if (!status.equals(other.status))
+			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
 		return "CreditLineRequest [id=" + id + ", customer=" + customer + ", employeeApprover=" + employeeApprover
-				+ ", creditAPR=" + creditAPR + ", creditMax=" + creditMax + "]";
+				+ ", creditAPR=" + creditAPR + ", creditMax=" + creditMax + ", status=" + status + "]";
 	}
-
+	
 	
 }

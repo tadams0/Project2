@@ -36,7 +36,10 @@ export class LoginComponent implements OnInit {
     this.password = null;
   }
 
-  register() {
+  openAccount() {
+    this.router.navigate(['./register']);
+  }
+  setUpAccount(){
     this.router.navigate(['./register']);
   }
 }

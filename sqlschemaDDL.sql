@@ -121,6 +121,7 @@ create table credit_request(
     credit_apr number(20) default 0,
     credit_max number(20) not null,
     employee_id number(20) default null, -- approverId. null = anyone loan officer can approve it.
+    status varchar(20) default 'PENDING',
     constraint fk_credit_request_customer foreign key (customer_id) references customer(customer_id)
     --constraint fk_credit_request_employee foreign key (employee_id) references employee(employee_id)
 );

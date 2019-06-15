@@ -6,15 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.greenbank.beans.Login;
 import com.greenbank.beans.UserInfo;
 import com.greenbank.data.UserInfoDAO;
 
 
 @Controller
-@CrossOrigin(origins="http://localhost:4200")
+@CrossOrigin(origins="*")
 @RequestMapping(value="/login")
 public class LoginController {
 	@Autowired
@@ -28,12 +30,15 @@ public class LoginController {
 		return "static/login.html";
 	}
 	@PostMapping
-	public String login(String username, String password, HttpSession session) {
-		System.out.println(username+password);
-		UserInfo u = ud.getUser(username, password);
-		if(u!=null) {
-			session.setAttribute("user", u);
-			return "redirect:account";
+	public String login(@RequestBody Login login, HttpSession session) {
+		String username = login.getUsername();
+		String password = login.getPassword();
+		System.out.println(login);
+		System.out.println(username+" "+password);
+		UserInfo user = ud.getUser(username, password);
+		if(user!=null) {
+			session.setAttribute("user", user);
+			return "redirect:home";
 		}
 		return "redirect:login";
 	}

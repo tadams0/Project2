@@ -42,11 +42,11 @@ public class UserInfoHibernate implements UserInfoDAO{
 	public UserInfo getUser(String username, String password) {
 		
 		Session s = hu.getSession();
-		String query = "from bankuser u where u.username=:username and u.user_password=:password";
+		String query = "from com.greenbank.beans.UserInfo user where user.username=:username and user.password=:user_password";
 		Query<UserInfo> q = s.createQuery(query, UserInfo.class);
 		q.setParameter("username", username);
-		q.setParameter("password", password);
-		UserInfo u = q.getSingleResult();
+		q.setParameter("user_password", password);
+		UserInfo u = q.uniqueResult();
 		s.close();
 		return u;
 	}

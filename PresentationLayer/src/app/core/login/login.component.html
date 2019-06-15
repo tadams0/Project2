@@ -8,7 +8,7 @@
       <label for="inputUser">Username</label>
       <input #inputUsername
       (keydown.enter)="login(inputUsername.value, inputPassword.value)"
-        class="form-text" type="text"/>
+        class="form-text" type="text" name="username"/>
     </div>
  
 
@@ -16,14 +16,15 @@
       <label for="inputPassword">Password:</label>
       <input  #inputPassword 
       (keydown.enter)="login(inputUsername.value, inputPassword.value)"
-      class="form-text" type="password" name="pass"/>
+      class="form-text" type="password" name="password"/>
       <p>{{password}}</p>
     </div>
 
 
     <div class="buttons">
-      <button  (click)="login(inputUsername.value, inputPassword.value)" id="login" type="button" class="btn btn-primary">LogIn</button>
-      <button  (click)="register()" id="register" type="button" class="btn btn-warning">Open an Account</button>
+      <button  (click)="login(inputUsername.value, inputPassword.value)" id="login" type="button" class="btn btn-primary btn-md">LogIn</button>
+      <button  (click)="openAccount()" id="register" type="button" class="btn btn-warning btn-md">Open an Account</button>
+      <button  (click)="setUpAccount()" id="register" type="button" class="btn btn-warning btn-md">Set up Account</button>
     </div>
     <a href="https://www.w3schools.com">Forgot Password?</a>
 </div>

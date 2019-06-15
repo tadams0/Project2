@@ -33,7 +33,7 @@ public class CreditLineRequestImpl implements CreditLineRequestDao {
 	public List<CreditLineRequest> getRequestsByManager(Employee manager) {
 		ArrayList<CreditLineRequest> requests = null;
 		Session session = hu.getSession();
-		String hqlString = "from com.greenbank.beans.CreditLineRequest req where req.id=:id";
+		String hqlString = "from com.greenbank.beans.CreditLineRequest req where req.id=:id and req.status='PENDING'";
 		Query<CreditLineRequest> query = session.createQuery(hqlString, CreditLineRequest.class);
         query.setParameter(":id", manager.getId());
 		requests = new ArrayList<CreditLineRequest>(query.getResultList());
@@ -44,7 +44,7 @@ public class CreditLineRequestImpl implements CreditLineRequestDao {
 	public List<CreditLineRequest> getRequestsByManagerID(int id) {
 		ArrayList<CreditLineRequest> requests = null;
 		Session session = hu.getSession();
-		String hqlString = "from com.greenbank.beans.CreditLineRequest req where req.id=:id";
+		String hqlString = "from com.greenbank.beans.CreditLineRequest req where req.id=:id and req.status='PENDING'";
 		Query<CreditLineRequest> query = session.createQuery(hqlString, CreditLineRequest.class);
         query.setParameter(":id", id);
 		requests = new ArrayList<CreditLineRequest>(query.getResultList());
@@ -55,7 +55,7 @@ public class CreditLineRequestImpl implements CreditLineRequestDao {
 	public List<CreditLineRequest> getRequestsAvailableToAll() {
 		ArrayList<CreditLineRequest> requests = null;
 		Session session = hu.getSession();
-		String query = "from com.greenbank.beans.CreditLineRequest req where req.employeeApprover=null";
+		String query = "from com.greenbank.beans.CreditLineRequest req where req.employeeApprover=null and req.status='PENDING'";
 		Query<CreditLineRequest> q = session.createQuery(query, CreditLineRequest.class);
 		requests = new ArrayList<CreditLineRequest>(q.getResultList());
 		return requests;
@@ -69,6 +69,53 @@ public class CreditLineRequestImpl implements CreditLineRequestDao {
 		try {
 			id = (int) s.save(req);
 			t.commit();
+		} catch(HibernateException e) {
+			t.rollback();
+		} finally {
+			s.close();
+		}
+		return id;
+	}
+
+	@Override
+	public int rejectRequest(int requestID) {
+		Session s = hu.getSession();
+		org.hibernate.Transaction t = s.beginTransaction();
+		CreditLineRequest req = s.get(CreditLineRequest.class, requestID);
+		req.setStatus("REJECTED");
+		int id = 0;
+		try {
+			s.update(req);
+			t.commit();
+			id = 1;
+		} catch(HibernateException e) {
+			t.rollback();
+		} finally {
+			s.close();
+		}
+		return id;
+	}
+
+	@Override
+	public int approveRequest(int requestID, Employee loggedInEmployee) {
+		Session s = hu.getSession();
+		org.hibernate.Transaction t = s.beginTransaction();
+		CreditLineRequest req = s.get(CreditLineRequest.class, requestID);
+		
+		if (req.getEmployeeApprover() == null)
+		{ //If no employee approver, then escalate to the manager.
+			req.setEmployeeApprover(loggedInEmployee.getManager());
+		}
+		else if (req.getEmployeeApprover().getId() == loggedInEmployee.getId())
+		{ //If there is an approver, then that is the manager. So set the status to finally approved.
+			req.setStatus("APPROVED");
+		}
+		
+		int id = 0;
+		try {
+			s.update(req);
+			t.commit();
+			id = 1;
 		} catch(HibernateException e) {
 			t.rollback();
 		} finally {
