@@ -39,6 +39,7 @@ public class LoginController {
 		if(user!=null) {
 			session.setAttribute("user", user);
 		}
+		System.out.println(user);
 		return user;
 	}
 }
