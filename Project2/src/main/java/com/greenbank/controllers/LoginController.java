@@ -14,7 +14,7 @@ import com.greenbank.data.UserInfoDAO;
 
 
 @Controller
-@CrossOrigin(origins="http://localhost:4200")
+@CrossOrigin(origins="*")
 @RequestMapping(value="/login")
 public class LoginController {
 	@Autowired
@@ -28,13 +28,12 @@ public class LoginController {
 		return "static/login.html";
 	}
 	@PostMapping
-	public String login(String username, String password, HttpSession session) {
+	public UserInfo login(String username, String password, HttpSession session) {
 		System.out.println(username+password);
-		UserInfo u = ud.getUser(username, password);
-		if(u!=null) {
-			session.setAttribute("user", u);
-			return "redirect:home";
+		UserInfo user = ud.getUser(username, password);
+		if(user!=null) {
+			session.setAttribute("user", user);
 		}
-		return "redirect:login";
+		return user;
 	}
 }
