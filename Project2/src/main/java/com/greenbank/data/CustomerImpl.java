@@ -46,13 +46,20 @@ public class CustomerImpl implements CustomerDAO{
 	
 	@Override
 	public Customer getCustomerByInfoId(int userInfoId) {
+		System.out.println("Util " + hu);
 		Session s = hu.getSession();
-		Customer c;
-
-		String query = "from Customer c where c.userInfo.id=:id";
-		Query<Customer> q = s.createQuery(query, Customer.class);
-		q.setParameter("id", userInfoId);
-		c = q.getSingleResult();
+		Customer c = null;
+		try
+		{
+			String query = "from Customer c where c.userInfo.id=:id";
+			Query<Customer> q = s.createQuery(query, Customer.class);
+			q.setParameter("id", userInfoId);
+			//c = q.getSingleResult();
+		}
+		catch (Exception e)
+		{
+			c = null;
+		}
 		
 		return c;
 	}
