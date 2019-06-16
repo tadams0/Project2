@@ -46,17 +46,24 @@ public class LoginController {
 	public LoginPayload login(@RequestBody Login login, HttpSession session) {
 		String username = login.getUsername();
 		String password = login.getPassword();
-		System.out.println(login);
-		System.out.println(username+" "+password);
 		
 		LoginPayload payload = new LoginPayload();
 		
 		UserInfo user = ud.getUser(username, password);
-		Customer customer = cd.getCustomerByInfoId(user.getId());
+		Customer customer = null;
 		Employee employee = null;
-		if (customer == null)
+		if (user != null)
 		{
-			employee = ed.getEmployeeByInfoId(user.getId());
+			customer = cd.getCustomerByInfoId(user.getId());
+			
+			if (customer == null)
+			{
+				employee = ed.getEmployeeByInfoId(user.getId());
+			}
+		}
+		else
+		{
+			//No username with that combination!
 		}
 		payload.setCustomer(customer);
 		payload.setEmployee(employee);
