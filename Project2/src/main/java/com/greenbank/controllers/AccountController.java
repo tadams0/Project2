@@ -1,5 +1,7 @@
 package com.greenbank.controllers;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import javax.servlet.http.HttpSession;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.greenbank.beans.Account;
+import com.greenbank.beans.Customer;
 import com.greenbank.data.hibernate.AccountHibernate;
 
 @Controller
@@ -27,7 +30,7 @@ public class AccountController {
 	private Logger log = Logger.getLogger(AccountController.class);
 	
 	@GetMapping
-	public Set<Account> getAccounts(){
+	public Set<Account> getAccounts(HttpSession session){
 		log.trace("It was called");
 		Set<Account> accounts = accountHibernate.getAccounts();
 		return accounts;
@@ -40,9 +43,9 @@ public class AccountController {
 		return accountHibernate.getAccountsByCustomerId(i);
 	}*/
 	
-	@PostMapping
+	/*@PostMapping
 	public Account addAccount(@RequestBody Account account) {
 		Integer i = accountHibernate.addAccount(account);
 		return accountHibernate.getAccount(i);
-	}
+	}*/
 }

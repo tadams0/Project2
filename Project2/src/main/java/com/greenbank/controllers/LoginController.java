@@ -36,6 +36,7 @@ public class LoginController {
 		System.out.println(login);
 		System.out.println(username+" "+password);
 		UserInfo user = ud.getUser(username, password);
+		System.out.println(user);
 		if(user!=null) {
 			session.setAttribute("user", user);
 			return "redirect:home";
