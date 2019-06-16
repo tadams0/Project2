@@ -3,6 +3,7 @@ import { AccountService } from '../account/services/account.service';
 import { Customer } from 'src/app/shared/models/customer';
 import { UserInfo } from 'src/app/shared/models/userinfo';
 import { Account } from 'src/app/shared/models/account';
+import { UserService } from 'src/app/shared/user.service';
 
 @Component({
   selector: 'app-accountlist',
@@ -13,12 +14,10 @@ export class AccountlistComponent implements OnInit {
   public accountList : Account[];
   public customer : Customer;
 
-  constructor(private accountService : AccountService) { }
+  constructor(private accountService : AccountService, private userService : UserService) { }
 
   ngOnInit() {
-    this.customer = new Customer();
-    this.accountList = [];
-    this.customer.id=1;
+    this.customer = this.userService.getCustomer();
 
     this.accountService.getAccountsForCustomer(this.customer).subscribe((acc)=>{
       this.accountList = acc;

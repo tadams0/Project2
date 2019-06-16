@@ -18,4 +18,12 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  isCustomer() : boolean{
+    return this.userService.isCustomer();
+  }
+
+  isEmployee() : boolean {
+    return this.userService.isEmployee();
+  }
+
 }

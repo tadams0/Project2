@@ -20,6 +20,7 @@ import { LoanofficerhomeComponent } from './core/loanofficerhome/loanofficerhome
 import { AccountComponent } from './core/account/account.component';
 import { AccountlistComponent } from './core/accountlist/accountlist.component';
 import { AccountService } from './core/account/services/account.service';
+import { CustomerhomeComponent } from './core/customerhome/customerhome.component';
 
 
 
@@ -36,7 +37,8 @@ import { AccountService } from './core/account/services/account.service';
     HomeComponent,
     LoanofficerhomeComponent,
     AccountComponent,
-    AccountlistComponent
+    AccountlistComponent,
+    CustomerhomeComponent
   ],
   imports: [
     BrowserModule,

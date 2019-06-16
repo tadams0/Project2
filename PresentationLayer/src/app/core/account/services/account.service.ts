@@ -15,6 +15,6 @@ export class AccountService {
 
   getAccountsForCustomer(customer : Customer): Observable<Account[]> {
     return this.http.get('http://localhost:8080/Project2/account/'+customer.id).pipe(
-       map( resp => resp as Account[] ) );
+       map( resp => resp as Account[]));
   }
 }
