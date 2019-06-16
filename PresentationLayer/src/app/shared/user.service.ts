@@ -6,6 +6,7 @@ import { Customer } from './models/customer';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { CurrentUser } from './models/currentuser';
+import { LoginPayload } from 'src/app/shared/models/loginpayload';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class UserService {
 
   constructor( private urlSource: UrlService, private http: HttpClient ) { }
 
-  login(username: string, password: string): Observable<CurrentUser> {
+  login(username: string, password: string): Observable<LoginPayload> {
     
     if ( username && password ) {
       // actually log in
@@ -30,7 +31,7 @@ export class UserService {
       return this.http.post(this.appUrl, body,
         {headers: this.headers, withCredentials: true})
         .pipe( map( resp => {
-          const user: CurrentUser = resp as CurrentUser;
+          const user: LoginPayload = resp as LoginPayload;
           if (user) {
             this.employee = user.employee;
             this.customer = user.customer;
@@ -41,7 +42,7 @@ export class UserService {
       // just checking if we are logged in already.
       return this.http.get(this.appUrl, {withCredentials: true})
         .pipe( map( resp => {
-          const user: CurrentUser = resp as CurrentUser;
+          const user: LoginPayload = resp as LoginPayload;
           if (user) {
             this.employee = user.employee;
             this.customer = user.customer;
@@ -68,9 +69,19 @@ export class UserService {
     return this.employee;
   }
   isEmployee(): boolean {
-    return (this.employee !== undefined && this.employee !== null);
+    return this.employee !== null && this.employee !== undefined;
   }
   isCustomer(): boolean {
-    return (this.customer !== undefined && this.customer !== null);
+    return this.customer !== null && this.customer !== undefined;
+  }
+
+  isLoggedIn() : boolean {
+    return (this.customer !== null && this.customer !== undefined) || (this.employee !== null && this.employee !== undefined);
+  }
+
+  setPayload(payload : LoginPayload)
+  {
+    this.employee = payload.employee;
+    this.customer = payload.customer;
   }
 }

@@ -9,28 +9,20 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li  class="nav-item">
-                <a *ngIf="route.url!=='/form'" class="nav-link" routerLink="/form">
+                <a *ngIf="route.url!=='/form' && isCustomer()" class="nav-link" routerLink="/form">
                 Request Credit Line
                 </a>
-                <span *ngIf="route.url==='/form'" class="nav-link font-weight-bold">
+                <span *ngIf="route.url==='/form' && isCustomer()" class="nav-link font-weight-bold">
                 Request Credit Line
                 </span>
-            </li>
-            <li *ngIf="isEmployee()" class="nav-item">
-                <a *ngIf="route.url!=='/books/edit'" class="nav-link" routerLink="/books/edit">Add Book</a>
-                <span *ngIf="route.url==='/books/edit'" class="nav-link font-weight-bold" routerLink="/books/edit">Add Book</span>
-            </li>
-            <li *ngIf="isEmployee()" class="nav-item">
-                    <a class="nav-link" routerLink="/genres">Add Genre</a>
-            </li>
+            </li> 
             <li class="nav-item">
-                <a class="nav-link" routerLink="/pendingrequests">View Credit Line Requests</a>
-            </li>
-            <li *ngIf="isEmployee()" class="nav-item">
-                <a class="nav-link" routerLink="/purch">Purchases</a>
-            </li>
-            <li *ngIf="!isEmployee()&&isCustomer()" class="nav-item">
-                <a class="nav-link" routerLink="/purch">Purchase History</a>
+                <a *ngIf="route.url!=='/pendingrequests' && isEmployee()" class="nav-link" routerLink="/pendingrequests">
+                View Credit Line Requests
+                </a>
+                <span *ngIf="route.url==='/pendingrequests' && isEmployee()" class="nav-link font-weight-bold">
+                    View Credit Line Requests
+                </span>
             </li>
         </ul>
     </div>

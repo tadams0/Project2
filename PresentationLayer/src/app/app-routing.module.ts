@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { CreditFormComponent } from './core/creditform/creditform.component';
 import { CreateAccountComponent } from './core/register/create-account.component';
 import { CreditRequestListComponent } from './core/credit-request-list/credit-request-list.component';
+import { HomeComponent } from './core/home/home.component';
 
 
 const routes: Routes = [
@@ -15,6 +16,10 @@ const routes: Routes = [
   {
     path: 'form',
     component: CreditFormComponent
+  },
+  {
+    path: 'home',
+    component: HomeComponent
   },
   {
     path: 'login',

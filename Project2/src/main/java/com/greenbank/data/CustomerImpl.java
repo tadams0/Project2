@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 
 import com.greenbank.beans.CreditLineRequest;
 import com.greenbank.beans.Customer;
+import com.greenbank.beans.UserInfo;
 import com.greenbank.utils.HibernateUtil;
 
 @Component
@@ -42,7 +43,20 @@ public class CustomerImpl implements CustomerDAO{
 			s.close();
 		}
 	}
+	
+	@Override
+	public Customer getCustomerByInfoId(int userInfoId) {
+		Session s = hu.getSession();
+		Customer c;
 
+		String query = "from Customer c where c.userInfo.id=:id";
+		Query<Customer> q = s.createQuery(query, Customer.class);
+		q.setParameter("id", userInfoId);
+		c = q.getSingleResult();
+		
+		return c;
+	}
+	
 	@Override
 	public Customer getCustomer(Customer cust) {
 		Session s = hu.getSession();
@@ -73,7 +87,7 @@ public class CustomerImpl implements CustomerDAO{
 			q.setParameter("id", id);
 			c = q.getSingleResult();
 		}
-return c;
+		return c;
 	}
 
 	@Override
