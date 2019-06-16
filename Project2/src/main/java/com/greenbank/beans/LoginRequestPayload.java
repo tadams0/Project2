@@ -1,10 +1,10 @@
 package com.greenbank.beans;
 
-public class Login {
+public class LoginRequestPayload {
 	private String username;
 	private String password;
 	
-	public Login() {
+	public LoginRequestPayload() {
 		super();
 	}
 
@@ -41,7 +41,7 @@ public class Login {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Login other = (Login) obj;
+		LoginRequestPayload other = (LoginRequestPayload) obj;
 		if (password == null) {
 			if (other.password != null)
 				return false;

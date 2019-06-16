@@ -6,7 +6,8 @@ import { Customer } from './models/customer';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { CurrentUser } from './models/currentuser';
-import { LoginPayload } from 'src/app/shared/models/loginpayload';
+import { LoginResponsePayload } from 'src/app/shared/models/loginresponsepayload';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -17,9 +18,9 @@ export class UserService {
   private employee: Employee;
   private customer: Customer;
 
-  constructor( private urlSource: UrlService, private http: HttpClient ) { }
+  constructor( private urlSource: UrlService, private http: HttpClient) { }
 
-  login(username: string, password: string): Observable<LoginPayload> {
+  login(username: string, password: string): Observable<LoginResponsePayload> {
     
     if ( username && password ) {
       // actually log in
@@ -31,7 +32,7 @@ export class UserService {
       return this.http.post(this.appUrl, body,
         {headers: this.headers, withCredentials: true})
         .pipe( map( resp => {
-          const user: LoginPayload = resp as LoginPayload;
+          const user: LoginResponsePayload = resp as LoginResponsePayload;
           if (user) {
             this.employee = user.employee;
             this.customer = user.customer;
@@ -42,7 +43,7 @@ export class UserService {
       // just checking if we are logged in already.
       return this.http.get(this.appUrl, {withCredentials: true})
         .pipe( map( resp => {
-          const user: LoginPayload = resp as LoginPayload;
+          const user: LoginResponsePayload = resp as LoginResponsePayload;
           if (user) {
             this.employee = user.employee;
             this.customer = user.customer;
@@ -51,10 +52,9 @@ export class UserService {
         }));
     }
   }
-
   
   logout(): Observable<object> {
-    return this.http.delete(this.appUrl, {withCredentials: true}).pipe(
+    return this.http.delete('http://localhost:8080/Project2/login', {withCredentials: true}).pipe(
       map(success => {
         this.employee = null;
         this.customer = null;
@@ -79,7 +79,7 @@ export class UserService {
     return (this.customer !== null && this.customer !== undefined) || (this.employee !== null && this.employee !== undefined);
   }
 
-  setPayload(payload : LoginPayload)
+  setPayload(payload : LoginResponsePayload)
   {
     this.employee = payload.employee;
     this.customer = payload.customer;

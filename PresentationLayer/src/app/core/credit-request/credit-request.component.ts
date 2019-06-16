@@ -27,12 +27,12 @@ export class CreditRequestComponent implements OnInit {
   private sendCreditLineOption(msg : string) : void
   {
     const option = new CreditLineRequestOption(this.request.id, msg);
-    this.creditService.sendCreditLineOption(option).subscribe((request)=>{
-      if (request === "S")
+    this.creditService.sendCreditLineOption(option).subscribe((simpleMessage)=>{
+      if (simpleMessage.message === "S")
       {
         //Succeeded
       }
-      else if (request === "F")
+      else if (simpleMessage.message === "F")
       {
         //Failure
       }

@@ -4,6 +4,7 @@ import { CreditLineRequest } from 'src/app/shared/models/CreditLineRequest';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { CreditLineRequestOption } from 'src/app/shared/models/creditlinerequestoption';
+import { SimpleMessage } from 'src/app/shared/models/simplemessage';
 
 @Injectable({
   providedIn: 'root'
@@ -26,11 +27,11 @@ export class CreditRequestService {
     {headers, withCredentials: true}).pipe(map((resp)=>resp as CreditLineRequest));
   } 
 
-  sendCreditLineOption(option : CreditLineRequestOption): Observable<String> {
+  sendCreditLineOption(option : CreditLineRequestOption): Observable<SimpleMessage> {
     const body = JSON.stringify(option);
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
     return this.http.put('http://localhost:8080/Project2/creditline', body, 
-    {headers, withCredentials: true}).pipe(map((resp)=>resp as string));
+    {headers, withCredentials: true}).pipe(map((resp)=>resp as SimpleMessage));
   }
 
 }

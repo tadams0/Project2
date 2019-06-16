@@ -1,12 +1,12 @@
 package com.greenbank.beans;
 
 //Payload for transfering any and all information to the client side after logging in.
-public class LoginPayload {
+public class LoginResponsePayload {
 
 	private Employee employee;
 	private Customer customer;
 	
-	public LoginPayload() {
+	public LoginResponsePayload() {
 		super();
 	}
 
@@ -24,6 +24,11 @@ public class LoginPayload {
 
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
+	}
+	
+	public boolean hasUser()
+	{
+		return this.customer != null || this.employee != null;
 	}
 
 	@Override
@@ -43,7 +48,7 @@ public class LoginPayload {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		LoginPayload other = (LoginPayload) obj;
+		LoginResponsePayload other = (LoginResponsePayload) obj;
 		if (customer == null) {
 			if (other.customer != null)
 				return false;

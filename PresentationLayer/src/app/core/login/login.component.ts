@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CurrentUser } from 'src/app/shared/models/currentuser';
 import { UserService } from 'src/app/shared/user.service';
 import { Router } from '@angular/router';
-import { LoginPayload } from 'src/app/shared/models/loginpayload';
+import { LoginResponsePayload } from 'src/app/shared/models/loginresponsepayload';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +9,7 @@ import { LoginPayload } from 'src/app/shared/models/loginpayload';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  public loggedUser: LoginPayload;
+  public loggedUser: LoginResponsePayload;
   public username: string;
   public password: string;
   constructor( private userService: UserService, private router: Router ) { }

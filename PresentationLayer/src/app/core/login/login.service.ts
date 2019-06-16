@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { UserInfo } from 'src/app/shared/models/userinfo';
 import { map } from 'rxjs/operators';
-import { LoginPayload } from 'src/app/shared/models/loginpayload';
+import { LoginResponsePayload } from 'src/app/shared/models/loginresponsepayload';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ export class LoginService {
 
   constructor(private http: HttpClient) { }
 
-  login(username: string, password: string): Observable<LoginPayload>
+  login(username: string, password: string): Observable<LoginResponsePayload>
   {
     if ( username && password ) {
       // actually log in
@@ -20,7 +20,7 @@ export class LoginService {
       const headers = new HttpHeaders({'Content-Type': 'application/json'});
       console.log(body);
       return this.http.post('http://localhost:8080/Project2/register', body,
-      {headers, withCredentials: true}).pipe(map((resp)=>resp as LoginPayload));
+      {headers, withCredentials: true}).pipe(map((resp)=>resp as LoginResponsePayload));
     }
     /* else {
       // just checking if we are logged in already.
