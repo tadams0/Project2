@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GetbankaccountsService } from './services/getbankaccounts.service';
+import { AccountService } from '../account/services/account.service';
 import { Account } from 'src/app/shared/models/account';
 import { Customer } from 'src/app/shared/models/customer';
 import { UserInfo } from 'src/app/shared/models/userinfo';
@@ -13,7 +13,7 @@ export class DisplaybankaccountsComponent implements OnInit {
   public userinfo : UserInfo = new UserInfo();
   public cust : Customer = new Customer(); 
   public accounts : Account[] = [];
-  constructor(private accountService : GetbankaccountsService) { }
+  constructor(private accountService : AccountService) { }
 
   ngOnInit() {
     this.cust.id=1;

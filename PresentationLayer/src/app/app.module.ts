@@ -17,6 +17,9 @@ import { NavBarComponent } from './shared/nav-bar/nav-bar.component';
 import { DisplaybankaccountsComponent } from './core/displaybankaccounts/displaybankaccounts.component';
 import { HomeComponent } from './core/home/home.component';
 import { LoanofficerhomeComponent } from './core/loanofficerhome/loanofficerhome.component';
+import { AccountComponent } from './core/account/account.component';
+import { AccountlistComponent } from './core/accountlist/accountlist.component';
+import { AccountService } from './core/account/services/account.service';
 
 
 
@@ -31,7 +34,9 @@ import { LoanofficerhomeComponent } from './core/loanofficerhome/loanofficerhome
     NavBarComponent,
     DisplaybankaccountsComponent,
     HomeComponent,
-    LoanofficerhomeComponent
+    LoanofficerhomeComponent,
+    AccountComponent,
+    AccountlistComponent
   ],
   imports: [
     BrowserModule,
@@ -41,6 +46,7 @@ import { LoanofficerhomeComponent } from './core/loanofficerhome/loanofficerhome
   ],
   providers: [
     CreditRequestService,
+    AccountService,
     UserService,
     UrlService
   ],

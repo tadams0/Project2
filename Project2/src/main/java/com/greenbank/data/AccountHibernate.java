@@ -1,4 +1,4 @@
-package com.greenbank.data.hibernate;
+package com.greenbank.data;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -80,7 +80,7 @@ public class AccountHibernate implements AccountDAO {
 		CriteriaBuilder critBuilder = s.getCriteriaBuilder();
 		CriteriaQuery<Account> query = critBuilder.createQuery(Account.class);
 		Root<Account> root = query.from(Account.class);
-		query.select(root).where(critBuilder.equal(root.get("customer_id"), customer.getId()));
+		query.select(root).where(critBuilder.equal(root.get("id"), customer.getId()));
 		ArrayList<Account> accountList = (ArrayList<Account>) s.createQuery(query).getResultList();
 		
 		return accountList;
@@ -92,7 +92,7 @@ public class AccountHibernate implements AccountDAO {
 		CriteriaBuilder critBuilder = s.getCriteriaBuilder();
 		CriteriaQuery<Account> query = critBuilder.createQuery(Account.class);
 		Root<Account> root = query.from(Account.class);
-		query.select(root).where(critBuilder.equal(root.get("customer_id"), i));
+		query.select(root).where(critBuilder.equal(root.get("id"), i));
 		ArrayList<Account> accountList = (ArrayList<Account>) s.createQuery(query).getResultList();
 		
 		return accountList;
@@ -100,6 +100,7 @@ public class AccountHibernate implements AccountDAO {
 
 	@Override
 	public Set<Account> getAccounts() {
+		
 		Session s = hu.getSession();
 		String query = "from Account";
 		log.trace(query);

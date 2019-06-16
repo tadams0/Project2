@@ -6,6 +6,7 @@ import { CreateAccountComponent } from './core/register/create-account.component
 import { CreditRequestListComponent } from './core/credit-request-list/credit-request-list.component';
 import { DisplaybankaccountsComponent } from './core/displaybankaccounts/displaybankaccounts.component';
 import { HomeComponent } from './core/home/home.component';
+import { AccountlistComponent } from './core/accountlist/accountlist.component';
 
 
 const routes: Routes = [
@@ -36,7 +37,7 @@ const routes: Routes = [
   },
   {
     path: 'account',
-    component : DisplaybankaccountsComponent
+    component : AccountlistComponent
   }
 ];
 

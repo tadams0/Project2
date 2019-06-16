@@ -9,12 +9,12 @@ import { Account } from 'src/app/shared/models/account';
 @Injectable({
   providedIn: 'root'
 })
-export class GetbankaccountsService {
+export class AccountService {
 
   constructor(private http: HttpClient) { }
 
   getAccountsForCustomer(customer : Customer): Observable<Account[]> {
-    return this.http.get('http://localhost:8080/Project2/account').pipe(
+    return this.http.get('http://localhost:8080/Project2/account/'+customer.id).pipe(
        map( resp => resp as Account[] ) );
   }
 }
