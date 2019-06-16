@@ -1,4 +1,4 @@
-package com.greenbank.data.hibernate;
+package com.greenbank.data;
 
 import java.util.HashSet;
 import java.util.List;
@@ -12,17 +12,16 @@ import org.springframework.stereotype.Component;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import com.greenbank.beans.Customer;
 import com.greenbank.beans.Employee;
-import com.greenbank.data.EmployeeDAO;
 import com.greenbank.utils.HibernateUtil;
 
 
 @Component
-public class EmployeeHibernate implements EmployeeDAO {
+public class EmployeeImpl implements EmployeeDAO {
 
 	@Autowired
 	private HibernateUtil hu;
-	private Logger log = Logger.getLogger(CustomerHibernate.class);
 	
 	@Override
 	public void addEmployee(Employee employee) {
@@ -93,8 +92,19 @@ public class EmployeeHibernate implements EmployeeDAO {
 		 }finally {
 			 s.close();
 		 }
-		 
-		
 	}
+	
+	@Override
+	public Employee getEmployeeByInfoId(int userInfoId) {
+		Session s = hu.getSession();
+		Employee c;
 
+		String query = "from Employee e where e.userInfo.id=:id";
+		Query<Employee> q = s.createQuery(query, Employee.class);
+		q.setParameter("id", userInfoId);
+		c = q.getSingleResult();
+		
+		return c;
+	}
+	
 }

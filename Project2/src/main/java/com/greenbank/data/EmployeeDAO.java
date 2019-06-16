@@ -15,4 +15,6 @@ public interface EmployeeDAO {
 	public void deleteEmployee(Employee employee);
 	
 	public void updateEmployee(Employee employee);
+
+	Employee getEmployeeByInfoId(int userInfoId);
 }

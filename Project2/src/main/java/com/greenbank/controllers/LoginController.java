@@ -9,18 +9,30 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
+import com.greenbank.beans.Customer;
+import com.greenbank.beans.Employee;
 import com.greenbank.beans.Login;
+import com.greenbank.beans.LoginPayload;
 import com.greenbank.beans.UserInfo;
+import com.greenbank.data.CustomerDAO;
+import com.greenbank.data.EmployeeDAO;
 import com.greenbank.data.UserInfoDAO;
 
 
-@Controller
+@RestController
 @CrossOrigin(origins="*")
 @RequestMapping(value="/login")
 public class LoginController {
 	@Autowired
 	private UserInfoDAO ud;
+	
+	@Autowired
+	private CustomerDAO cd;
+	
+	@Autowired
+	private EmployeeDAO ed;
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public String goLogin(HttpSession session) {
@@ -29,18 +41,34 @@ public class LoginController {
 		}
 		return "static/login.html";
 	}
+	
 	@PostMapping
-	public String login(@RequestBody Login login, HttpSession session) {
+	public LoginPayload login(@RequestBody Login login, HttpSession session) {
 		String username = login.getUsername();
 		String password = login.getPassword();
 		System.out.println(login);
 		System.out.println(username+" "+password);
+		
+		LoginPayload payload = new LoginPayload();
+		
 		UserInfo user = ud.getUser(username, password);
-		System.out.println(user);
-		if(user!=null) {
-			session.setAttribute("user", user);
-			return "redirect:home";
+		Customer customer = cd.getCustomerByInfoId(user.getId());
+		Employee employee = null;
+		if (customer == null)
+		{
+			employee = ed.getEmployeeByInfoId(user.getId());
 		}
-		return "redirect:login";
+		payload.setCustomer(customer);
+		payload.setEmployee(employee);
+		return payload;
 	}
+	
+	/*
+	 * @PostMapping public String login(@RequestBody Login login, HttpSession
+	 * session) { String username = login.getUsername(); String password =
+	 * login.getPassword(); System.out.println(login);
+	 * System.out.println(username+" "+password); UserInfo user =
+	 * ud.getUser(username, password); if(user!=null) { session.setAttribute("user",
+	 * user); return "redirect:home"; } return "redirect:login"; }
+	 */
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CurrentUser } from 'src/app/shared/models/currentuser';
 import { UserService } from 'src/app/shared/user.service';
 import { Router } from '@angular/router';
+import { LoginPayload } from 'src/app/shared/models/loginpayload';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  public loggedUser: CurrentUser;
+  public loggedUser: LoginPayload;
   public username: string;
   public password: string;
   constructor( private userService: UserService, private router: Router ) { }
@@ -25,6 +26,8 @@ export class LoginComponent implements OnInit {
     this.userService.login(this.username, this.password).subscribe(
       resp => {
         this.loggedUser = resp;
+        this.userService.setPayload(resp);
+        this.router.navigate(['/home'])
       }
     );
   }

@@ -1,4 +1,4 @@
-package com.greenbank.data.hibernate;
+package com.greenbank.data;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -8,14 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.greenbank.beans.UserInfo;
-import com.greenbank.data.UserInfoDAO;
 import com.greenbank.utils.HibernateUtil;
 
 import com.greenbank.utils.LogUtil;
 
 
 @Component
-public class UserInfoHibernate implements UserInfoDAO{
+public class UserInfoImpl implements UserInfoDAO{
 
 	@Autowired
 	private HibernateUtil hu;
@@ -30,7 +29,7 @@ public class UserInfoHibernate implements UserInfoDAO{
 			t.commit();
 		}catch(HibernateException e) {
 			t.rollback();
-			LogUtil.logException(e, UserInfoHibernate.class);
+			LogUtil.logException(e, UserInfoImpl.class);
 		}finally {
 			s.close();
 		}

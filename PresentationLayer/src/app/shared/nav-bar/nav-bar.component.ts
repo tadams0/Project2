@@ -16,9 +16,11 @@ export class NavBarComponent implements OnInit {
   }
 
   isEmployee(): boolean {
+    console.log('e? ' + this.userService.isEmployee());
     return this.userService.isEmployee();
   }
   isCustomer(): boolean {
+    console.log('c? ' + this.userService.isCustomer());
     return this.userService.isCustomer();
   }
 
