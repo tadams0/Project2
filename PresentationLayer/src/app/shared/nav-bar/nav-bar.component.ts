@@ -10,18 +10,27 @@ import { UserService } from 'src/app/shared/user.service';
 export class NavBarComponent implements OnInit {
   title = 'Green Bank Online';
 
-  constructor( public route: Router, private userService: UserService) { }
+  constructor(private route: Router, private userService: UserService) { }
 
   ngOnInit() {
+    if (!this.userService.isLoggedIn())
+    {
+      this.route.navigate(['/login'])
+    }
   }
 
   isEmployee(): boolean {
-    console.log('e? ' + this.userService.isEmployee());
     return this.userService.isEmployee();
   }
   isCustomer(): boolean {
-    console.log('c? ' + this.userService.isCustomer());
     return this.userService.isCustomer();
   }
 
+  onLogoutPressed(): void {
+    
+    this.userService.logout().subscribe((resp)=> {
+
+      this.route.navigate(['/login']);
+    });
+  }
 }

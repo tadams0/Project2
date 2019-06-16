@@ -97,12 +97,17 @@ public class EmployeeImpl implements EmployeeDAO {
 	@Override
 	public Employee getEmployeeByInfoId(int userInfoId) {
 		Session s = hu.getSession();
-		Employee c;
-
-		String query = "from Employee e where e.userInfo.id=:id";
-		Query<Employee> q = s.createQuery(query, Employee.class);
-		q.setParameter("id", userInfoId);
-		c = q.getSingleResult();
+		Employee c = null;
+		try
+		{
+			String query = "from Employee e where e.userInfo.id=:id";
+			Query<Employee> q = s.createQuery(query, Employee.class);
+			q.setParameter("id", userInfoId);
+			c = q.getSingleResult();
+		}
+		catch (Exception e)
+		{
+		}
 		
 		return c;
 	}

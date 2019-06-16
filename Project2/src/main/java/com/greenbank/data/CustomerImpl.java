@@ -54,7 +54,7 @@ public class CustomerImpl implements CustomerDAO{
 			String query = "from Customer c where c.userInfo.id=:id";
 			Query<Customer> q = s.createQuery(query, Customer.class);
 			q.setParameter("id", userInfoId);
-			//c = q.getSingleResult();
+			c = q.getSingleResult();
 		}
 		catch (Exception e)
 		{

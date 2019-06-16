@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,8 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.greenbank.beans.Customer;
 import com.greenbank.beans.Employee;
-import com.greenbank.beans.Login;
-import com.greenbank.beans.LoginPayload;
+import com.greenbank.beans.LoginRequestPayload;
+import com.greenbank.beans.LoginResponsePayload;
+import com.greenbank.beans.SimpleMessage;
 import com.greenbank.beans.UserInfo;
 import com.greenbank.data.CustomerDAO;
 import com.greenbank.data.EmployeeDAO;
@@ -42,12 +44,26 @@ public class LoginController {
 		return "static/login.html";
 	}
 	
+	@DeleteMapping
+	public SimpleMessage onLogout(HttpSession session)
+	{
+		System.out.println("Logout processing...");
+		LoginResponsePayload payload = (LoginResponsePayload)session.getAttribute("user");
+		if (payload != null && payload.hasUser())
+		{
+			session.removeAttribute("user");
+			return SimpleMessage.successMessage;
+		}
+		
+		return SimpleMessage.failureMessage;
+	}
+	
 	@PostMapping
-	public LoginPayload login(@RequestBody Login login, HttpSession session) {
+	public LoginResponsePayload login(@RequestBody LoginRequestPayload login, HttpSession session) {
 		String username = login.getUsername();
 		String password = login.getPassword();
 		
-		LoginPayload payload = new LoginPayload();
+		LoginResponsePayload payload = new LoginResponsePayload();
 		
 		UserInfo user = ud.getUser(username, password);
 		Customer customer = null;
@@ -67,6 +83,10 @@ public class LoginController {
 		}
 		payload.setCustomer(customer);
 		payload.setEmployee(employee);
+		
+		if (payload.hasUser())
+			session.setAttribute("user", payload);
+		
 		return payload;
 	}
 	
