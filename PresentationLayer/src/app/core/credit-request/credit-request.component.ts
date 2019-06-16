@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CreditLineRequest } from 'src/app/shared/models/creditlinerequest';
 import { CreditRequestService } from '../creditform/services/credit-request.service';
 import { CreditLineRequestOption } from 'src/app/shared/models/creditlinerequestoption';
@@ -10,6 +10,7 @@ import { CreditLineRequestOption } from 'src/app/shared/models/creditlinerequest
 })
 export class CreditRequestComponent implements OnInit {
   @Input() public request : CreditLineRequest;
+  @Output() removeCreditLine = new EventEmitter<CreditLineRequest>();
 
   constructor(private creditService : CreditRequestService) { }
 
@@ -31,6 +32,8 @@ export class CreditRequestComponent implements OnInit {
       if (simpleMessage.message === "S")
       {
         //Succeeded
+        console.log("Emitting...");
+          this.removeCreditLine.emit(this.request);
       }
       else if (simpleMessage.message === "F")
       {
