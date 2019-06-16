@@ -62,14 +62,18 @@ public class CustomerImpl implements CustomerDAO{
 
 	@Override
 	public Customer getCustomerById(int id) {
+		Session s = hu.getSession();
+		Customer c;
 		
-		ArrayList<Customer> requests = null;
-		Session session = hu.getSession();
-		String hqlString = "from com.greenbank.beans.CreditLineRequest req where req.id=:id";
-		Query<Customer> query = session.createQuery(hqlString, Customer.class);
-        query.setParameter(":id", id);
-		requests = new ArrayList<Customer>(query.getResultList());
-		return requests.get(0);
+		if(id!=0) {
+			c = s.get(Customer.class, id);
+		} else {
+			String query = "from Customer c where c.id=:id";
+			Query<Customer> q = s.createQuery(query, Customer.class);
+			q.setParameter("id", id);
+			c = q.getSingleResult();
+		}
+return c;
 	}
 
 	@Override
