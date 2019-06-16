@@ -28,7 +28,7 @@ public class Employee {
 	@JoinColumn(name="user_id")
 	private UserInfo userInfo;
 	
-	@OneToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	@OneToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinColumn(name="manager_id")
 	private Employee manager;
 	 

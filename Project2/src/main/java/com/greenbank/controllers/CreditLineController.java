@@ -72,13 +72,11 @@ public class CreditLineController {
 	public CreditLineRequest addRequest(@RequestBody CreditLineRequest request, HttpSession session)
 	{
 		LoginResponsePayload payload = (LoginResponsePayload)session.getAttribute("user");
-		System.out.println("Found payload: " + payload.toString());
 		if (payload.hasUser())
 		{
 			request.setCreditAPR(5);
 			request.setCreditMax(15);
 			Customer c = payload.getCustomer();
-			System.out.println("Found customer: " + c.toString());
 			request.setCustomer(c); //Get session user here.
 			request.setStatus("PENDING");
 			request.setEmployeeApprover(null);
