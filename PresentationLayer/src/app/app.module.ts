@@ -3,11 +3,10 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CreditFormComponent } from './core/creditform/creditform.component';
-import { CreditRequestService } from './core/creditform/services/credit-request.service';
+import { CreditRequestService } from './shared/services/credit-request.service';
 import { UserService } from './core/login/login.service';
 import { UrlService } from './shared/url.service';
 import { CreditRequestComponent } from './core/credit-request/credit-request.component';
-import { CreditRequestListComponent } from './core/credit-request-list/credit-request-list.component';
 import { CreateAccountComponent } from './core/register/create-account/create-account.component';
 import { NavBarComponent } from './shared/nav-bar/nav-bar.component';
 import { DisplaybankaccountsComponent } from './core/displaybankaccounts/displaybankaccounts.component';
@@ -21,6 +20,9 @@ import { SetUpAccountComponent } from './core/register/set-up-account/set-up-acc
 import { LoginComponent } from './core/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { CreditRequestCustomerComponent } from './core/credit-request-customer/credit-request-customer.component';
+import { CreditRequestListCustomerComponent } from './core/credit-request-list-customer/credit-request-list-customer.component';
+import { CreditRequestListComponent } from './core/credit-request-list/credit-request-list.component';
 
 
 
@@ -39,7 +41,9 @@ import { NgModule } from '@angular/core';
     AccountComponent,
     AccountlistComponent,
     CustomerhomeComponent,
-    SetUpAccountComponent
+    SetUpAccountComponent,
+    CreditRequestCustomerComponent,
+    CreditRequestListCustomerComponent
   ],
   imports: [
     BrowserModule,

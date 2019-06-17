@@ -16,8 +16,15 @@ export class CreditRequestService {
   }  
   
   getRequestsForAll(): Observable<CreditLineRequest[]> {
-    return this.http.get('http://localhost:8080/Project2/creditline').pipe(
-       map( resp => resp as CreditLineRequest[] ) );
+    return this.http.get('http://localhost:8080/Project2/creditline',
+    {withCredentials: true}).pipe(
+       map( resp => resp as CreditLineRequest[] ));
+  }
+
+  getRequestsForCustomer(): Observable<CreditLineRequest[]> {
+    return this.http.get('http://localhost:8080/Project2/creditline/0',
+    {withCredentials: true}).pipe(
+       map( resp => resp as CreditLineRequest[] ));
   }
 
   addRequest(request : CreditLineRequest): Observable<CreditLineRequest> {
@@ -25,7 +32,7 @@ export class CreditRequestService {
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
     return this.http.post('http://localhost:8080/Project2/creditline', body, 
     {headers, withCredentials: true}).pipe(map((resp)=>resp as CreditLineRequest));
-  } 
+  }
 
   sendCreditLineOption(option : CreditLineRequestOption): Observable<SimpleMessage> {
     const body = JSON.stringify(option);

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CreditLineRequest } from 'src/app/shared/models/creditlinerequest';
-import { CreditRequestService } from '../creditform/services/credit-request.service';
+import { CreditRequestService } from '../../shared/services/credit-request.service';
 import { CreditLineRequestOption } from 'src/app/shared/models/creditlinerequestoption';
 
 @Component({
