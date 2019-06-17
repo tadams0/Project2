@@ -3,6 +3,8 @@ package com.greenbank.controllers;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.greenbank.beans.Account;
 import com.greenbank.beans.Customer;
+import com.greenbank.beans.OpenAccountRequestPayload;
 import com.greenbank.beans.UserInfo;
 import com.greenbank.data.AccountDAO;
 import com.greenbank.data.CustomerDAO;
@@ -39,28 +42,46 @@ public class CreateAccountController {
 	}
 
 	@PostMapping
-	public String addUser(@RequestBody UserInfo user)
+	public Map<String, Object> createAccount(@RequestBody OpenAccountRequestPayload openAccount)
 	{
 		System.out.println("POST REQUEST RECIEVED!");
-		System.out.println(user);
+		System.out.println(openAccount);
 
-		//create Customer with UserInfo
+		//generates and saves password/username for account
+		openAccount.generatePassword();
+		String password = openAccount.getUserInfo().getPassword(); 
+		openAccount.generateUsername();
+		String username = openAccount.getUserInfo().getUsername(); 
+		//gotta send the email instead of response body at the end with information 
+				
+		//create a temp customer account
+		//should add field indicating temporary, disallowing to login
 		Customer newCustomer = new Customer();
-		newCustomer.setUserInfo(user);
+		newCustomer.setUserInfo(openAccount.getUserInfo());
 		customerDAO.addCustomer(newCustomer);
-		//create Account tied to new Customer
+
+		//create savings/checking account
 		Account newAccount = new Account();
 		//mark with Date
+		//perhaps move this into Account class
 		DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
 		Date dateOpened = new Date();
-		System.out.println(df.format(dateOpened));
-		//newAccount.setAccountType(accountType);
-		newAccount.setAccountType("Checking");
 		newAccount.setDateOpened(dateOpened);
+		//set account type
+		newAccount.setAccountType(openAccount.getType());
+		//setHolder as the temp Customer Account
 		newAccount.setPrimaryAccountHolder(newCustomer);
 		accountDao.addAccount(newAccount);
 		
-		return new String("Creating Account");
+		//comments for testing
+		System.out.println("----------------------------------");
+		System.out.println(username);
+		System.out.println(password);
+		//response with temp username/password instead of email for testing
+		Map<String, Object> response = new HashMap<String, Object>();
+		response.put("username", username);
+		response.put("password", password);
+		return response;
 	}
 }
 

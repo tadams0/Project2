@@ -3,7 +3,7 @@ import { AccountService } from '../account/services/account.service';
 import { Customer } from 'src/app/shared/models/customer';
 import { UserInfo } from 'src/app/shared/models/userinfo';
 import { Account } from 'src/app/shared/models/account';
-import { UserService } from 'src/app/shared/user.service';
+import { UserService } from 'src/app/core/login/login.service';
 
 @Component({
   selector: 'app-accountlist',

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from 'src/app/shared/user.service';
+import { UserService } from 'src/app/core/login/login.service';
 import { Router } from '@angular/router';
 import { LoginResponsePayload } from 'src/app/shared/models/loginresponsepayload';
 
@@ -42,6 +42,6 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['./register']);
   }
   setUpAccount(){
-    this.router.navigate(['./register']);
+    this.router.navigate(['./setup']);
   }
 }

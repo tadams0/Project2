@@ -1,0 +1,35 @@
+<ng-container>
+  <div *ngIf="!validated">
+    <h2>Account Set Up</h2>
+    <h5>Enter The Information Sent in Email</h5>
+    <div class="form-group">
+      <label for="usernameForm">Username</label>
+      <input type="text" class="form-control" [(ngModel)]="username" placeholder="Username">
+    </div>
+    <div class="form-group">
+        <label for="passwordForm">Password</label>
+        <input type="password" class="form-control" [(ngModel)]="password" placeholder="Password">
+    </div>
+    <button type="createCheckings" class="btn btn-primary" aria-describedby="Login" (click)="validate()"
+    >Set Up Your Account</button>
+    <small id="buttonHelp" class="form-text text-muted">Make sure the information is an exact match</small>
+  </div>
+  <div *ngIf="validated">
+    <h2>Confirm Information</h2>
+    <div class="form-group">
+      <label for="usernameForm">Username</label>
+      <input type="text" class="form-control" [(ngModel)]="newUsername" placeholder={{newUsername}}>
+    </div>
+    <div class="form-group">
+        <label for="passwordForm">Password</label>
+        <input type="password" class="form-control" [(ngModel)]="newPassword" placeholder={{newPassword}}>
+    </div>
+    <button type="UpdateUsernamePassword" class="btn btn-primary" aria-describedby="UpdateUsernamePassword" (click)="updateUserPassword()"
+    >Update</button>
+  </div>
+  
+  
+  <!-- <p *ngIf="show">Show this only if "userInformation" is true</p>
+  <p *ngIf="show1">Show this only if "show1" is true</p> -->
+
+</ng-container>

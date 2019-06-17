@@ -1,12 +1,12 @@
 <ng-container>
-  <div class="form-group">
+  <!-- <div class="form-group">
     <label for="usernameForm">Username</label>
     <input type="text" class="form-control" [(ngModel)]="username" placeholder="Username">
   </div>
   <div class="form-group">
       <label for="passwordForm">Password</label>
       <input type="password" class="form-control" [(ngModel)]="password" placeholder="Password">
-  </div>
+  </div> -->
 
   <div class="form-group">
       <label for="nameForm">Name</label>
@@ -53,13 +53,15 @@
     <input type="number" class="form-control" [(ngModel)]="zipcode"  placeholder="Enter Zip">
   </div>
 
-  <!-- <div class="form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-  </div> -->
+  <div class="form-check">
+    <input type="checkbox" class="form-check-input" id="agree">
+    <label class="form-check-label" for="agree">I agree to the following terms and Conditions</label>
+  </div>
 
-  <button type="submit" class="btn btn-primary" aria-describedby="emailHelp" (click)="submitInfo()"
-  >Create</button>
-  <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  <button type="createCheckings" class="btn btn-primary" aria-describedby="Create Checking Account" (click)="submitChecking()"
+  >Create Checking Account</button>
+  <button type="createSavings" class="btn btn-success" aria-describedby="Create Savings Account" (click)="submitSavings()"
+  >Create Savings Account</button>
+  <small id="buttonHelp" class="form-text text-muted">We'll never share your personal information with anyone.</small>
 
 </ng-container>
