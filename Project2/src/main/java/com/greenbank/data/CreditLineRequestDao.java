@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 import com.greenbank.beans.CreditLineRequest;
+import com.greenbank.beans.Customer;
 import com.greenbank.beans.Employee;
 
 public interface CreditLineRequestDao {
@@ -13,4 +14,5 @@ public interface CreditLineRequestDao {
 	int addRequest(CreditLineRequest req);
 	int rejectRequest(int requestID);
 	int approveRequest(int requestID, Employee loggedInEmployee);
+	List<CreditLineRequest> getRequestsByCustomer(Customer customer);
 }

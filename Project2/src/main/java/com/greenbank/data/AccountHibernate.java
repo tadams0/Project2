@@ -70,7 +70,7 @@ public class AccountHibernate implements AccountDAO {
 		Root<Account> root = query.from(Account.class);
 		query.select(root).where(critBuilder.equal(root.get("customer_id"), customer.getId()));
 		Query<Account> q = s.createQuery(query);
-		
+		s.close();
 		return q.getSingleResult();
 	}
 	
@@ -82,7 +82,7 @@ public class AccountHibernate implements AccountDAO {
 		Root<Account> root = query.from(Account.class);
 		query.select(root).where(critBuilder.equal(root.get("id"), customer.getId()));
 		ArrayList<Account> accountList = (ArrayList<Account>) s.createQuery(query).getResultList();
-		
+		s.close();
 		return accountList;
 	}
 	
@@ -94,13 +94,12 @@ public class AccountHibernate implements AccountDAO {
 		Root<Account> root = query.from(Account.class);
 		query.select(root).where(critBuilder.equal(root.get("id"), i));
 		ArrayList<Account> accountList = (ArrayList<Account>) s.createQuery(query).getResultList();
-		
+		s.close();
 		return accountList;
 	}
 
 	@Override
 	public Set<Account> getAccounts() {
-		
 		Session s = hu.getSession();
 		String query = "from Account";
 		log.trace(query);
@@ -109,6 +108,7 @@ public class AccountHibernate implements AccountDAO {
 		Set<Account> accountSet = new HashSet<Account>();
 		accountSet.addAll(accountList);
 		log.trace(accountList);
+		s.close();
 		return accountSet;
 	}
 
