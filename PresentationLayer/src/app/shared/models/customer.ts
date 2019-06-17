@@ -3,6 +3,7 @@ import { UserInfo } from './userinfo';
 export class Customer{
    public id : number;
    public userInfo : UserInfo;
+   public accountType: string;
 
    Customer(){
       this.id = 0;

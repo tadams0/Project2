@@ -19,8 +19,8 @@ insert into bankuser (user_id, username, user_password, first_name, last_name, e
     values (6,'test1','test','Erik','Bronn','e.bronn@example.com','144-427-8716','77 Fig Drive','Kansas City','Kansas','United States','66044');
     
 
-insert into customer (customer_id, user_id) values (1,1);
-insert into customer (customer_id, user_id) values (2,5);
+insert into customer (customer_id, user_id, account_type) values (1,1, 'PERM');
+insert into customer (customer_id, user_id, account_type) values (2,5, 'PERM');
 
 insert into employee (employee_id, user_id, employee_type) values(1,2,'LOAN OFFICER');
 insert into employee (employee_id, user_id, employee_type) values(2,3,'MANAGER');
@@ -32,7 +32,12 @@ insert into credit_request(credit_request_id,customer_id,credit_apr,credit_max,e
     
     
 insert into account values (1, 'CHECKING', 1000, TO_DATE('2003/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'),
-    TO_DATE('2005/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 1);
-    
+    TO_DATE('2005/05/03 21:13:44', 'yyyy/mm/dd hh24:mi:ss'), 1);
+insert into account values (2, 'SAVINGS', 2000, TO_DATE('2003/05/08 21:02:44', 'yyyy/mm/dd hh24:mi:ss'),
+    TO_DATE('2005/05/03 21:55:44', 'yyyy/mm/dd hh24:mi:ss'), 1);
+insert into account values (3, 'CHECKING', 3000, TO_DATE('2003/05/05 21:02:44', 'yyyy/mm/dd hh24:mi:ss'),
+    TO_DATE('2005/05/03 21:20:44', 'yyyy/mm/dd hh24:mi:ss'), 1);
+insert into account values (4, 'CHECKING', 4000, TO_DATE('2003/05/04 21:02:44', 'yyyy/mm/dd hh24:mi:ss'),
+    TO_DATE('2005/05/03 21:10:44', 'yyyy/mm/dd hh24:mi:ss'), 1);
     
 commit;

@@ -38,8 +38,8 @@ export class SetUpAccountComponent implements OnInit {
         this.loggedUser = resp;
         this.setUpService.setPayload(resp);
         this.validated = true;
-        this.newPassword = this.loggedUser.customer.userInfo.password;
-        this.newUsername = this.loggedUser.customer.userInfo.username;
+        // this.newPassword = this.loggedUser.customer.userInfo.password;
+        // this.newUsername = this.loggedUser.customer.userInfo.username;
         this.userInformationBody = JSON.stringify(this.loggedUser.customer.userInfo);
       }
     );
@@ -47,7 +47,16 @@ export class SetUpAccountComponent implements OnInit {
 
   updateUserPassword(): void{
     console.log("changing "+this.username+" "+this.password+" to "+this.newUsername+" "+this.newPassword);
-    console.log("nothing is happening yet");
+    this.setUpService.update(this.loggedUser.customer).subscribe(
+      resp => {
+        this.loggedUser = resp;
+        this.setUpService.setPayload(resp);
+        this.validated = true;
+        this.userInformationBody = JSON.stringify(this.loggedUser.customer.userInfo);
+      }
+    );
+
+
   }
 
 

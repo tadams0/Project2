@@ -71,17 +71,18 @@ public class LoginController {
 		if (user != null)
 		{
 			customer = cd.getCustomerByInfoId(user.getId());
-			
 			if (customer == null)
 			{
 				employee = ed.getEmployeeByInfoId(user.getId());
-			}
+			} 
 		}
 		else
 		{
 			//No username with that combination!
 		}
-		payload.setCustomer(customer);
+		if (!"TEMP".equals(customer.getAccountType())) {
+			payload.setCustomer(customer);
+		}
 		payload.setEmployee(employee);
 		
 		if (payload.hasUser())
