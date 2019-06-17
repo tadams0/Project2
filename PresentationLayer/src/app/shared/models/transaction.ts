@@ -1,3 +1,5 @@
+import { DatePipe } from '@angular/common';
+
 export class Transaction{
    private id : number;
    private account : Account;

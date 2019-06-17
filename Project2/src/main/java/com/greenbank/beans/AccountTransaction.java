@@ -5,7 +5,7 @@ import java.util.Date;
 import javax.persistence.*;
 
 @Entity
-@Table
+@Table(name="transaction")
 public class AccountTransaction {
 	@Id
 	@Column(name="transaction_id")
@@ -21,7 +21,7 @@ public class AccountTransaction {
 	@Temporal(TemporalType.DATE)
 	private Date date;
 	
-	@Column(name="transaction_balace")
+	@Column(name="transaction_balance")
 	private double balance;
 	
 	@Column(name="transaction_name")

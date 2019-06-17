@@ -31,6 +31,18 @@ insert into credit_request(credit_request_id,customer_id,credit_apr,credit_max,e
     values(CREDIT_REQUEST_SEQ.nextVal,1,5,5,null);
     
     
+<<<<<<< HEAD
+insert into account values (1, 'CHECKING', 1000, TO_DATE('2003/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'),
+    TO_DATE('2005/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 1);
+insert into account values (2, 'CHECKING', 900, TO_DATE('2003/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'),
+    TO_DATE('2005/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 1);
+    
+insert into transaction values (1, 1, TO_DATE('2004/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 50, 'Corner Store - Candy');
+insert into transaction values (2, 1, TO_DATE('2004/06/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 50, 'Corner Store - Soda');
+
+insert into transaction values (3, 2, TO_DATE('2004/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 50, 'Corner Store - Milk');
+    
+=======
 insert into account values (ACCOUNT_SEQ.nextVal, 'CHECKING', 1000, TO_DATE('2003/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'),
     TO_DATE('2005/05/03 21:13:44', 'yyyy/mm/dd hh24:mi:ss'), 1);
 insert into account values (ACCOUNT_SEQ.nextVal, 'SAVINGS', 2000, TO_DATE('2003/05/08 21:02:44', 'yyyy/mm/dd hh24:mi:ss'),
@@ -39,5 +51,6 @@ insert into account values (ACCOUNT_SEQ.nextVal, 'CHECKING', 3000, TO_DATE('2003
     TO_DATE('2005/05/03 21:20:44', 'yyyy/mm/dd hh24:mi:ss'), 1);
 insert into account values (ACCOUNT_SEQ.nextVal, 'CHECKING', 4000, TO_DATE('2003/05/04 21:02:44', 'yyyy/mm/dd hh24:mi:ss'),
     TO_DATE('2005/05/03 21:10:44', 'yyyy/mm/dd hh24:mi:ss'), 1);
+>>>>>>> 9f347f394add47042d4815bba171bd35fe9274b8
     
 commit;
