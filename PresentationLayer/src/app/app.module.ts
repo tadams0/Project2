@@ -20,6 +20,10 @@ import { SetUpAccountComponent } from './core/register/set-up-account/set-up-acc
 import { LoginComponent } from './core/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { TransactionComponent } from './core/transaction/transaction.component';
+import { TransactionlistComponent } from './core/transactionlist/transactionlist.component';
+import { TransactionService } from './core/transaction/service/transaction.service';
+import { AccounttransactionComponent } from './core/accounttransaction/accounttransaction.component';
 import { CreditRequestCustomerComponent } from './core/credit-request-customer/credit-request-customer.component';
 import { CreditRequestListCustomerComponent } from './core/credit-request-list-customer/credit-request-list-customer.component';
 import { CreditRequestListComponent } from './core/credit-request-list/credit-request-list.component';
@@ -42,6 +46,9 @@ import { CreditRequestListComponent } from './core/credit-request-list/credit-re
     AccountlistComponent,
     CustomerhomeComponent,
     SetUpAccountComponent,
+    TransactionComponent,
+    TransactionlistComponent,
+    AccounttransactionComponent,
     CreditRequestCustomerComponent,
     CreditRequestListCustomerComponent
   ],
@@ -54,6 +61,7 @@ import { CreditRequestListComponent } from './core/credit-request-list/credit-re
   providers: [
     CreditRequestService,
     AccountService,
+    TransactionService,
     UserService,
     UrlService
   ],

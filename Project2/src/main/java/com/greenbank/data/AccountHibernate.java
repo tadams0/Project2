@@ -88,11 +88,13 @@ public class AccountHibernate implements AccountDAO {
 	
 	@Override
 	public ArrayList<Account> getAccountsByCustomerId(int i){
+		Customer customer = new Customer();
+		customer.setId(i);
 		Session s = hu.getSession();
 		CriteriaBuilder critBuilder = s.getCriteriaBuilder();
 		CriteriaQuery<Account> query = critBuilder.createQuery(Account.class);
 		Root<Account> root = query.from(Account.class);
-		query.select(root).where(critBuilder.equal(root.get("id"), i));
+		query.select(root).where(critBuilder.equal(root.get("primaryAccountHolder"), customer));
 		ArrayList<Account> accountList = (ArrayList<Account>) s.createQuery(query).getResultList();
 		s.close();
 		return accountList;

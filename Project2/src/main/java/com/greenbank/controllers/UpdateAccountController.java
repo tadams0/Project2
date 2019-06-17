@@ -10,12 +10,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.greenbank.beans.CreditScore;
 import com.greenbank.beans.Customer;
 import com.greenbank.beans.LoginRequestPayload;
 import com.greenbank.beans.LoginResponsePayload;
 import com.greenbank.beans.UserInfo;
 import com.greenbank.data.CustomerDAO;
 import com.greenbank.data.UserInfoDAO;
+import com.greenbank.data.CreditScoreDao;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -27,6 +29,9 @@ public class UpdateAccountController {
 	
 	@Autowired
 	private CustomerDAO customerDAO;
+	
+	@Autowired
+	private CreditScoreDao creditScoreDAO;
 
 	@PostMapping
 	public LoginResponsePayload login(@RequestBody LoginRequestPayload login) 
@@ -57,10 +62,26 @@ public class UpdateAccountController {
 		System.out.println("PUT REQUEST RECIEVED!");
 		System.out.println(tempAccount);
 
+		//update customer
 		LoginResponsePayload payload = new LoginResponsePayload();
 		tempAccount.setAccountType("PERM");
 		customerDAO.updateCustomer(tempAccount);
+		
+		//create credit score for the customer
+		CreditScore score = new CreditScore();
+		score.setCustomer(tempAccount);
+		score.setCreditScore(GenerateCreditScore());
+		creditScoreDAO.addCreditScore(score);
+		
 		payload.setCustomer(tempAccount);
 		return payload;
+	}
+
+
+	private int GenerateCreditScore() {
+		int max = 400;
+		int min = 850;
+		int score = (int)(Math.random()*((max-min)+1))+min;
+		return score;
 	}
 }
