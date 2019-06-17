@@ -63,15 +63,17 @@ public class CreateAccountController {
 		//create savings/checking account
 		Account newAccount = new Account();
 		//mark with Date
+		//perhaps move this into Account class
 		DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
 		Date dateOpened = new Date();
 		newAccount.setDateOpened(dateOpened);
-		//set type
+		//set account type
 		newAccount.setAccountType(openAccount.getType());
 		//setHolder as the temp Customer Account
 		newAccount.setPrimaryAccountHolder(newCustomer);
 		accountDao.addAccount(newAccount);
 		
+		//comments for testing
 		System.out.println("----------------------------------");
 		System.out.println(username);
 		System.out.println(password);

@@ -11,32 +11,44 @@ import { UserInfo } from 'src/app/shared/models/userinfo';
 })
 export class SetUpAccountComponent implements OnInit {
   
-  public userInformation: boolean;
+  public validated: boolean;
   public userInformationBody: String;
   // public show1 = true;
   public loggedUser: LoginResponsePayload;
   public username: string;
   public password: string;
+  public newUsername: string;
+  public newPassword: string;
 
   constructor( private setUpService: SetUpService, private router: Router ) { }
 
   ngOnInit() {
-    this.userInformation = null;
+    this.validated = false;
     this.userInformationBody = null;
     this.username = null;
     this.password = null;
+    this.newUsername = null;
+    this.newPassword = null;
   }
 
   validate(): void {
-    console.log("logging in "+this.username+" "+this.password)
+    console.log("validating "+this.username+" "+this.password)
     this.setUpService.login(this.username, this.password).subscribe(
       resp => {
         this.loggedUser = resp;
         this.setUpService.setPayload(resp);
-        this.userInformation = true;
+        this.validated = true;
+        this.newPassword = this.loggedUser.customer.userInfo.password;
+        this.newUsername = this.loggedUser.customer.userInfo.username;
         this.userInformationBody = JSON.stringify(this.loggedUser.customer.userInfo);
       }
     );
   }
+
+  updateUserPassword(): void{
+    console.log("changing "+this.username+" "+this.password+" to "+this.newUsername+" "+this.newPassword);
+    console.log("nothing is happening yet");
+  }
+
 
 }
