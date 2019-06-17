@@ -4,11 +4,13 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.greenbank.beans.CreditScore;
 import com.greenbank.beans.Customer;
 import com.greenbank.utils.HibernateUtil;
 
+@Component
 public class CreditScoreImpl implements CreditScoreDao {
 
 	@Autowired
