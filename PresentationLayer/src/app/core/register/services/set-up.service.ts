@@ -11,8 +11,7 @@ import { map } from 'rxjs/operators';
 })
 export class SetUpService {
 
-  private appUrl = this.urlSource.getURL() + '/login';
-  private headers = new HttpHeaders({'Content-Type': 'application/json'});
+  private appUrl = this.urlSource.getURL() + '/update';
   private customer: Customer;
 
   constructor (private urlSource: UrlService, private http: HttpClient){}
@@ -20,14 +19,14 @@ export class SetUpService {
   
     login(username: string, password: string): Observable<LoginResponsePayload> {
       if ( username && password ) {
-        // actually log in
-        const body ={"username": username, "password": password}; // "user=rorr&pass=pswd"
+        let headers = new HttpHeaders({'Content-Type': 'application/json'});
+        const body ={"username": username, "password": password};
 
         console.log(this.appUrl +" "+body+" "+
-        {headers: this.headers, withCredentials: true});
+        {headers: headers, withCredentials: true});
 
         return this.http.post(this.appUrl, body,
-          {headers: this.headers, withCredentials: true})
+          {headers: headers, withCredentials: true})
           .pipe( map( resp => {
             const user: LoginResponsePayload = resp as LoginResponsePayload;
             if (user) {
@@ -36,6 +35,26 @@ export class SetUpService {
             return user;
           }));
     }
+  }
+
+  update(customer: Customer): Observable<LoginResponsePayload> {
+    if (customer) {
+      const body = customer; 
+      let headers = new HttpHeaders({'Content-Type': 'application/json'});
+
+      console.log(this.appUrl +" "+body+" "+
+      {headers: headers, withCredentials: true});
+
+      return this.http.post(this.appUrl, body,
+        {headers: headers, withCredentials: true})
+        .pipe( map( resp => {
+          const user: LoginResponsePayload = resp as LoginResponsePayload;
+          if (user) {
+            this.customer = user.customer;
+          }
+          return user;
+        }));
+  }
   }
   
   setPayload(payload : LoginResponsePayload)
