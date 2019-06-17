@@ -54,7 +54,7 @@ create table bankuser(
 create table employee(
     employee_id number(20) primary key,
     user_id number(20) not null,
-    manager_id number(20) default 0,
+    manager_id number(20) default null,
     employee_type varchar2(30) not null,
     constraint fk_employee_user foreign key (user_id) references bankuser(user_id)
 );
@@ -71,7 +71,7 @@ create table account(
     account_type varchar2(30) not null,
     balance number(20,2) default 0,
     date_opened date not null,
-    date_closed date not null,
+    date_closed date,
     customer_id number(20) not null,
     constraint fk_account_customer foreign key (customer_id) references customer(customer_id)
 );
@@ -120,9 +120,10 @@ create table credit_request(
     customer_id number(20) not null,
     credit_apr number(20) default 0,
     credit_max number(20) not null,
-    employee_id number(20) not null, -- approverId
-    constraint fk_credit_request_customer foreign key (customer_id) references customer(customer_id),
-    constraint fk_credit_request_employee foreign key (employee_id) references employee(employee_id)
+    employee_id number(20) default null, -- approverId. null = anyone loan officer can approve it.
+    status varchar(20) default 'PENDING',
+    constraint fk_credit_request_customer foreign key (customer_id) references customer(customer_id)
+    --constraint fk_credit_request_employee foreign key (employee_id) references employee(employee_id)
 );
 
 create table credit_score(
@@ -132,3 +133,4 @@ create table credit_score(
     constraint fk_credit_score_customer foreign key (customer_id) references customer(customer_id)
 );
 
+commit;

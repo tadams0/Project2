@@ -1,36 +1,33 @@
-<ng-container *ngIf="!loggedUser; else display">
-  <ul class="navbar-nav mr-auto">
-    <li class="nav-item">
-      Username:
-      <input type="text" [(ngModel)]="username">
-    </li>
-    <li class="nav-item">
-      Password:
-      <input type="password" [(ngModel)]="password" (keyup.enter)="login()">
-    </li>
-    <li class="nav-item">
-      <button class="btn btn-primary" (click)="login()">Login</button>
-    </li>
-  </ul>
-</ng-container>
 
-<ng-template #display>
-  <ul class="navbar-nav mr-auto">
-    <li class="nav-item">
-      <div *ngIf="loggedUser.employee; else customer">
-        <span>Welcome {{loggedUser.employee.title}}! {{ loggedUser.employee.first + " " + loggedUser.employee.last }}</span>
-      </div>
-    </li>
-    <li class="nav-item">
-      <button class="btn btn-danger" (click)="logout()">Logout</button>
-    </li>
-  </ul>
-</ng-template>
+<div class="container border">
+  <h4>BankApp</h4>
+  <p class="lead">Welcome</p>
+  <hr class="my-4">
 
-<ng-template #customer>
-  <div>
-    <span>Welcome Customer, {{ loggedUser.customer.first + " " + loggedUser.customer.last}}</span>
-  </div>
-</ng-template> -->
+    <div class="form-group">
+      <label for="inputUser">Username</label>
+      <input #inputUsername
+      (keydown.enter)="login(inputUsername.value, inputPassword.value)"
+        class="form-text" type="text" name="username"/>
+    </div>
+ 
 
-<!-- <router-outlet></router-outlet>
+    <div class="form-group">
+      <label for="inputPassword">Password:</label>
+      <input  #inputPassword 
+      (keydown.enter)="login(inputUsername.value, inputPassword.value)"
+      class="form-text" type="password" name="password"/>
+      <p>{{password}}</p>
+    </div>
+
+
+    <div class="buttons">
+      <button  (click)="login(inputUsername.value, inputPassword.value)" id="login" type="button" class="btn btn-primary btn-md">LogIn</button>
+      <button  (click)="openAccount()" id="register" type="button" class="btn btn-warning btn-md">Open an Account</button>
+      <button  (click)="setUpAccount()" id="register" type="button" class="btn btn-success btn-md">Set up Account</button>
+    </div>
+    <a href="https://www.w3schools.com">Forgot Password?</a>
+</div>
+
+    
+  

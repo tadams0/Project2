@@ -11,6 +11,7 @@ import javax.persistence.criteria.Root;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -30,26 +31,37 @@ public class CreditLineRequestImpl implements CreditLineRequestDao {
 
 	@Override
 	public List<CreditLineRequest> getRequestsByManager(Employee manager) {
-		return getRequestsByID("employee_id", manager.getId());
+		ArrayList<CreditLineRequest> requests = null;
+		Session session = hu.getSession();
+		String hqlString = "from com.greenbank.beans.CreditLineRequest req where req.id=:id and req.status='PENDING'";
+		Query<CreditLineRequest> query = session.createQuery(hqlString, CreditLineRequest.class);
+        query.setParameter(":id", manager.getId());
+		requests = new ArrayList<CreditLineRequest>(query.getResultList());
+		session.close();
+		return requests;
+	}	
+	
+	@Override
+	public List<CreditLineRequest> getRequestsByManagerID(int id) {
+		ArrayList<CreditLineRequest> requests = null;
+		Session session = hu.getSession();
+		String hqlString = "from com.greenbank.beans.CreditLineRequest req where req.id=:id and req.status='PENDING'";
+		Query<CreditLineRequest> query = session.createQuery(hqlString, CreditLineRequest.class);
+        query.setParameter(":id", id);
+		requests = new ArrayList<CreditLineRequest>(query.getResultList());
+		session.close();
+		return requests;
 	}
 
 	@Override
 	public List<CreditLineRequest> getRequestsAvailableToAll() {
-		return getRequestsByID("employee_id", 0);
-	}
- 
-	private ArrayList<CreditLineRequest> getRequestsByID(String column, int id) {
-		System.out.println(hu);
-		Session s = hu.getSession();
-		CriteriaBuilder builder = s.getCriteriaBuilder();
-		CriteriaQuery<CreditLineRequest> criteria = builder.createQuery(CreditLineRequest.class);
-		
-		Root<CreditLineRequest> root = criteria.from(CreditLineRequest.class);
-		
-		criteria.select(root).where(builder.equal(root.get(column), ""+id));
-		
-		ArrayList<CreditLineRequest> requests =  (ArrayList<CreditLineRequest>) s.createQuery(criteria).getResultList();
-		return new ArrayList<CreditLineRequest>(requests);
+		ArrayList<CreditLineRequest> requests = null;
+		Session session = hu.getSession();
+		String query = "from com.greenbank.beans.CreditLineRequest req where req.employeeApprover=null and req.status='PENDING'";
+		Query<CreditLineRequest> q = session.createQuery(query, CreditLineRequest.class);
+		requests = new ArrayList<CreditLineRequest>(q.getResultList());
+		session.close();
+		return requests;
 	}
 
 	@Override
@@ -60,6 +72,54 @@ public class CreditLineRequestImpl implements CreditLineRequestDao {
 		try {
 			id = (int) s.save(req);
 			t.commit();
+		} catch(HibernateException e) {
+			t.rollback();
+		} finally {
+			s.close();
+		}
+		return id;
+	}
+
+	@Override
+	public int rejectRequest(int requestID) {
+		Session s = hu.getSession();
+		org.hibernate.Transaction t = s.beginTransaction();
+		CreditLineRequest req = s.get(CreditLineRequest.class, requestID);
+		req.setStatus("REJECTED");
+		int id = 0;
+		try {
+			s.update(req);
+			t.commit();
+			id = 1;
+		} catch(HibernateException e) {
+			t.rollback();
+		} finally {
+			s.close();
+		}
+		return id;
+	}
+
+	@Override
+	public int approveRequest(int requestID, Employee loggedInEmployee) {
+		Session s = hu.getSession();
+		org.hibernate.Transaction t = s.beginTransaction();
+		CreditLineRequest req = s.get(CreditLineRequest.class, requestID);
+		System.out.println("Logged in employee: " + loggedInEmployee);
+		System.out.println("Manager: " + loggedInEmployee.getManager());
+		if (req.getEmployeeApprover() == null)
+		{ //If no employee approver, then escalate to the manager.
+			req.setEmployeeApprover(loggedInEmployee.getManager());
+		}
+		else if (req.getEmployeeApprover().getId() == loggedInEmployee.getId())
+		{ //If there is an approver, then that is the manager. So set the status to finally approved.
+			req.setStatus("APPROVED");
+		}
+		
+		int id = 0;
+		try {
+			s.update(req);
+			t.commit();
+			id = 1;
 		} catch(HibernateException e) {
 			t.rollback();
 		} finally {

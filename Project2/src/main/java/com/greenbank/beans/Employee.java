@@ -15,8 +15,8 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="employee")
-//@PrimaryKeyJoinColumn(name="user_id")
-public class Employee extends UserInfo {
+@PrimaryKeyJoinColumn(name="user_id")
+public class Employee {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="employee")
@@ -31,7 +31,7 @@ public class Employee extends UserInfo {
 	@OneToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinColumn(name="manager_id")
 	private Employee manager;
-	
+	 
 	@Column(name="employee_type")
 	private String employeeType;
 	
@@ -62,6 +62,15 @@ public class Employee extends UserInfo {
 	public void setEmployeeType(String employeeType) {
 		this.employeeType = employeeType;
 	}
+
+	public String getUsername() {
+		return userInfo.getUsername();
+	}
+	
+	public String getPassword() {
+		return userInfo.getPassword();
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

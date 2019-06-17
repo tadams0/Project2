@@ -1,0 +1,67 @@
+<ng-container>
+  <!-- <div class="form-group">
+    <label for="usernameForm">Username</label>
+    <input type="text" class="form-control" [(ngModel)]="username" placeholder="Username">
+  </div>
+  <div class="form-group">
+      <label for="passwordForm">Password</label>
+      <input type="password" class="form-control" [(ngModel)]="password" placeholder="Password">
+  </div> -->
+
+  <div class="form-group">
+      <label for="nameForm">Name</label>
+      <input type="text" class="form-control" [(ngModel)]="firstName" placeholder="First Name">
+      <input type="text" class="form-control" [(ngModel)]="lastName" placeholder="Last Name">
+  </div>
+
+
+  <div class="form-group">
+    <label for="emailForm">Email address</label>
+    <input type="email" class="form-control" [(ngModel)]="email"  placeholder="Enter Email">
+  </div>
+
+  <div class="form-group">
+    <label for="phoneNumberForm">Phone Number</label>
+    <input type="number" class="form-control" [(ngModel)]="phoneNumber"  placeholder="Enter Phone Number">
+  </div>
+
+  <div class="form-group">
+    <label for="addressForm">Address</label>
+    <input type="text" class="form-control" [(ngModel)]="address"  placeholder="Enter Address">
+  </div>
+  
+
+  <div class="form-group">
+    <label for="cityForm">City</label>
+    <input type="text" class="form-control" [(ngModel)]="city"  placeholder="Enter City">
+  </div>
+
+  
+  <div class="form-group">
+    <label for="stateForm">State</label>
+    <input type="text" class="form-control" [(ngModel)]="state"  placeholder="Enter State">
+  </div>
+  
+  <div class="form-group">
+    <label for="countryForm">Country</label>
+    <input type="text" class="form-control" [(ngModel)]="country"  placeholder="Enter Country">
+  </div>
+
+  
+  <div class="form-group">
+    <label for="cityZip">Zip Code</label>
+    <input type="number" class="form-control" [(ngModel)]="zipcode"  placeholder="Enter Zip">
+  </div>
+
+  <div class="form-check">
+    <input type="checkbox" class="form-check-input" id="agree">
+    <label class="form-check-label" for="agree">I agree to the following terms and Conditions</label>
+  </div>
+
+  <button type="createCheckings" class="btn btn-primary" aria-describedby="Create Checking Account" (click)="submitChecking()"
+  >Create Checking Account</button>
+  <button type="createSavings" class="btn btn-success" aria-describedby="Create Savings Account" (click)="submitSavings()"
+  >Create Savings Account</button>
+  <small id="buttonHelp" class="form-text text-muted">We'll never share your personal information with anyone.</small>
+
+</ng-container>

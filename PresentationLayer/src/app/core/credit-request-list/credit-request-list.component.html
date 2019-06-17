@@ -1,0 +1,6 @@
+
+<p>
+  Below is a list of credit line requests that need approval.
+</p>
+<app-credit-request *ngFor="let r of requests" [request]="r" (removeCreditLine)="removeRequest($event)"></app-credit-request>
+

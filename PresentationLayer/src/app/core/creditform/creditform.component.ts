@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { CreditRequestService } from './services/credit-request-service.service';
+import { Component, OnInit, Input } from '@angular/core';
+import { CreditRequestService } from './services/credit-request.service';
+import { CreditLineRequest } from 'src/app/shared/models/creditlinerequest';
+import { Customer } from 'src/app/shared/models/customer';
 
 @Component({
   selector: 'app-creditform',
@@ -7,10 +9,20 @@ import { CreditRequestService } from './services/credit-request-service.service'
   styleUrls: ['./creditform.component.css']
 })
 export class CreditFormComponent implements OnInit {
-
-  constructor(private creditService : CreditRequestService ) { }
+  public resultText : string;
+  constructor(private creditService : CreditRequestService) { }
 
   ngOnInit() {
+    this.resultText = '';
   }
 
+  onSubmit() {
+    this.resultText = 'Submitting a new credit line request, please wait...';
+    console.log('Submit pressed!');
+    const req = new CreditLineRequest();
+    req.customer = new Customer();
+    this.creditService.addRequest(req).subscribe((request)=>{
+      this.resultText = 'A new request has been submitted!';
+    });
+  }
 }

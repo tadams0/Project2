@@ -13,7 +13,7 @@ public class Dispute {
 	private int id;
 	
 	private Customer customer;
-	private Transaction transaction;
+	private AccountTransaction transaction;
 	private Employee employee; //The approver.
 	private String comments;
 	
@@ -32,10 +32,10 @@ public class Dispute {
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
-	public Transaction getTransaction() {
+	public AccountTransaction getTransaction() {
 		return transaction;
 	}
-	public void setTransaction(Transaction transaction) {
+	public void setTransaction(AccountTransaction transaction) {
 		this.transaction = transaction;
 	}
 	public Employee getEmployee() {

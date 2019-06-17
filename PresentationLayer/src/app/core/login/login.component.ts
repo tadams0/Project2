@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CurrentUser } from 'src/app/shared/beans/currentuser';
-import { UserService } from 'src/app/shared/user.service';
+import { UserService } from 'src/app/core/login/login.service';
+import { Router } from '@angular/router';
+import { LoginResponsePayload } from 'src/app/shared/models/loginresponsepayload';
 
 @Component({
   selector: 'app-login',
@@ -8,23 +9,24 @@ import { UserService } from 'src/app/shared/user.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  public loggedUser: CurrentUser;
+  public loggedUser: LoginResponsePayload;
   public username: string;
   public password: string;
-  constructor( private userService: UserService ) { }
+  constructor( private userService: UserService, private router: Router ) { }
 
   ngOnInit() {
-    this.userService.login(null, null).subscribe(
-      resp => {
-        this.loggedUser = resp;
-      }
-    );
+    
   }
 
-  login(): void {
+  login(username: string, password: string): void {
+    this.username = username;
+    this.password = password;
+    console.log("logging in "+this.username+" "+this.password)
     this.userService.login(this.username, this.password).subscribe(
       resp => {
         this.loggedUser = resp;
+        this.userService.setPayload(resp);
+        this.router.navigate(['/home'])
       }
     );
   }
@@ -36,4 +38,10 @@ export class LoginComponent implements OnInit {
     this.password = null;
   }
 
+  openAccount() {
+    this.router.navigate(['./register']);
+  }
+  setUpAccount(){
+    this.router.navigate(['./setup']);
+  }
 }
