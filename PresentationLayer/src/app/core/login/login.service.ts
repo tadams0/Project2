@@ -1,39 +1,86 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { UserInfo } from 'src/app/shared/models/userinfo';
 import { map } from 'rxjs/operators';
 import { LoginResponsePayload } from 'src/app/shared/models/loginresponsepayload';
+import { Router } from '@angular/router';
+import { Employee } from 'src/app/shared/models/employee';
+import { Customer } from 'src/app/shared/models/customer';
+import { UrlService } from 'src/app/shared/url.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
+export class UserService {
+  private appUrl = this.urlSource.getURL() + '/login';
+  private headers = new HttpHeaders({'Content-Type': 'application/json'});
+  private employee: Employee;
+  private customer: Customer;
 
-  constructor(private http: HttpClient) { }
+  constructor( private urlSource: UrlService, private http: HttpClient) { }
 
-  login(username: string, password: string): Observable<LoginResponsePayload>
-  {
+  login(username: string, password: string): Observable<LoginResponsePayload> {
+    
     if ( username && password ) {
       // actually log in
-      const body = `username=${username}&password=${password}`;
-      const headers = new HttpHeaders({'Content-Type': 'application/json'});
-      console.log(body);
-      return this.http.post('http://localhost:8080/Project2/register', body,
-      {headers, withCredentials: true}).pipe(map((resp)=>resp as LoginResponsePayload));
-    }
-    /* else {
-      // just checking if we are logged in already.
-      return this.http.get('http://localhost:8080/Project2/register', {withCredentials: true})
+      const body ={"username": username, "password": password}; // "user=rorr&pass=pswd"
+
+      console.log(this.appUrl +" "+body+" "+
+      {headers: this.headers, withCredentials: true});
+
+      return this.http.post(this.appUrl, body,
+        {headers: this.headers, withCredentials: true})
         .pipe( map( resp => {
-          const user: CurrentUser = resp as CurrentUser;
+          const user: LoginResponsePayload = resp as LoginResponsePayload;
           if (user) {
             this.employee = user.employee;
             this.customer = user.customer;
           }
           return user;
         }));
-      }
-      */
+    } else {
+      // just checking if we are logged in already.
+      return this.http.get(this.appUrl, {withCredentials: true})
+        .pipe( map( resp => {
+          const user: LoginResponsePayload = resp as LoginResponsePayload;
+          if (user) {
+            this.employee = user.employee;
+            this.customer = user.customer;
+          }
+          return user;
+        }));
+    }
+  }
+  
+  logout(): Observable<object> {
+    return this.http.delete('http://localhost:8080/Project2/login', {withCredentials: true}).pipe(
+      map(success => {
+        this.employee = null;
+        this.customer = null;
+        return success;
+      })
+    );
+  }
+  getCustomer(): Customer {
+    return this.customer;
+  }
+  getEmployee(): Employee {
+    return this.employee;
+  }
+  isEmployee(): boolean {
+    return this.employee !== null && this.employee !== undefined;
+  }
+  isCustomer(): boolean {
+    return this.customer !== null && this.customer !== undefined;
+  }
+
+  isLoggedIn() : boolean {
+    return (this.customer !== null && this.customer !== undefined) || (this.employee !== null && this.employee !== undefined);
+  }
+
+  setPayload(payload : LoginResponsePayload)
+  {
+    this.employee = payload.employee;
+    this.customer = payload.customer;
   }
 }
