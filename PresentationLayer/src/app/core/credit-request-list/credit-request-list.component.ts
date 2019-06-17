@@ -18,4 +18,11 @@ export class CreditRequestListComponent implements OnInit {
     })
   }
 
+  removeRequest(request: CreditLineRequest) {
+    this.requests = this.requests.filter(function( obj) 
+    {
+      return obj.id !== request.id;
+    });
+  } 
+
 }

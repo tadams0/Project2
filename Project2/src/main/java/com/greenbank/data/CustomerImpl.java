@@ -46,7 +46,6 @@ public class CustomerImpl implements CustomerDAO{
 	
 	@Override
 	public Customer getCustomerByInfoId(int userInfoId) {
-		System.out.println("Util " + hu);
 		Session s = hu.getSession();
 		Customer c = null;
 		try
@@ -60,7 +59,7 @@ public class CustomerImpl implements CustomerDAO{
 		{
 			c = null;
 		}
-		
+		s.close();
 		return c;
 	}
 	
@@ -78,6 +77,7 @@ public class CustomerImpl implements CustomerDAO{
 			q.setParameter("password", cust.getPassword());
 			c = q.getSingleResult();
 		}
+		s.close();
 		return c;
 	}
 
@@ -94,6 +94,7 @@ public class CustomerImpl implements CustomerDAO{
 			q.setParameter("id", id);
 			c = q.getSingleResult();
 		}
+		s.close();
 		return c;
 	}
 
@@ -105,6 +106,7 @@ public class CustomerImpl implements CustomerDAO{
 		List<Customer> custList = q.getResultList();
 		Set<Customer> custSet = new HashSet<Customer>();
 		custSet.addAll(custList);
+		s.close();
 		return custSet;
 	}
 

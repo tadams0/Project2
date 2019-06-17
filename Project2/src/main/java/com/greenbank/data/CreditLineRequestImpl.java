@@ -37,6 +37,7 @@ public class CreditLineRequestImpl implements CreditLineRequestDao {
 		Query<CreditLineRequest> query = session.createQuery(hqlString, CreditLineRequest.class);
         query.setParameter(":id", manager.getId());
 		requests = new ArrayList<CreditLineRequest>(query.getResultList());
+		session.close();
 		return requests;
 	}	
 	
@@ -48,6 +49,7 @@ public class CreditLineRequestImpl implements CreditLineRequestDao {
 		Query<CreditLineRequest> query = session.createQuery(hqlString, CreditLineRequest.class);
         query.setParameter(":id", id);
 		requests = new ArrayList<CreditLineRequest>(query.getResultList());
+		session.close();
 		return requests;
 	}
 
@@ -58,6 +60,7 @@ public class CreditLineRequestImpl implements CreditLineRequestDao {
 		String query = "from com.greenbank.beans.CreditLineRequest req where req.employeeApprover=null and req.status='PENDING'";
 		Query<CreditLineRequest> q = session.createQuery(query, CreditLineRequest.class);
 		requests = new ArrayList<CreditLineRequest>(q.getResultList());
+		session.close();
 		return requests;
 	}
 
@@ -101,7 +104,8 @@ public class CreditLineRequestImpl implements CreditLineRequestDao {
 		Session s = hu.getSession();
 		org.hibernate.Transaction t = s.beginTransaction();
 		CreditLineRequest req = s.get(CreditLineRequest.class, requestID);
-		
+		System.out.println("Logged in employee: " + loggedInEmployee);
+		System.out.println("Manager: " + loggedInEmployee.getManager());
 		if (req.getEmployeeApprover() == null)
 		{ //If no employee approver, then escalate to the manager.
 			req.setEmployeeApprover(loggedInEmployee.getManager());
