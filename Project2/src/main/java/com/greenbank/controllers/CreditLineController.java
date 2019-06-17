@@ -21,11 +21,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.greenbank.beans.CreditLineRequest;
 import com.greenbank.beans.CreditLineRequestOption;
+import com.greenbank.beans.CreditScore;
 import com.greenbank.beans.Customer;
 import com.greenbank.beans.LoginResponsePayload;
 import com.greenbank.beans.SimpleMessage;
 import com.greenbank.data.CreditLineRequestDao;
 import com.greenbank.data.CreditLineRequestImpl;
+import com.greenbank.data.CreditScoreDao;
 import com.greenbank.data.CustomerDAO;
 
 @CrossOrigin(origins = "*")
@@ -38,6 +40,9 @@ public class CreditLineController {
 	
 	@Autowired
 	private CustomerDAO customerDao;
+	
+	@Autowired
+	private CreditScoreDao creditScoreDao;
 
 	@GetMapping("{id}")
 	public ArrayList<CreditLineRequest> getRequestsAvailableToAll(@PathVariable("id") String id, HttpSession session) 
@@ -95,16 +100,28 @@ public class CreditLineController {
 	@PostMapping
 	public CreditLineRequest addRequest(@RequestBody CreditLineRequest request, HttpSession session)
 	{
-		System.out.println(session);
 		LoginResponsePayload payload = (LoginResponsePayload)session.getAttribute("user");
-		System.out.println("Payload: " + payload);
+
 		if (payload.hasUser())
 		{
-			request.setCreditAPR(5);
-			request.setCreditMax(15);
+			CreditScore score = creditScoreDao.getCreditScore(payload.getCustomer());
+			
+			int apr = getAprByCreditScore(score);
+			
+			request.setCreditAPR(apr);
+			request.setCreditMax(apr);
 			Customer c = payload.getCustomer();
 			request.setCustomer(c); //Get session user here.
-			request.setStatus("PENDING");
+			
+			if (apr == -1)
+			{
+				request.setStatus("REJECTED");
+			}
+			else
+			{
+				request.setStatus("PENDING");
+			}
+			
 			request.setEmployeeApprover(null);
 		}
 		else
@@ -115,5 +132,29 @@ public class CreditLineController {
 			return request;
 		else
 			return null;
+	}
+
+	
+	private int getAprByCreditScore(CreditScore score)
+	{
+		if (score == null)
+			return -1;
+		
+		int scoreVal = score.getCreditScore();
+		
+		if (scoreVal < 550)
+			return -1;
+		else if (scoreVal < 600)
+			return 27;
+		else if (scoreVal < 650)
+			return 25;
+		else if (scoreVal < 700)
+			return 20;
+		else if (scoreVal < 750)
+			return 15;
+		else if (scoreVal < 800)
+			return 10;
+		else
+			return 5;
 	}
 }
