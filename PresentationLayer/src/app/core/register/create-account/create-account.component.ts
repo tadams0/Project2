@@ -74,7 +74,9 @@ export class CreateAccountComponent implements OnInit {
 
     console.log(this.createAccountPayload);
     this.RegistrationService.register(this.createAccountPayload).subscribe(
-      resp=> console.log(resp)
+      resp=> {
+        console.log(resp)
+      }
     );
   }
 
@@ -86,7 +88,7 @@ export class CreateAccountComponent implements OnInit {
     console.log(this.createAccountPayload);
     this.RegistrationService.register(this.createAccountPayload).subscribe(
       resp => {
-        
+        console.log(resp)
       }
     );
   }
