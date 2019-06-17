@@ -2,6 +2,7 @@ import { UserInfo } from 'src/app/shared/models/userinfo';
 import { RegistrationService } from '../services/registration.service';
 import { Component, OnInit } from '@angular/core';
 import { CreateAccountPayload } from '../model/createaccountpayload';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-account',
@@ -24,7 +25,7 @@ export class CreateAccountComponent implements OnInit {
   public country : string;
   public zipcode : string;
 
-  constructor(private RegistrationService: RegistrationService) { }
+  constructor(private RegistrationService: RegistrationService, private router: Router ) { }
 
   ngOnInit() {
   this.username = null;
@@ -39,9 +40,6 @@ export class CreateAccountComponent implements OnInit {
   this.country = null;
   this.zipcode = null;
 
-  
-  // this.username = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);;
-  // this.password = "password";
   this.firstName = "lalalallala";
   this.lastName  = "lelellelelelee";
   this.email = "lolll@lolol.lol";
@@ -54,19 +52,6 @@ export class CreateAccountComponent implements OnInit {
   
   }
 
-  // submitChecking(): void {
-  //   let accountType = "Checking";
-  //   this.makeUser();
-  //   this.makePayload(accountType);
-
-  //   console.log(this.createAccountPayload);
-  //   this.RegistrationService.register(this.createAccountPayload).subscribe(
-  //     resp => {
-        
-  //     }
-  //   );
-  // }
-
   submitChecking(): void {
     let accountType = "Checking";
     this.makeUser();
@@ -76,6 +61,7 @@ export class CreateAccountComponent implements OnInit {
     this.RegistrationService.register(this.createAccountPayload).subscribe(
       resp=> {
         console.log(resp)
+        this.router.navigate(['./login']);
       }
     );
   }
@@ -89,6 +75,7 @@ export class CreateAccountComponent implements OnInit {
     this.RegistrationService.register(this.createAccountPayload).subscribe(
       resp => {
         console.log(resp)
+        this.router.navigate(['./login']);
       }
     );
   }

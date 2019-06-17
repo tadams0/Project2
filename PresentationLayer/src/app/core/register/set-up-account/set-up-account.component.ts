@@ -35,24 +35,28 @@ export class SetUpAccountComponent implements OnInit {
     console.log("validating "+this.username+" "+this.password)
     this.setUpService.login(this.username, this.password).subscribe(
       resp => {
-        this.loggedUser = resp;
-        this.setUpService.setPayload(resp);
-        this.validated = true;
+        if(resp){
+          this.validated = true;
+          this.loggedUser = resp;
+          this.userInformationBody = JSON.stringify(this.loggedUser.customer.userInfo);
+        }
+        
         // this.newPassword = this.loggedUser.customer.userInfo.password;
         // this.newUsername = this.loggedUser.customer.userInfo.username;
-        this.userInformationBody = JSON.stringify(this.loggedUser.customer.userInfo);
+       
       }
     );
   }
 
   updateUserPassword(): void{
     console.log("changing "+this.username+" "+this.password+" to "+this.newUsername+" "+this.newPassword);
-    this.setUpService.update(this.loggedUser.customer).subscribe(
+    this.setUpService.update(this.newUsername, this.newPassword).subscribe(
       resp => {
-        this.loggedUser = resp;
-        this.setUpService.setPayload(resp);
-        this.validated = true;
-        this.userInformationBody = JSON.stringify(this.loggedUser.customer.userInfo);
+        if(resp){
+          this.loggedUser = resp;
+          console.log(this.loggedUser);
+          this.userInformationBody = JSON.stringify(this.loggedUser.customer.userInfo);
+        }
       }
     );
 

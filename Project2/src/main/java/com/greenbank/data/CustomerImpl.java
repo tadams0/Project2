@@ -114,7 +114,7 @@ public class CustomerImpl implements CustomerDAO{
 	public void deleteCustomer(Customer customer) {
 		Session s = hu.getSession();
 		 Transaction t = s.beginTransaction();
-		 s.delete(customer.getId());
+		 s.delete(customer);
 		 t.commit();
 		 s.close();		
 	}
@@ -123,7 +123,7 @@ public class CustomerImpl implements CustomerDAO{
 	public void updateCustomer(Customer customer) {
 		Session s = hu.getSession();
 		 Transaction t = s.beginTransaction();
-		 s.update(customer.getId());
+		 s.update(customer);
 		 t.commit();
 		 s.close();
 	}

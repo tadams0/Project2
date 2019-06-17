@@ -52,14 +52,15 @@ public class UpdateAccountController {
 	
 	
 	@PutMapping
-	private void updateAccount(@RequestBody Customer tempAccount) 
+	private LoginResponsePayload updateAccount(@RequestBody Customer tempAccount) 
 	{
 		System.out.println("PUT REQUEST RECIEVED!");
 		System.out.println(tempAccount);
-		
-//		Customer customer = tempAccount.getCustomer();
+
+		LoginResponsePayload payload = new LoginResponsePayload();
 		tempAccount.setAccountType("PERM");
 		customerDAO.updateCustomer(tempAccount);
-		
+		payload.setCustomer(tempAccount);
+		return payload;
 	}
 }

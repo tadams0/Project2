@@ -11,57 +11,54 @@ import { map } from 'rxjs/operators';
 })
 export class SetUpService {
 
-  private appUrl = this.urlSource.getURL() + '/update';
-  private customer: Customer;
+  private headers = new HttpHeaders({'Content-Type': 'application/json'});
+  private loggedUser: LoginResponsePayload;
 
   constructor (private urlSource: UrlService, private http: HttpClient){}
   
   
     login(username: string, password: string): Observable<LoginResponsePayload> {
       if ( username && password ) {
-        let headers = new HttpHeaders({'Content-Type': 'application/json'});
+        const appUrl = this.urlSource.getURL() + '/update';
         const body ={"username": username, "password": password};
 
-        console.log(this.appUrl +" "+body+" "+
-        {headers: headers, withCredentials: true});
+        console.log(appUrl +" "+body+" "+
+        {headers: this.headers, withCredentials: true});
 
-        return this.http.post(this.appUrl, body,
-          {headers: headers, withCredentials: true})
+        return this.http.post(appUrl, body,
+          {headers: this.headers, withCredentials: true})
           .pipe( map( resp => {
             const user: LoginResponsePayload = resp as LoginResponsePayload;
             if (user) {
-              this.customer = user.customer;
+              console.log(user);
+              this.loggedUser = user;
             }
             return user;
           }));
     }
   }
 
-  update(customer: Customer): Observable<LoginResponsePayload> {
-    if (customer) {
-      const body = customer; 
-      let headers = new HttpHeaders({'Content-Type': 'application/json'});
+  update(username: string, password: string): Observable<LoginResponsePayload> {
+    if ( username && password ) {
+      const appUrl = this.urlSource.getURL() + '/update';
+      
+      this.loggedUser.customer.userInfo.username = username;
+      this.loggedUser.customer.userInfo.password = password;
+      const body = this.loggedUser.customer;
 
-      console.log(this.appUrl +" "+body+" "+
-      {headers: headers, withCredentials: true});
+      console.log(appUrl +" "+body+" "+
+        {headers: this.headers, withCredentials: true});
 
-      return this.http.post(this.appUrl, body,
-        {headers: headers, withCredentials: true})
-        .pipe( map( resp => {
-          const user: LoginResponsePayload = resp as LoginResponsePayload;
-          if (user) {
-            this.customer = user.customer;
-          }
-          return user;
-        }));
+        return this.http.put(appUrl, body,
+          {headers: this.headers, withCredentials: true})
+          .pipe( map( resp => {
+            const user: LoginResponsePayload = resp as LoginResponsePayload;
+            if (user) {
+              this.loggedUser= user;
+            }
+            return user;
+          }));
+    }
   }
-  }
-  
-  setPayload(payload : LoginResponsePayload)
-  {
-    this.customer = payload.customer;
-  }
-
-
 
 }
