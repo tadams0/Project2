@@ -23,23 +23,10 @@ public class AccountController {
 	
 	private Logger log = Logger.getLogger(AccountController.class);
 	
-	/*@GetMapping
-	public Set<Account> getAccounts(HttpSession session){
-		log.trace("It was called");
-		Set<Account> accounts = accountHibernate.getAccounts();
-		return accounts;
-	}*/
-	
 	
 	@GetMapping("{id}")
 	public ArrayList<Account> getAccountsByCustomerId(@PathVariable("id") int i){
 		System.out.println("getAccountsByCustomerId method called");
 		return accountHibernate.getAccountsByCustomerId(i);
 	}
-	
-	/*@PostMapping
-	public Account addAccount(@RequestBody Account account) {
-		Integer i = accountHibernate.addAccount(account);
-		return accountHibernate.getAccount(i);
-	}*/
 }
