@@ -11,38 +11,54 @@ import { map } from 'rxjs/operators';
 })
 export class SetUpService {
 
-  private appUrl = this.urlSource.getURL() + '/login';
   private headers = new HttpHeaders({'Content-Type': 'application/json'});
-  private customer: Customer;
+  private loggedUser: LoginResponsePayload;
 
   constructor (private urlSource: UrlService, private http: HttpClient){}
   
   
     login(username: string, password: string): Observable<LoginResponsePayload> {
       if ( username && password ) {
-        // actually log in
-        const body ={"username": username, "password": password}; // "user=rorr&pass=pswd"
+        const appUrl = this.urlSource.getURL() + '/update';
+        const body ={"username": username, "password": password};
 
-        console.log(this.appUrl +" "+body+" "+
+        console.log(appUrl +" "+body+" "+
         {headers: this.headers, withCredentials: true});
 
-        return this.http.post(this.appUrl, body,
+        return this.http.post(appUrl, body,
           {headers: this.headers, withCredentials: true})
           .pipe( map( resp => {
             const user: LoginResponsePayload = resp as LoginResponsePayload;
             if (user) {
-              this.customer = user.customer;
+              console.log(user);
+              this.loggedUser = user;
             }
             return user;
           }));
     }
   }
-  
-  setPayload(payload : LoginResponsePayload)
-  {
-    this.customer = payload.customer;
+
+  update(username: string, password: string): Observable<LoginResponsePayload> {
+    if ( username && password ) {
+      const appUrl = this.urlSource.getURL() + '/update';
+      
+      this.loggedUser.customer.userInfo.username = username;
+      this.loggedUser.customer.userInfo.password = password;
+      const body = this.loggedUser.customer;
+
+      console.log(appUrl +" "+body+" "+
+        {headers: this.headers, withCredentials: true});
+
+        return this.http.put(appUrl, body,
+          {headers: this.headers, withCredentials: true})
+          .pipe( map( resp => {
+            const user: LoginResponsePayload = resp as LoginResponsePayload;
+            if (user) {
+              this.loggedUser= user;
+            }
+            return user;
+          }));
+    }
   }
-
-
 
 }

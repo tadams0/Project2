@@ -58,6 +58,7 @@ public class CreateAccountController {
 		//should add field indicating temporary, disallowing to login
 		Customer newCustomer = new Customer();
 		newCustomer.setUserInfo(openAccount.getUserInfo());
+		newCustomer.setAccountType("TEMP");
 		customerDAO.addCustomer(newCustomer);
 
 		//create savings/checking account

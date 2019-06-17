@@ -28,6 +28,9 @@ public class Customer{
 	@JoinColumn(name="user_id")
 	private UserInfo userInfo;
 	
+	@Column(name="account_type")
+	private String accountType;
+	
 	public Customer() {
 		super();
 	}
@@ -44,14 +47,33 @@ public class Customer{
 	public void setUserInfo(UserInfo userInfo) {
 		this.userInfo = userInfo;
 	}
+
+	public String getUsername() {
+		return userInfo.getUsername();
+	}
+	
+	public String getPassword() {
+		return userInfo.getPassword();
+	}
+
+	public String getAccountType() {
+		return accountType;
+	}
+
+	public void setAccountType(String accountType) {
+		this.accountType = accountType;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((accountType == null) ? 0 : accountType.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((userInfo == null) ? 0 : userInfo.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -61,6 +83,11 @@ public class Customer{
 		if (getClass() != obj.getClass())
 			return false;
 		Customer other = (Customer) obj;
+		if (accountType == null) {
+			if (other.accountType != null)
+				return false;
+		} else if (!accountType.equals(other.accountType))
+			return false;
 		if (id != other.id)
 			return false;
 		if (userInfo == null) {
@@ -70,17 +97,10 @@ public class Customer{
 			return false;
 		return true;
 	}
+
 	@Override
 	public String toString() {
-		return "Customer [id=" + id + ", userInfo=" + userInfo + "]";
-	}
-
-	public String getUsername() {
-		return userInfo.getUsername();
-	}
-	
-	public String getPassword() {
-		return userInfo.getPassword();
+		return "Customer [id=" + id + ", userInfo=" + userInfo + ", accountType=" + accountType + "]";
 	}
 	
 	

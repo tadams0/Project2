@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.greenbank.beans.CreditLineRequest;
+import com.greenbank.beans.Customer;
 import com.greenbank.beans.Employee;
 import com.greenbank.utils.HibernateUtil;
 
@@ -35,11 +36,23 @@ public class CreditLineRequestImpl implements CreditLineRequestDao {
 		Session session = hu.getSession();
 		String hqlString = "from com.greenbank.beans.CreditLineRequest req where req.id=:id and req.status='PENDING'";
 		Query<CreditLineRequest> query = session.createQuery(hqlString, CreditLineRequest.class);
-        query.setParameter(":id", manager.getId());
+        query.setParameter("id", manager.getId());
 		requests = new ArrayList<CreditLineRequest>(query.getResultList());
 		session.close();
 		return requests;
 	}	
+	
+	@Override
+	public List<CreditLineRequest> getRequestsByCustomer(Customer customer) {
+		ArrayList<CreditLineRequest> requests = null;
+		Session session = hu.getSession();
+		String hqlString = "from com.greenbank.beans.CreditLineRequest req where req.customer.id=:id and req.status!='REJECTED'";
+		Query<CreditLineRequest> query = session.createQuery(hqlString, CreditLineRequest.class);
+        query.setParameter("id", customer.getId());
+		requests = new ArrayList<CreditLineRequest>(query.getResultList());
+		session.close();
+		return requests;
+	}
 	
 	@Override
 	public List<CreditLineRequest> getRequestsByManagerID(int id) {
@@ -47,7 +60,7 @@ public class CreditLineRequestImpl implements CreditLineRequestDao {
 		Session session = hu.getSession();
 		String hqlString = "from com.greenbank.beans.CreditLineRequest req where req.id=:id and req.status='PENDING'";
 		Query<CreditLineRequest> query = session.createQuery(hqlString, CreditLineRequest.class);
-        query.setParameter(":id", id);
+        query.setParameter("id", id);
 		requests = new ArrayList<CreditLineRequest>(query.getResultList());
 		session.close();
 		return requests;

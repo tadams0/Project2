@@ -10,6 +10,7 @@ import { AccountlistComponent } from './core/accountlist/accountlist.component';
 import { SetUpAccountComponent } from './core/register/set-up-account/set-up-account.component';
 import { TransactionlistComponent } from './core/transactionlist/transactionlist.component';
 import { AccounttransactionComponent } from './core/accounttransaction/accounttransaction.component';
+import { CreditRequestListCustomerComponent } from './core/credit-request-list-customer/credit-request-list-customer.component';
 
 
 const routes: Routes = [
@@ -37,6 +38,10 @@ const routes: Routes = [
   {
     path: 'setup',
     component: SetUpAccountComponent
+  },
+  {
+    path: 'myrequests',
+    component: CreditRequestListCustomerComponent
   },
   {
     path: 'pendingrequests',
