@@ -15,15 +15,20 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.greenbank.beans.Account;
 import com.greenbank.beans.AccountTransaction;
 import com.greenbank.utils.HibernateUtil;
 
+@Component
 public class AccountTransactionHibernate implements AccountTransactionDAO {
 
 	@Autowired
 	private HibernateUtil hu;
+	
+	@Autowired
+	private AccountHibernate accountHibernate;
 	
 	private Logger log = Logger.getLogger(AccountTransactionHibernate.class);
 	
@@ -77,7 +82,7 @@ public class AccountTransactionHibernate implements AccountTransactionDAO {
 		CriteriaBuilder critBuilder = s.getCriteriaBuilder();
 		CriteriaQuery<AccountTransaction> query = critBuilder.createQuery(AccountTransaction.class);
 		Root<AccountTransaction> root = query.from(AccountTransaction.class);
-		query.select(root).where(critBuilder.equal(root.get("id"), account.getId()));
+		query.select(root).where(critBuilder.equal(root.get("account"), account));
 		ArrayList<AccountTransaction> transactionList = (ArrayList<AccountTransaction>) s.createQuery(query).getResultList();
 		s.close();
 		return transactionList;
@@ -85,11 +90,13 @@ public class AccountTransactionHibernate implements AccountTransactionDAO {
 
 	@Override
 	public ArrayList<AccountTransaction> getTransactionsByAccountId(int i) {
+		Account account = new Account();
+		account.setId(i);
 		Session s = hu.getSession();
 		CriteriaBuilder critBuilder = s.getCriteriaBuilder();
 		CriteriaQuery<AccountTransaction> query = critBuilder.createQuery(AccountTransaction.class);
 		Root<AccountTransaction> root = query.from(AccountTransaction.class);
-		query.select(root).where(critBuilder.equal(root.get("id"), i));
+		query.select(root).where(critBuilder.equal(root.get("account"), account));
 		ArrayList<AccountTransaction> transactionList = (ArrayList<AccountTransaction>) s.createQuery(query).getResultList();
 		s.close();
 		return transactionList;

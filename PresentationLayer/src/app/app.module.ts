@@ -21,6 +21,10 @@ import { SetUpAccountComponent } from './core/register/set-up-account/set-up-acc
 import { LoginComponent } from './core/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { TransactionComponent } from './core/transaction/transaction.component';
+import { TransactionlistComponent } from './core/transactionlist/transactionlist.component';
+import { TransactionService } from './core/transaction/service/transaction.service';
+import { AccounttransactionComponent } from './core/accounttransaction/accounttransaction.component';
 
 
 
@@ -39,7 +43,10 @@ import { NgModule } from '@angular/core';
     AccountComponent,
     AccountlistComponent,
     CustomerhomeComponent,
-    SetUpAccountComponent
+    SetUpAccountComponent,
+    TransactionComponent,
+    TransactionlistComponent,
+    AccounttransactionComponent
   ],
   imports: [
     BrowserModule,
@@ -50,6 +57,7 @@ import { NgModule } from '@angular/core';
   providers: [
     CreditRequestService,
     AccountService,
+    TransactionService,
     UserService,
     UrlService
   ],

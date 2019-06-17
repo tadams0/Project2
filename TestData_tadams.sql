@@ -33,6 +33,13 @@ insert into credit_request(credit_request_id,customer_id,credit_apr,credit_max,e
     
 insert into account values (1, 'CHECKING', 1000, TO_DATE('2003/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'),
     TO_DATE('2005/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 1);
+insert into account values (2, 'CHECKING', 900, TO_DATE('2003/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'),
+    TO_DATE('2005/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 1);
+    
+insert into transaction values (1, 1, TO_DATE('2004/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 50, 'Corner Store - Candy');
+insert into transaction values (2, 1, TO_DATE('2004/06/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 50, 'Corner Store - Soda');
+
+insert into transaction values (3, 2, TO_DATE('2004/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 50, 'Corner Store - Milk');
     
     
 commit;
