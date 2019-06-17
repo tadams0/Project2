@@ -80,7 +80,7 @@ public class LoginController {
 		{
 			//No username with that combination!
 		}
-		if (!"TEMP".equals(customer.getAccountType())) {
+		if (customer != null && !"TEMP".equals(customer.getAccountType())) {
 			payload.setCustomer(customer);
 		}
 		payload.setEmployee(employee);

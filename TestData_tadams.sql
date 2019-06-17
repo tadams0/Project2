@@ -18,9 +18,17 @@ insert into bankuser (user_id, username, user_password, first_name, last_name, e
 insert into bankuser (user_id, username, user_password, first_name, last_name, email, phone, address, city, add_state, country, zip)
     values (USER_SEQ.nextVal,'test1','test','Erik','Bronn','e.bronn@example.com','144-427-8716','77 Fig Drive','Kansas City','Kansas','United States','66044');
     
+insert into bankuser (user_id, username, user_password, first_name, last_name, email, phone, address, city, add_state, country, zip)
+    values (USER_SEQ.nextVal,'customer2','test','Yanny','Larel','yorl@example.com','199-999-9995','56 I give up Blvd','Kansas City','Kansas','United States','66001');
+    
 
 insert into customer (customer_id, user_id, account_type) values (CUSTOMER_SEQ.nextVal,1, 'PERM');
 insert into customer (customer_id, user_id, account_type) values (CUSTOMER_SEQ.nextVal,5, 'PERM');
+insert into customer (customer_id, user_id, account_type) values (CUSTOMER_SEQ.nextVal,7, 'PERM');
+
+insert into credit_score (credit_score_id, customer_id, credit_score_estimation) values (CREDIT_SCORE_SEQ.nextVal, 1, 700);
+insert into credit_score (credit_score_id, customer_id, credit_score_estimation) values (CREDIT_SCORE_SEQ.nextVal, 2, 400);
+insert into credit_score (credit_score_id, customer_id, credit_score_estimation) values (CREDIT_SCORE_SEQ.nextVal, 3, 600);
 
 insert into employee (employee_id, user_id, employee_type) values(EMPLOYEE_SEQ.nextVal,2,'LOAN OFFICER');
 insert into employee (employee_id, user_id, employee_type) values(EMPLOYEE_SEQ.nextVal,3,'MANAGER');

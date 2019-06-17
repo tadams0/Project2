@@ -133,7 +133,6 @@ public class CreditLineController {
 		else
 			return null;
 	}
-
 	
 	private int getAprByCreditScore(CreditScore score)
 	{

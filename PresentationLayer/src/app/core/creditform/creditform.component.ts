@@ -18,11 +18,17 @@ export class CreditFormComponent implements OnInit {
 
   onSubmit() {
     this.resultText = 'Submitting a new credit line request, please wait...';
-    console.log('Submit pressed!');
     const req = new CreditLineRequest();
     req.customer = new Customer();
     this.creditService.addRequest(req).subscribe((request)=>{
-      this.resultText = 'A new request has been submitted!';
+      if (request.status !== "REJECTED")
+      {
+        this.resultText = 'A new request has been submitted!';
+      }
+      else
+      {
+        this.resultText = 'Sorry, you do not qualify for a credit line at this moment.';
+      }
     });
   }
 }
