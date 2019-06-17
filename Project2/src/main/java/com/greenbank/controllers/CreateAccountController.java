@@ -72,7 +72,9 @@ public class CreateAccountController {
 		newAccount.setPrimaryAccountHolder(newCustomer);
 		accountDao.addAccount(newAccount);
 		
-		
+		System.out.println("----------------------------------");
+		System.out.println(username);
+		System.out.println(password);
 		//response with temp username/password instead of email for testing
 		Map<String, Object> response = new HashMap<String, Object>();
 		response.put("username", username);

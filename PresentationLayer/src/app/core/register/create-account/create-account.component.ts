@@ -1,7 +1,7 @@
 import { UserInfo } from 'src/app/shared/models/userinfo';
-import { RegistrationService } from './services/registration.service';
+import { RegistrationService } from '../services/registration.service';
 import { Component, OnInit } from '@angular/core';
-import { CreateAccountPayload } from './model/createaccountpayload';
+import { CreateAccountPayload } from '../model/createaccountpayload';
 
 @Component({
   selector: 'app-create-account',
@@ -54,6 +54,19 @@ export class CreateAccountComponent implements OnInit {
   
   }
 
+  // submitChecking(): void {
+  //   let accountType = "Checking";
+  //   this.makeUser();
+  //   this.makePayload(accountType);
+
+  //   console.log(this.createAccountPayload);
+  //   this.RegistrationService.register(this.createAccountPayload).subscribe(
+  //     resp => {
+        
+  //     }
+  //   );
+  // }
+
   submitChecking(): void {
     let accountType = "Checking";
     this.makeUser();
@@ -61,9 +74,7 @@ export class CreateAccountComponent implements OnInit {
 
     console.log(this.createAccountPayload);
     this.RegistrationService.register(this.createAccountPayload).subscribe(
-      resp => {
-        
-      }
+      resp=> console.log(resp)
     );
   }
 

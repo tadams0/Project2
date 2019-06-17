@@ -42,6 +42,6 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['./register']);
   }
   setUpAccount(){
-    this.router.navigate(['./register']);
+    this.router.navigate(['./setup']);
   }
 }

@@ -12,7 +12,7 @@ import { UserService } from './shared/user.service';
 import { UrlService } from './shared/url.service';
 import { CreditRequestComponent } from './core/credit-request/credit-request.component';
 import { CreditRequestListComponent } from './core/credit-request-list/credit-request-list.component';
-import { CreateAccountComponent } from './core/register/create-account.component';
+import { CreateAccountComponent } from './core/register/create-account/create-account.component';
 import { NavBarComponent } from './shared/nav-bar/nav-bar.component';
 import { DisplaybankaccountsComponent } from './core/displaybankaccounts/displaybankaccounts.component';
 import { HomeComponent } from './core/home/home.component';
@@ -21,6 +21,7 @@ import { AccountComponent } from './core/account/account.component';
 import { AccountlistComponent } from './core/accountlist/accountlist.component';
 import { AccountService } from './core/account/services/account.service';
 import { CustomerhomeComponent } from './core/customerhome/customerhome.component';
+import { SetUpAccountComponent } from './core/register/set-up-account/set-up-account.component';
 
 
 
@@ -38,7 +39,8 @@ import { CustomerhomeComponent } from './core/customerhome/customerhome.componen
     LoanofficerhomeComponent,
     AccountComponent,
     AccountlistComponent,
-    CustomerhomeComponent
+    CustomerhomeComponent,
+    SetUpAccountComponent
   ],
   imports: [
     BrowserModule,
