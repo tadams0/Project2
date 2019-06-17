@@ -1,6 +1,7 @@
 import { UserInfo } from 'src/app/shared/models/userinfo';
 import { RegistrationService } from './services/registration.service';
 import { Component, OnInit } from '@angular/core';
+import { CreateAccountPayload } from './model/createaccountpayload';
 
 @Component({
   selector: 'app-create-account',
@@ -9,7 +10,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateAccountComponent implements OnInit {
 
-  private user = new UserInfo;
+  private userInfo = new UserInfo;
+  private createAccountPayload = new CreateAccountPayload;
   public username: string;
   public password: string;
   public firstName: string;
@@ -38,8 +40,8 @@ export class CreateAccountComponent implements OnInit {
   this.zipcode = null;
 
   
-  this.username = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);;
-  this.password = "password";
+  // this.username = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);;
+  // this.password = "password";
   this.firstName = "lalalallala";
   this.lastName  = "lelellelelelee";
   this.email = "lolll@lolol.lol";
@@ -52,11 +54,26 @@ export class CreateAccountComponent implements OnInit {
   
   }
 
-  submitInfo(): void {
-    this.makeUser();
+  submitChecking(): void {
     let accountType = "Checking";
-    console.log(this.user);
-    this.RegistrationService.register(this.user).subscribe(
+    this.makeUser();
+    this.makePayload(accountType);
+
+    console.log(this.createAccountPayload);
+    this.RegistrationService.register(this.createAccountPayload).subscribe(
+      resp => {
+        
+      }
+    );
+  }
+
+  submitSavings(): void {
+    let accountType = "Savings";
+    this.makeUser();
+    this.makePayload(accountType);
+
+    console.log(this.createAccountPayload);
+    this.RegistrationService.register(this.createAccountPayload).subscribe(
       resp => {
         
       }
@@ -64,17 +81,21 @@ export class CreateAccountComponent implements OnInit {
   }
 
   makeUser(){
-    this.user.username = this.username;
-    this.user.password = this.password;
-    this.user.firstName = this.firstName;
-    this.user.lastName = this.lastName;
-    this.user.email = this.email;
-    this.user.phoneNumber = this.phoneNumber;
-    this.user.address = this.address;
-    this.user.city = this.city;
-    this.user.state = this.state;
-    this.user.country = this.country;
-    this.user.zipcode = this.zipcode;
+    this.userInfo.username = this.username;
+    this.userInfo.password = this.password;
+    this.userInfo.firstName = this.firstName;
+    this.userInfo.lastName = this.lastName;
+    this.userInfo.email = this.email;
+    this.userInfo.phoneNumber = this.phoneNumber;
+    this.userInfo.address = this.address;
+    this.userInfo.city = this.city;
+    this.userInfo.state = this.state;
+    this.userInfo.country = this.country;
+    this.userInfo.zipcode = this.zipcode;
   }
 
+  makePayload(accountType:String){
+    this.createAccountPayload.userInfo = this.userInfo;
+    this.createAccountPayload.type = accountType;
+  }
 }
