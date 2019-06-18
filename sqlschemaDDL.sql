@@ -62,6 +62,7 @@ create table employee(
 create table customer(
     customer_id number(20) primary key,
     user_id number(20) not null,
+    account_type varchar(30) default 'TEMP',
     constraint fk_customer_user foreign key (user_id) references bankuser(user_id)
 
 );

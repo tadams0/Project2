@@ -5,8 +5,8 @@ import java.util.Date;
 import javax.persistence.*;
 
 @Entity
-@Table
-public class Transaction {
+@Table(name="transaction")
+public class AccountTransaction {
 	@Id
 	@Column(name="transaction_id")
 	@SequenceGenerator(name="transactionGenerator",sequenceName="TRANSACTION_SEQ",allocationSize=1)
@@ -21,45 +21,56 @@ public class Transaction {
 	@Temporal(TemporalType.DATE)
 	private Date date;
 	
-	@Column(name="transaction_balace")
+	@Column(name="transaction_balance")
 	private double balance;
 	
 	@Column(name="transaction_name")
 	private String name;
-	
-	public Transaction() {
+
+	public AccountTransaction() {
 		super();
 	}
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public Account getAccount() {
 		return account;
 	}
+
 	public void setAccount(Account account) {
 		this.account = account;
 	}
+
 	public Date getDate() {
 		return date;
 	}
+
 	public void setDate(Date date) {
 		this.date = date;
 	}
+
 	public double getBalance() {
 		return balance;
 	}
+
 	public void setBalance(double balance) {
 		this.balance = balance;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -73,6 +84,7 @@ public class Transaction {
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -81,7 +93,7 @@ public class Transaction {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Transaction other = (Transaction) obj;
+		AccountTransaction other = (AccountTransaction) obj;
 		if (account == null) {
 			if (other.account != null)
 				return false;
@@ -103,11 +115,10 @@ public class Transaction {
 			return false;
 		return true;
 	}
+
 	@Override
 	public String toString() {
-		return "Transaction [id=" + id + ", account=" + account + ", date=" + date + ", balance=" + balance + ", name="
-				+ name + "]";
+		return "AccountTransaction [id=" + id + ", account=" + account + ", date=" + date + ", balance=" + balance
+				+ ", name=" + name + "]";
 	}
-	
-	
 }

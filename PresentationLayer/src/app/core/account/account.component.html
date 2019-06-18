@@ -1,13 +1,13 @@
 <div class="card" style="width: 20rem;">
   <div class="card-block">
-    <p class="card-text" data-toggle="collapse" [attr.data-target]="'#viewbutton' + account.id">
+    <p class="card-text" [attr.data-target]="'#viewbutton' + account.id">
       Account ID: {{account.id}} <br>
       Account Type: {{account.accountType}}<br>
       Account Balance: {{account.balance}}
     </p>
   </div>
-  <div id = "viewbutton{{account.id}}" class="card-block collapse">
-      <input class="btn btn-primary" type="submit" value="View" (click)="viewAccount()">
+  <div id = "viewbutton{{account.id}}" class="card-block">
+      <input class="btn btn-primary" type="submit" value="View" (click)="viewAccount(account.id)">
   </div>
 </div> 
 

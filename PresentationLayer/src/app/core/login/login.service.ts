@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { Employee } from 'src/app/shared/models/employee';
 import { Customer } from 'src/app/shared/models/customer';
 import { UrlService } from 'src/app/shared/url.service';
+import { Account } from 'src/app/shared/models/account';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,7 @@ export class UserService {
   private headers = new HttpHeaders({'Content-Type': 'application/json'});
   private employee: Employee;
   private customer: Customer;
+  private account : Account;
 
   constructor( private urlSource: UrlService, private http: HttpClient) { }
 
@@ -66,6 +68,12 @@ export class UserService {
   }
   getEmployee(): Employee {
     return this.employee;
+  }
+  getAccount() : Account {
+    return this.account;
+  }
+  setAccount(account : Account){
+    this.account = account;
   }
   isEmployee(): boolean {
     return this.employee !== null && this.employee !== undefined;

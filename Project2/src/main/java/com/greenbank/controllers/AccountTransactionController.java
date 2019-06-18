@@ -11,22 +11,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.greenbank.beans.Account;
+import com.greenbank.beans.AccountTransaction;
 import com.greenbank.data.AccountHibernate;
+import com.greenbank.data.AccountTransactionHibernate;
 
 @RestController
 @CrossOrigin(origins="*")
-@RequestMapping(value="/account")
-public class AccountController {
+@RequestMapping(value="/accounttransaction")
+public class AccountTransactionController {
 	
 	@Autowired
-	private AccountHibernate accountHibernate;	
+	private AccountTransactionHibernate atHibernate;
+	@Autowired
+	private AccountHibernate accountHibernate;
 	
-	private Logger log = Logger.getLogger(AccountController.class);
-	
+	private Logger log = Logger.getLogger(AccountTransactionController.class);
 	
 	@GetMapping("{id}")
-	public ArrayList<Account> getAccountsByCustomerId(@PathVariable("id") int i){
-		System.out.println("getAccountsByCustomerId method called");
-		return accountHibernate.getAccountsByCustomerId(i);
+	public ArrayList<AccountTransaction> getTransactionsByAccountId(@PathVariable("id") int i){
+		return atHibernate.getTransactionsByAccountId(i);
 	}
+
 }
