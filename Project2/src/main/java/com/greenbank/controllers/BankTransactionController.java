@@ -10,25 +10,25 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.greenbank.beans.Account;
-import com.greenbank.beans.AccountTransaction;
-import com.greenbank.data.AccountHibernate;
-import com.greenbank.data.AccountTransactionHibernate;
+import com.greenbank.beans.BankAccount;
+import com.greenbank.beans.BankTransaction;
+import com.greenbank.data.BankAccountImpl;
+import com.greenbank.data.AccountTransactionImpl;
 
 @RestController
 @CrossOrigin(origins="*")
 @RequestMapping(value="/accounttransaction")
-public class AccountTransactionController {
+public class BankTransactionController {
 	
 	@Autowired
-	private AccountTransactionHibernate atHibernate;
+	private AccountTransactionImpl atHibernate;
 	@Autowired
-	private AccountHibernate accountHibernate;
+	private BankAccountImpl accountHibernate;
 	
-	private Logger log = Logger.getLogger(AccountTransactionController.class);
+	private Logger log = Logger.getLogger(BankTransactionController.class);
 	
 	@GetMapping("{id}")
-	public ArrayList<AccountTransaction> getTransactionsByAccountId(@PathVariable("id") int i){
+	public ArrayList<BankTransaction> getTransactionsByAccountId(@PathVariable("id") int i){
 		return atHibernate.getTransactionsByAccountId(i);
 	}
 

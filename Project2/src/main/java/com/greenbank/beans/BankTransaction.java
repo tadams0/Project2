@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="transaction")
-public class AccountTransaction {
+public class BankTransaction {
 	@Id
 	@Column(name="transaction_id")
 	@SequenceGenerator(name="transactionGenerator",sequenceName="TRANSACTION_SEQ",allocationSize=1)
@@ -15,7 +15,7 @@ public class AccountTransaction {
 	
 	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinColumn(name="account_id")
-	private Account account;
+	private BankAccount account;
 	
 	@Column(name = "creation_date")
 	@Temporal(TemporalType.DATE)
@@ -27,7 +27,7 @@ public class AccountTransaction {
 	@Column(name="transaction_name")
 	private String name;
 
-	public AccountTransaction() {
+	public BankTransaction() {
 		super();
 	}
 
@@ -39,11 +39,11 @@ public class AccountTransaction {
 		this.id = id;
 	}
 
-	public Account getAccount() {
+	public BankAccount getAccount() {
 		return account;
 	}
 
-	public void setAccount(Account account) {
+	public void setAccount(BankAccount account) {
 		this.account = account;
 	}
 
@@ -93,7 +93,7 @@ public class AccountTransaction {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		AccountTransaction other = (AccountTransaction) obj;
+		BankTransaction other = (BankTransaction) obj;
 		if (account == null) {
 			if (other.account != null)
 				return false;

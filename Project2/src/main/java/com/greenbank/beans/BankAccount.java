@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="account")
-public class Account {
+public class BankAccount {
 	@Id
 	@Column(name="account_id")
 	@SequenceGenerator(name="accountGenerator",sequenceName="ACCOUNT_SEQ",allocationSize=1)
@@ -31,7 +31,7 @@ public class Account {
 	@JoinColumn(name="customer_id")
 	private Customer primaryAccountHolder;
 	
-	public Account() {
+	public BankAccount() {
 		super();
 	}
 
@@ -106,7 +106,7 @@ public class Account {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Account other = (Account) obj;
+		BankAccount other = (BankAccount) obj;
 		if (accountType == null) {
 			if (other.accountType != null)
 				return false;

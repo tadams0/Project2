@@ -16,11 +16,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.greenbank.beans.Account;
+import com.greenbank.beans.BankAccount;
 import com.greenbank.beans.Customer;
 import com.greenbank.beans.OpenAccountRequestPayload;
 import com.greenbank.beans.UserInfo;
-import com.greenbank.data.AccountDAO;
+import com.greenbank.data.BankAccountDAO;
 import com.greenbank.data.CustomerDAO;
 
 
@@ -31,7 +31,7 @@ import com.greenbank.data.CustomerDAO;
 public class CreateAccountController {
 	
 	@Autowired
-	private AccountDAO accountDao;
+	private BankAccountDAO accountDao;
 
 	@Autowired
 	private CustomerDAO customerDAO;
@@ -62,7 +62,7 @@ public class CreateAccountController {
 		customerDAO.addCustomer(newCustomer);
 
 		//create savings/checking account
-		Account newAccount = new Account();
+		BankAccount newAccount = new BankAccount();
 		//mark with Date
 		//perhaps move this into Account class
 		DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");

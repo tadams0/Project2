@@ -10,7 +10,7 @@ import com.greenbank.beans.CreditScore;
 import com.greenbank.beans.Customer;
 import com.greenbank.utils.HibernateUtil;
 @Component
-public class CreditScoreImpl implements CreditScoreDao {
+public class CreditScoreImpl implements CreditScoreDAO {
 
 	@Autowired
 	private HibernateUtil hu;

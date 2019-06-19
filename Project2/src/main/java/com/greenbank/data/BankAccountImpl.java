@@ -17,21 +17,21 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.greenbank.beans.Account;
+import com.greenbank.beans.BankAccount;
 import com.greenbank.beans.Customer;
-import com.greenbank.data.AccountDAO;
+import com.greenbank.data.BankAccountDAO;
 import com.greenbank.utils.HibernateUtil;
 
 @Component
-public class AccountHibernate implements AccountDAO {
+public class BankAccountImpl implements BankAccountDAO {
 	
 	@Autowired
 	private HibernateUtil hu;
 	
-	private Logger log = Logger.getLogger(AccountHibernate.class);
+	private Logger log = Logger.getLogger(BankAccountImpl.class);
 
 	@Override
-	public int addAccount(Account account) {
+	public int addAccount(BankAccount account) {
 		Session s = hu.getSession();
 		Transaction t = s.beginTransaction();
 		int id = 0;
@@ -47,67 +47,67 @@ public class AccountHibernate implements AccountDAO {
 	}
 
 	@Override
-	public Account getAccount(Account account) {
+	public BankAccount getAccount(BankAccount account) {
 		Session s = hu.getSession();
-		Account ret = s.get(Account.class, account.getId());
+		BankAccount ret = s.get(BankAccount.class, account.getId());
 		s.close();
 		return ret;
 	}
 	
 	@Override
-	public Account getAccount(int i) {
+	public BankAccount getAccount(int i) {
 		Session s = hu.getSession();
-		Account ret = s.get(Account.class, i);
+		BankAccount ret = s.get(BankAccount.class, i);
 		s.close();
 		return ret;
 	}
 
 	@Override
-	public Account getAccountByCustomerId(Customer customer) {
+	public BankAccount getAccountByCustomerId(Customer customer) {
 		Session s = hu.getSession();
 		CriteriaBuilder critBuilder = s.getCriteriaBuilder();
-		CriteriaQuery<Account> query = critBuilder.createQuery(Account.class);
-		Root<Account> root = query.from(Account.class);
+		CriteriaQuery<BankAccount> query = critBuilder.createQuery(BankAccount.class);
+		Root<BankAccount> root = query.from(BankAccount.class);
 		query.select(root).where(critBuilder.equal(root.get("customer_id"), customer.getId()));
-		Query<Account> q = s.createQuery(query);
+		Query<BankAccount> q = s.createQuery(query);
 		s.close();
 		return q.getSingleResult();
 	}
 	
 	@Override
-	public ArrayList<Account> getAccountsByCustomerId(Customer customer){
+	public ArrayList<BankAccount> getAccountsByCustomerId(Customer customer){
 		Session s = hu.getSession();
 		CriteriaBuilder critBuilder = s.getCriteriaBuilder();
-		CriteriaQuery<Account> query = critBuilder.createQuery(Account.class);
-		Root<Account> root = query.from(Account.class);
+		CriteriaQuery<BankAccount> query = critBuilder.createQuery(BankAccount.class);
+		Root<BankAccount> root = query.from(BankAccount.class);
 		query.select(root).where(critBuilder.equal(root.get("id"), customer.getId()));
-		ArrayList<Account> accountList = (ArrayList<Account>) s.createQuery(query).getResultList();
+		ArrayList<BankAccount> accountList = (ArrayList<BankAccount>) s.createQuery(query).getResultList();
 		s.close();
 		return accountList;
 	}
 	
 	@Override
-	public ArrayList<Account> getAccountsByCustomerId(int i){
+	public ArrayList<BankAccount> getAccountsByCustomerId(int i){
 		Customer customer = new Customer();
 		customer.setId(i);
 		Session s = hu.getSession();
 		CriteriaBuilder critBuilder = s.getCriteriaBuilder();
-		CriteriaQuery<Account> query = critBuilder.createQuery(Account.class);
-		Root<Account> root = query.from(Account.class);
+		CriteriaQuery<BankAccount> query = critBuilder.createQuery(BankAccount.class);
+		Root<BankAccount> root = query.from(BankAccount.class);
 		query.select(root).where(critBuilder.equal(root.get("primaryAccountHolder"), customer));
-		ArrayList<Account> accountList = (ArrayList<Account>) s.createQuery(query).getResultList();
+		ArrayList<BankAccount> accountList = (ArrayList<BankAccount>) s.createQuery(query).getResultList();
 		s.close();
 		return accountList;
 	}
 
 	@Override
-	public Set<Account> getAccounts() {
+	public Set<BankAccount> getAccounts() {
 		Session s = hu.getSession();
 		String query = "from Account";
 		log.trace(query);
-		Query<Account> q = s.createQuery(query, Account.class);
-		List<Account> accountList = q.getResultList();
-		Set<Account> accountSet = new HashSet<Account>();
+		Query<BankAccount> q = s.createQuery(query, BankAccount.class);
+		List<BankAccount> accountList = q.getResultList();
+		Set<BankAccount> accountSet = new HashSet<BankAccount>();
 		accountSet.addAll(accountList);
 		log.trace(accountList);
 		s.close();
@@ -115,7 +115,7 @@ public class AccountHibernate implements AccountDAO {
 	}
 
 	@Override
-	public void updateAccount(Account account) {
+	public void updateAccount(BankAccount account) {
 		Session s = hu.getSession();
 		Transaction t = s.beginTransaction();
 		s.update(account.getId());
@@ -124,7 +124,7 @@ public class AccountHibernate implements AccountDAO {
 	}
 
 	@Override
-	public void deleteAccount(Account account) {
+	public void deleteAccount(BankAccount account) {
 		Session s = hu.getSession();
 		Transaction t = s.beginTransaction();
 		s.update(account.getId());

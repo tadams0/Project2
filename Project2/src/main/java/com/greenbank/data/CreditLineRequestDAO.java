@@ -7,7 +7,7 @@ import com.greenbank.beans.CreditLineRequest;
 import com.greenbank.beans.Customer;
 import com.greenbank.beans.Employee;
 
-public interface CreditLineRequestDao {
+public interface CreditLineRequestDAO {
 	List<CreditLineRequest> getRequestsByManager(Employee manager);
 	List<CreditLineRequest> getRequestsByManagerID(int id);
 	List<CreditLineRequest> getRequestsAvailableToAll();

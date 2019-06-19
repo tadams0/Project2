@@ -17,7 +17,7 @@ import com.greenbank.beans.LoginResponsePayload;
 import com.greenbank.beans.UserInfo;
 import com.greenbank.data.CustomerDAO;
 import com.greenbank.data.UserInfoDAO;
-import com.greenbank.data.CreditScoreDao;
+import com.greenbank.data.CreditScoreDAO;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -31,7 +31,7 @@ public class UpdateAccountController {
 	private CustomerDAO customerDAO;
 	
 	@Autowired
-	private CreditScoreDao creditScoreDAO;
+	private CreditScoreDAO creditScoreDAO;
 
 	@PostMapping
 	public LoginResponsePayload login(@RequestBody LoginRequestPayload login) 

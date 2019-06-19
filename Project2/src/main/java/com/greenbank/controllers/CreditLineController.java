@@ -25,9 +25,9 @@ import com.greenbank.beans.CreditScore;
 import com.greenbank.beans.Customer;
 import com.greenbank.beans.LoginResponsePayload;
 import com.greenbank.beans.SimpleMessage;
-import com.greenbank.data.CreditLineRequestDao;
+import com.greenbank.data.CreditLineRequestDAO;
 import com.greenbank.data.CreditLineRequestImpl;
-import com.greenbank.data.CreditScoreDao;
+import com.greenbank.data.CreditScoreDAO;
 import com.greenbank.data.CustomerDAO;
 
 @CrossOrigin(origins = "*")
@@ -36,13 +36,13 @@ import com.greenbank.data.CustomerDAO;
 public class CreditLineController {
 	
 	@Autowired
-	private CreditLineRequestDao creditLineDao;
+	private CreditLineRequestDAO creditLineDao;
 	
 	@Autowired
 	private CustomerDAO customerDao;
 	
 	@Autowired
-	private CreditScoreDao creditScoreDao;
+	private CreditScoreDAO creditScoreDao;
 
 	@GetMapping("{id}")
 	public ArrayList<CreditLineRequest> getRequestsAvailableToAll(@PathVariable("id") String id, HttpSession session) 

@@ -21,7 +21,7 @@ import com.greenbank.beans.Employee;
 import com.greenbank.utils.HibernateUtil;
 
 @Component
-public class CreditLineRequestImpl implements CreditLineRequestDao {
+public class CreditLineRequestImpl implements CreditLineRequestDAO {
 	
 	@Autowired
 	private HibernateUtil hu;

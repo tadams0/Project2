@@ -1,5 +1,5 @@
 package com.greenbank.data;
 
-public interface InquiryDao {
+public interface InquiryDAO {
 
 }
