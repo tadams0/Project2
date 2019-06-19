@@ -5,5 +5,9 @@
       APR: {{request.creditAPR}}% <br>
       Status: {{request.status}}
     </p>
+    
+  <div class="card-block" *ngIf='request.status=="APPROVED"'>
+      <img src="assets\images\cardexample_sm.png">
+  </div>
   </div>
 </div> 

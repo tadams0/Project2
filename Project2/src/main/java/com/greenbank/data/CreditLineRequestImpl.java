@@ -135,10 +135,19 @@ public class CreditLineRequestImpl implements CreditLineRequestDAO {
 			req.setCreditAPR(apr);
 			req.setStatus("PENDING");
 		}
+
+		System.out.println("Logged in employee: " + loggedInEmployee.getId() + " Request approver ID: " + req.getEmployeeApprover());
 		
 		if (req.getEmployeeApprover() == null)
 		{ //If no employee approver, then escalate to the manager.
-			req.setEmployeeApprover(loggedInEmployee.getManager());
+			if (loggedInEmployee.getManager() == null)
+			{ //If this user has no manager, then we can simply approve it by default.
+				req.setStatus("APPROVED");
+			}
+			else
+			{
+				req.setEmployeeApprover(loggedInEmployee.getManager());
+			}
 		}
 		else if (req.getEmployeeApprover().getId() == loggedInEmployee.getId())
 		{ //If there is an approver, then that is the manager. So set the status to finally approved.

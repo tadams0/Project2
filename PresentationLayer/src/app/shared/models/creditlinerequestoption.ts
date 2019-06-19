@@ -8,5 +8,6 @@ export class CreditLineRequestOption{
    {
       this.id = id;
       this.option = option;
+      this.data = null;
    }
 }
