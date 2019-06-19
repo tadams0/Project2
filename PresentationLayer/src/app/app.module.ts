@@ -20,16 +20,18 @@ import { SetUpAccountComponent } from './core/register/set-up-account/set-up-acc
 import { LoginComponent } from './core/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { TransactionComponent } from './core/transaction/transaction.component';
-import { TransactionlistComponent } from './core/transactionlist/transactionlist.component';
-import { TransactionService } from './core/transaction/service/transaction.service';
-import { AccounttransactionComponent } from './core/accounttransaction/accounttransaction.component';
+import { TransactionComponent } from './core/account-info/transaction/transaction.component';
+import { TransactionlistComponent } from './core/account-info/transactionlist/transactionlist.component';
+import { TransactionService } from './core/account-info/transaction/service/transaction.service';
 import { CreditRequestCustomerComponent } from './core/credit-request-components/credit-request-customer/credit-request-customer.component';
 import { CreditRequestListCustomerComponent } from './core/credit-request-components/credit-request-list-customer/credit-request-list-customer.component';
 import { CreditRequestListComponent } from './core/credit-request-components/credit-request-list/credit-request-list.component';
 import { CreditRequestRejectedComponent } from './core/credit-request-components/credit-request-rejected/credit-request-rejected.component';
 import { CreditRequestRejectedListComponent } from './core/credit-request-components/credit-request-rejected-list/credit-request-rejected-list.component';
 import { CustomerOpenAccountComponent } from './core/customer-open-account/customer-open-account.component';
+
+import { AccountInfoComponent } from './core/account-info/account-info.component';
+import { StatementComponent } from './core/account-info/statement/statement.component';
 
 
 
@@ -52,12 +54,13 @@ import { CustomerOpenAccountComponent } from './core/customer-open-account/custo
     SetUpAccountComponent,
     TransactionComponent,
     TransactionlistComponent,
-    AccounttransactionComponent,
+    AccountInfoComponent,
     CreditRequestCustomerComponent,
     CreditRequestListCustomerComponent,
     CustomerOpenAccountComponent,
     CreditRequestRejectedComponent,
-    CreditRequestRejectedListComponent
+    CreditRequestRejectedListComponent,
+    StatementComponent
   ],
   imports: [
     BrowserModule,

@@ -8,8 +8,8 @@ import { DisplaybankaccountsComponent } from './core/displaybankaccounts/display
 import { HomeComponent } from './core/home/home.component';
 import { AccountlistComponent } from './core/accountlist/accountlist.component';
 import { SetUpAccountComponent } from './core/register/set-up-account/set-up-account.component';
-import { TransactionlistComponent } from './core/transactionlist/transactionlist.component';
-import { AccounttransactionComponent } from './core/accounttransaction/accounttransaction.component';
+import { TransactionlistComponent } from './core/account-info/transactionlist/transactionlist.component';
+import { AccountInfoComponent } from './core/account-info/account-info.component';
 import { CreditRequestListCustomerComponent } from './core/credit-request-components/credit-request-list-customer/credit-request-list-customer.component';
 import { CreditRequestRejectedListComponent } from './core/credit-request-components/credit-request-rejected-list/credit-request-rejected-list.component';
 
@@ -54,7 +54,7 @@ const routes: Routes = [
   },
   {
     path: 'transactions',
-    component : AccounttransactionComponent
+    component : AccountInfoComponent
   }
 ];
 

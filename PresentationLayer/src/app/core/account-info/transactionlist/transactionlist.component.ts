@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AccountService } from '../account/services/account.service';
+import { AccountService } from '../../account/services/account.service';
 import { Customer } from 'src/app/shared/models/customer';
 import { UserInfo } from 'src/app/shared/models/userinfo';
 import { Account } from 'src/app/shared/models/account';
 import { UserService } from 'src/app/core/login/login.service';
-import { TransactionService } from 'src/app/core/transaction/service/transaction.service';
+import { TransactionService } from 'src/app/core/account-info/transaction/service/transaction.service';
 import { Transaction } from 'src/app/shared/models/transaction';
 
 @Component({
