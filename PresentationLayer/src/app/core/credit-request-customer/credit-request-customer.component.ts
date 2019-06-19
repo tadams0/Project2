@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { CreditLineRequest } from 'src/app/shared/models/CreditLineRequest';
+import { CreditLineRequest } from 'src/app/shared/models/creditlinerequest';
 import { CreditRequestService } from '../../shared/services/credit-request.service';
 
 @Component({
