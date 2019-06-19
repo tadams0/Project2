@@ -101,6 +101,7 @@ public class AccountTransactionHibernate implements AccountTransactionDAO {
 		s.close();
 		return transactionList;
 	}
+	
 
 	@Override
 	public Set<AccountTransaction> getTransactions() {

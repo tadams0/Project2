@@ -6,4 +6,8 @@ export class Transaction{
    private date : Date;
    private balance : number;
    private name : string;
+
+   getBalance(){
+      return this.balance;
+   }
 }

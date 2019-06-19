@@ -28,4 +28,29 @@ export class TransactionlistComponent implements OnInit {
     });
   }
 
+  filterCredit(): Array<Transaction> {
+    let creditTransaction: Array<Transaction>;
+    if(this.transactionList.length>0){
+      for(let i=0; i<this.transactionList.length; i++ ) {
+        if (this.transactionList[i].getBalance() > 0){
+          creditTransaction.push(this.transactionList[i]);
+        }
+      }
+    }
+    return creditTransaction;
+  }
+
+  filterDebit(): Array<Transaction> {
+    let debitTransaction: Array<Transaction>;
+    if(this.transactionList.length>0){
+      for(let i=0; i<this.transactionList.length; i++ ) {
+        if (this.transactionList[i].getBalance() > 0){
+          debitTransaction.push(this.transactionList[i]);
+        }
+      }
+    }
+    return debitTransaction;
+  }
+
+  
 }
