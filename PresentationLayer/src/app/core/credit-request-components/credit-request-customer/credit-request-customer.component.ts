@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CreditLineRequest } from 'src/app/shared/models/creditlinerequest';
-import { CreditRequestService } from '../../shared/services/credit-request.service';
+import { CreditRequestService } from '../../../shared/services/credit-request.service'; 
 
 @Component({
   selector: 'app-credit-request-customer',
@@ -11,7 +11,7 @@ export class CreditRequestCustomerComponent implements OnInit {
   @Input() public request : CreditLineRequest;
 
   constructor(private creditService : CreditRequestService) { }
-
+ 
   ngOnInit() {
   }
 

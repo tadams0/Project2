@@ -1,0 +1,5 @@
+<p>
+  Below is a list of credit line requests that were automatically rejected by the system.
+</p>
+<small id="help1" class="form-text text-muted">A request can be clicked to reveal options.</small>
+<app-credit-request-rejected *ngFor="let r of requests" [request]="r" (removeCreditLine)="removeRequest($event)"></app-credit-request-rejected>

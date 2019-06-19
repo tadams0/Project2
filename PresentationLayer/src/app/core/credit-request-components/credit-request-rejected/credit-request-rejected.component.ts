@@ -1,14 +1,14 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { CreditLineRequest } from 'src/app/shared/models/creditlinerequest';
-import { CreditRequestService } from '../../shared/services/credit-request.service';
+import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 import { CreditLineRequestOption } from 'src/app/shared/models/creditlinerequestoption';
+import { CreditRequestService } from 'src/app/shared/services/credit-request.service';
+import { CreditLineRequest } from 'src/app/shared/models/creditlinerequest'; 
 
 @Component({
-  selector: 'app-credit-request',
-  templateUrl: './credit-request.component.html',
-  styleUrls: ['./credit-request.component.css']
+  selector: 'app-credit-request-rejected',
+  templateUrl: './credit-request-rejected.component.html',
+  styleUrls: ['./credit-request-rejected.component.css']
 })
-export class CreditRequestComponent implements OnInit {
+export class CreditRequestRejectedComponent implements OnInit {
   @Input() public request : CreditLineRequest;
   @Output() removeCreditLine = new EventEmitter<CreditLineRequest>();
 
@@ -29,10 +29,10 @@ export class CreditRequestComponent implements OnInit {
   {
     const option = new CreditLineRequestOption(this.request.id, msg);
     this.creditService.sendCreditLineOption(option).subscribe((simpleMessage)=>{
+      console.log("Simple Message: " + simpleMessage.message);
       if (simpleMessage.message === "S")
       {
         //Succeeded
-        console.log("Emitting...");
           this.removeCreditLine.emit(this.request);
       }
       else if (simpleMessage.message === "F")
@@ -41,5 +41,4 @@ export class CreditRequestComponent implements OnInit {
       }
     });
   }
-
 }

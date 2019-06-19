@@ -24,13 +24,26 @@
                     My Credit Lines
                 </span>
             </li> 
-            <li class="nav-item">
-                <a *ngIf="route.url!=='/pendingrequests' && isEmployee()" class="nav-link" routerLink="/pendingrequests">
-                    View Credit Line Requests
-                </a>
-                <span *ngIf="route.url==='/pendingrequests' && isEmployee()" class="nav-link font-weight-bold">
-                    View Credit Line Requests
-                </span>
+            <li class="nav-item dropdown" *ngIf="isEmployee()">
+                <a class="nav-link menu-item dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Credit Lines</a>      
+                <div class=" dropdown dropdown-menu">
+                    <a *ngIf="route.url!=='/pendingrequests'" class="nav-link" routerLink="/pendingrequests">
+                        View Credit Line Requests
+                    </a>
+                    <span *ngIf="route.url==='/pendingrequests'" class="nav-link font-weight-bold">
+                        View Credit Line Requests
+                    </span>
+                    <div class="dropdown-divider"></div>
+                    <a *ngIf="route.url!=='/autorejects'" class="nav-link" routerLink="/autorejects">
+                        Automatically Rejected Credit Lines
+                    </a>
+                    <span *ngIf="route.url==='/autorejects'" class="nav-link font-weight-bold">
+                        Automatically Rejected Credit Lines
+                    </span>
+                    <!-- Seperator here:
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Separated link</a>-->
+                </div>
             </li>
             
             <li class="nav-item" (click)="onLogoutPressed()">
