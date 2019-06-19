@@ -28,54 +28,22 @@ export class TransactionlistComponent implements OnInit {
       this.transactionList = tran;
       this.filterAll();
     });
-    
+  }
+
+  filterAll() {
+    this.filteredList = this.transactionList;
   }
 
   filterCredit() {
-    // let creditTransaction: Array<Transaction>;
-    // if(this.transactionList.length>0){
-    //   for(let i=0; i<this.transactionList.length; i++ ) {
-    //     if (this.transactionList[i].getBalance() > 0){
-    //       creditTransaction.push(this.transactionList[i]);
-    //     }
-    //   }
-    console.log(this.transactionList);
-    this.filteredList = this.transactionList.filter(function(obj) 
-    {
+    this.filteredList = this.transactionList.filter( function (obj ) {
       return obj.balance > 0;
     });
-    console.log(this.filteredList);
-    }
-    // return creditTransaction;
-  
-
-  filterDebit() {
-    this.filteredList = this.transactionList.filter(function(obj) 
-    {
-      return obj.balance < 0;
-    });
-    }
-  
-  filterAll() {
-    this.filteredList = this.transactionList.filter(function(obj) 
-    {
-      return true;
-    });
-    
-
   }
 
-  // filterDebit(): Array<Transaction> {
-  //   let debitTransaction: Array<Transaction>;
-  //   if(this.transactionList.length>0){
-  //     for(let i=0; i<this.transactionList.length; i++ ) {
-  //       if (this.transactionList[i].getBalance() > 0){
-  //         debitTransaction.push(this.transactionList[i]);
-  //       }
-  //     }
-  //   }
-  //   return debitTransaction;
-  // }
+  filterDebit() {
+    this.filteredList = this.transactionList.filter(function (obj){
+      return obj.balance < 0;
+    });
+  }
 
-  
 }

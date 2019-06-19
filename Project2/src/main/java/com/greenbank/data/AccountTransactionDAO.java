@@ -20,7 +20,7 @@ public interface AccountTransactionDAO {
 	public ArrayList<BankTransaction> getTransactionsByAccountId(BankAccount account);
 	public ArrayList<BankTransaction> getTransactionsByAccountId(int i);
 	public Set<BankTransaction> getTransactions();
-	
+
 	
 	//update
 	public void updateTransaction(BankTransaction at);
