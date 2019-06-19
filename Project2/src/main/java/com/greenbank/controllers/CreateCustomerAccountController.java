@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.greenbank.beans.BankAccount;
 import com.greenbank.beans.Customer;
-import com.greenbank.beans.OpenAccountRequestPayload;
+import com.greenbank.beans.CreateAccountRequestPayload;
 import com.greenbank.beans.UserInfo;
 import com.greenbank.data.BankAccountDAO;
 import com.greenbank.data.CustomerDAO;
@@ -28,7 +28,7 @@ import com.greenbank.data.CustomerDAO;
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(value="/register")
-public class CreateAccountController {
+public class CreateCustomerAccountController {
 	
 	@Autowired
 	private BankAccountDAO accountDao;
@@ -42,34 +42,34 @@ public class CreateAccountController {
 	}
 
 	@PostMapping
-	public Map<String, Object> createAccount(@RequestBody OpenAccountRequestPayload openAccount)
+	public Map<String, Object> createCustomerAccount(@RequestBody CreateAccountRequestPayload req)
 	{
 		System.out.println("POST REQUEST RECIEVED!");
-		System.out.println(openAccount);
+		System.out.println(req);
 
 		//generates and saves password/username for account
-		openAccount.generatePassword();
-		String password = openAccount.getUserInfo().getPassword(); 
-		openAccount.generateUsername();
-		String username = openAccount.getUserInfo().getUsername(); 
+		req.generatePassword();
+		String password = req.getUserInfo().getPassword(); 
+		req.generateUsername();
+		String username = req.getUserInfo().getUsername(); 
 		//gotta send the email instead of response body at the end with information 
 				
 		//create a temp customer account
 		//should add field indicating temporary, disallowing to login
 		Customer newCustomer = new Customer();
-		newCustomer.setUserInfo(openAccount.getUserInfo());
+		newCustomer.setUserInfo(req.getUserInfo());
 		newCustomer.setAccountType("TEMP");
 		customerDAO.addCustomer(newCustomer);
 
 		//create savings/checking account
 		BankAccount newAccount = new BankAccount();
 		//mark with Date
-		//perhaps move this into Account class
+		//perhaps move this into BankAccount class
 		DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
 		Date dateOpened = new Date();
 		newAccount.setDateOpened(dateOpened);
 		//set account type
-		newAccount.setAccountType(openAccount.getType());
+		newAccount.setAccountType(req.getType());
 		//setHolder as the temp Customer Account
 		newAccount.setPrimaryAccountHolder(newCustomer);
 		accountDao.addAccount(newAccount);

@@ -22,7 +22,7 @@ import com.greenbank.data.CreditScoreDAO;
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(value="/update")
-public class UpdateAccountController {
+public class UpdateCustomerAccountController {
 	
 	@Autowired
 	private UserInfoDAO userDAO;

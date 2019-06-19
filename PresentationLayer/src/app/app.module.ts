@@ -27,6 +27,7 @@ import { AccounttransactionComponent } from './core/accounttransaction/accounttr
 import { CreditRequestCustomerComponent } from './core/credit-request-customer/credit-request-customer.component';
 import { CreditRequestListCustomerComponent } from './core/credit-request-list-customer/credit-request-list-customer.component';
 import { CreditRequestListComponent } from './core/credit-request-list/credit-request-list.component';
+import { CustomerOpenAccountComponent } from './core/customer-open-account/customer-open-account.component';
 
 
 
@@ -50,7 +51,8 @@ import { CreditRequestListComponent } from './core/credit-request-list/credit-re
     TransactionlistComponent,
     AccounttransactionComponent,
     CreditRequestCustomerComponent,
-    CreditRequestListCustomerComponent
+    CreditRequestListCustomerComponent,
+    CustomerOpenAccountComponent
   ],
   imports: [
     BrowserModule,

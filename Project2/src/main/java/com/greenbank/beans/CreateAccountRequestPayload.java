@@ -2,10 +2,11 @@ package com.greenbank.beans;
 
 import org.apache.commons.lang3.RandomStringUtils;
 
-public class OpenAccountRequestPayload {
+public class CreateAccountRequestPayload {
 
 	UserInfo userInfo;
 	String type;
+	
 	public UserInfo getUserInfo() {
 		return userInfo;
 	}
@@ -51,7 +52,7 @@ public class OpenAccountRequestPayload {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		OpenAccountRequestPayload other = (OpenAccountRequestPayload) obj;
+		CreateAccountRequestPayload other = (CreateAccountRequestPayload) obj;
 		if (type == null) {
 			if (other.type != null)
 				return false;
