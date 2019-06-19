@@ -11,7 +11,6 @@ import { CreateAccountComponent } from './core/register/create-account/create-ac
 import { NavBarComponent } from './shared/nav-bar/nav-bar.component';
 import { DisplaybankaccountsComponent } from './core/displaybankaccounts/displaybankaccounts.component';
 import { HomeComponent } from './core/home/home.component';
-import { LoanofficerhomeComponent } from './core/loanofficerhome/loanofficerhome.component';
 import { AccountComponent } from './core/account/account.component';
 import { AccountlistComponent } from './core/accountlist/accountlist.component';
 import { AccountService } from './core/account/services/account.service';
@@ -28,6 +27,7 @@ import { CreditRequestListCustomerComponent } from './core/credit-request-compon
 import { CreditRequestListComponent } from './core/credit-request-components/credit-request-list/credit-request-list.component';
 import { CreditRequestRejectedComponent } from './core/credit-request-components/credit-request-rejected/credit-request-rejected.component';
 import { CreditRequestRejectedListComponent } from './core/credit-request-components/credit-request-rejected-list/credit-request-rejected-list.component';
+import { LoanOfficerHomeComponent } from './core/loan-officer-home/loan-officer-home.component';
 import { CustomerOpenAccountComponent } from './core/customer-open-account/customer-open-account.component';
 
 import { AccountInfoComponent } from './core/account-info/account-info.component';
@@ -47,7 +47,6 @@ import { StatementComponent } from './core/account-info/statement/statement.comp
     NavBarComponent,
     DisplaybankaccountsComponent,
     HomeComponent,
-    LoanofficerhomeComponent,
     AccountComponent,
     AccountlistComponent,
     CustomerhomeComponent,
@@ -60,7 +59,8 @@ import { StatementComponent } from './core/account-info/statement/statement.comp
     CustomerOpenAccountComponent,
     CreditRequestRejectedComponent,
     CreditRequestRejectedListComponent,
-    StatementComponent
+    StatementComponent,
+    LoanOfficerHomeComponent
   ],
   imports: [
     BrowserModule,

@@ -41,10 +41,6 @@ const routes: Routes = [
     component: SetUpAccountComponent
   },
   {
-    path: 'myrequests',
-    component: CreditRequestListCustomerComponent
-  },
-  {
     path: 'pendingrequests',
     component: CreditRequestListComponent
   },

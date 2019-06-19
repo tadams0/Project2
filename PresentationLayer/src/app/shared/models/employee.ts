@@ -2,7 +2,7 @@ import { UserInfo } from './userinfo';
 
 export class Employee{
    private id : number;
-   private userInfo : UserInfo;
-   private manager : Employee;
-   private employeeType : string;
+   public userInfo : UserInfo;
+   public manager : Employee;
+   public employeeType : string;
 }
