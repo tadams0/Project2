@@ -110,7 +110,7 @@ public class CreditLineController {
 		}
 		else if ("APPROVE".equals(option.getOption()))
 		{
-			val = creditLineDao.approveRequest(option.getId(), payload.getEmployee());
+			val = creditLineDao.approveRequest(option.getId(), payload.getEmployee(), option);
 		}
 		
 		return val == 1 ? SimpleMessage.successMessage : SimpleMessage.failureMessage;  //S = success, F = failure.

@@ -6,6 +6,8 @@
     </p>
   </div>
   <div id = "acceptrejectbuttons{{request.id}}" class="card-block collapse">
+      <label>APR:</label>
+      <input type="number" name="inputName" value="5" min="1" max="27" [(ngModel)]="aprValue">%
       <input class="btn btn-primary" type="submit" value="Manually Approve" (click)="onApprove()">
     </div>
 </div> 

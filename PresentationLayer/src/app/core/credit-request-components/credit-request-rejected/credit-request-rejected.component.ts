@@ -11,6 +11,7 @@ import { CreditLineRequest } from 'src/app/shared/models/creditlinerequest';
 export class CreditRequestRejectedComponent implements OnInit {
   @Input() public request : CreditLineRequest;
   @Output() removeCreditLine = new EventEmitter<CreditLineRequest>();
+  public aprValue : number;
 
   constructor(private creditService : CreditRequestService) { }
 
@@ -28,17 +29,21 @@ export class CreditRequestRejectedComponent implements OnInit {
   private sendCreditLineOption(msg : string) : void
   {
     const option = new CreditLineRequestOption(this.request.id, msg);
-    this.creditService.sendCreditLineOption(option).subscribe((simpleMessage)=>{
-      console.log("Simple Message: " + simpleMessage.message);
-      if (simpleMessage.message === "S")
-      {
-        //Succeeded
-          this.removeCreditLine.emit(this.request);
-      }
-      else if (simpleMessage.message === "F")
-      {
-        //Failure
-      }
-    });
+    option.data = this.aprValue;
+
+    if (this.aprValue > 0 && this.aprValue < 28)
+    {
+        this.creditService.sendCreditLineOption(option).subscribe((simpleMessage)=>{
+        if (simpleMessage.message === "S")
+        {
+          //Succeeded
+            this.removeCreditLine.emit(this.request);
+        }
+        else if (simpleMessage.message === "F")
+        {
+          //Failure
+        }
+      });
+    } 
   }
 }

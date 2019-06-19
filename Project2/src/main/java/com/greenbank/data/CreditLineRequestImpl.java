@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.greenbank.beans.CreditLineRequest;
+import com.greenbank.beans.CreditLineRequestOption;
 import com.greenbank.beans.Customer;
 import com.greenbank.beans.Employee;
 import com.greenbank.utils.HibernateUtil;
@@ -124,12 +125,16 @@ public class CreditLineRequestImpl implements CreditLineRequestDAO {
 	}
 
 	@Override
-	public int approveRequest(int requestID, Employee loggedInEmployee) {
+	public int approveRequest(int requestID, Employee loggedInEmployee, CreditLineRequestOption option) {
 		Session s = hu.getSession();
 		org.hibernate.Transaction t = s.beginTransaction();
 		CreditLineRequest req = s.get(CreditLineRequest.class, requestID);
-		if ("AUTOREJECT".equals(req.getStatus()))
+		if ("AUTOREJECT".equals(req.getStatus()) && option.getData() != null)
+		{
+			int apr = (int)option.getData();
+			req.setCreditAPR(apr);
 			req.setStatus("PENDING");
+		}
 		
 		if (req.getEmployeeApprover() == null)
 		{ //If no employee approver, then escalate to the manager.
