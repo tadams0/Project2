@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CreditLineRequest } from 'src/app/shared/models/creditlinerequest';
-import { CreditRequestService } from '../../shared/services/credit-request.service';
+import { CreditRequestService } from '../../../shared/services/credit-request.service'; 
 import { CreditLineRequestOption } from 'src/app/shared/models/creditlinerequestoption';
-
+ 
 @Component({
   selector: 'app-credit-request',
   templateUrl: './credit-request.component.html',
@@ -32,7 +32,6 @@ export class CreditRequestComponent implements OnInit {
       if (simpleMessage.message === "S")
       {
         //Succeeded
-        console.log("Emitting...");
           this.removeCreditLine.emit(this.request);
       }
       else if (simpleMessage.message === "F")

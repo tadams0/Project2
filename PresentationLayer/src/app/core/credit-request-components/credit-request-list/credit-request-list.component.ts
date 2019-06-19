@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CreditRequestService } from '../../shared/services/credit-request.service';
+import { CreditRequestService } from '../../../shared/services/credit-request.service';  
 import { CreditLineRequest } from 'src/app/shared/models/creditlinerequest';
 
 @Component({
@@ -17,7 +17,7 @@ export class CreditRequestListComponent implements OnInit {
       this.requests = requestsIn;
     })
   }
-
+ 
   removeRequest(request: CreditLineRequest) {
     this.requests = this.requests.filter(function( obj) 
     {

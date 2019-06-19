@@ -6,7 +6,7 @@ import { CreditFormComponent } from './core/creditform/creditform.component';
 import { CreditRequestService } from './shared/services/credit-request.service';
 import { UserService } from './core/login/login.service';
 import { UrlService } from './shared/url.service';
-import { CreditRequestComponent } from './core/credit-request/credit-request.component';
+import { CreditRequestComponent } from './core/credit-request-components/credit-request/credit-request.component';
 import { CreateAccountComponent } from './core/register/create-account/create-account.component';
 import { NavBarComponent } from './shared/nav-bar/nav-bar.component';
 import { DisplaybankaccountsComponent } from './core/displaybankaccounts/displaybankaccounts.component';
@@ -24,10 +24,18 @@ import { TransactionComponent } from './core/transaction/transaction.component';
 import { TransactionlistComponent } from './core/transactionlist/transactionlist.component';
 import { TransactionService } from './core/transaction/service/transaction.service';
 import { AccounttransactionComponent } from './core/accounttransaction/accounttransaction.component';
+<<<<<<< HEAD
 import { CreditRequestCustomerComponent } from './core/credit-request-customer/credit-request-customer.component';
 import { CreditRequestListCustomerComponent } from './core/credit-request-list-customer/credit-request-list-customer.component';
 import { CreditRequestListComponent } from './core/credit-request-list/credit-request-list.component';
 import { CustomerOpenAccountComponent } from './core/customer-open-account/customer-open-account.component';
+=======
+import { CreditRequestCustomerComponent } from './core/credit-request-components/credit-request-customer/credit-request-customer.component';
+import { CreditRequestListCustomerComponent } from './core/credit-request-components/credit-request-list-customer/credit-request-list-customer.component';
+import { CreditRequestListComponent } from './core/credit-request-components/credit-request-list/credit-request-list.component';
+import { CreditRequestRejectedComponent } from './core/credit-request-components/credit-request-rejected/credit-request-rejected.component';
+import { CreditRequestRejectedListComponent } from './core/credit-request-components/credit-request-rejected-list/credit-request-rejected-list.component';
+>>>>>>> 5fdf153d145500fd9795d333cebcebd8b77f69ff
 
 
 
@@ -52,7 +60,12 @@ import { CustomerOpenAccountComponent } from './core/customer-open-account/custo
     AccounttransactionComponent,
     CreditRequestCustomerComponent,
     CreditRequestListCustomerComponent,
+<<<<<<< HEAD
     CustomerOpenAccountComponent
+=======
+    CreditRequestRejectedComponent,
+    CreditRequestRejectedListComponent
+>>>>>>> 5fdf153d145500fd9795d333cebcebd8b77f69ff
   ],
   imports: [
     BrowserModule,

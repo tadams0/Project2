@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CreditRequestService } from '../../shared/services/credit-request.service';
+import { CreditRequestService } from '../../../shared/services/credit-request.service'; 
 import { CreditLineRequest } from 'src/app/shared/models/CreditLineRequest';
-import { UserService } from '../login/login.service';
+import { UserService } from '../../login/login.service';
 
 @Component({
   selector: 'app-credit-request-list-customer',

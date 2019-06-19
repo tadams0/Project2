@@ -23,6 +23,7 @@ import com.greenbank.beans.CreditLineRequest;
 import com.greenbank.beans.CreditLineRequestOption;
 import com.greenbank.beans.CreditScore;
 import com.greenbank.beans.Customer;
+import com.greenbank.beans.Employee;
 import com.greenbank.beans.LoginResponsePayload;
 import com.greenbank.beans.SimpleMessage;
 import com.greenbank.data.CreditLineRequestDAO;
@@ -45,24 +46,28 @@ public class CreditLineController {
 	private CreditScoreDAO creditScoreDao;
 
 	@GetMapping("{id}")
-	public ArrayList<CreditLineRequest> getRequestsAvailableToAll(@PathVariable("id") String id, HttpSession session) 
+	public ArrayList<CreditLineRequest> getRequestsSpecific(@PathVariable("id") String id, HttpSession session) 
 	{
-		System.out.println(session);
-		System.out.println("ID VALUE (Get Mapping): " + id);
 		List<CreditLineRequest> requests = null;
 		LoginResponsePayload payload = (LoginResponsePayload)session.getAttribute("user");
 		
-		System.out.println("Payload: " + payload);
 		if (payload == null)
 			return null;
-
-		System.out.println((id != null) + " " + (id.equals("0")) + " " + (payload.getCustomer() != null));
-		if (id != null && id.equals("0") && payload.getCustomer() != null)
+		
+		if (id != null)
 		{
-			Customer loggedInCustomer = payload.getCustomer();
-	    	requests = creditLineDao.getRequestsByCustomer(loggedInCustomer);
+			if (payload.getCustomer() != null && id.contentEquals("0"))
+			{
+				Customer loggedInCustomer = payload.getCustomer();
+		    	requests = creditLineDao.getRequestsByCustomer(loggedInCustomer);
+			}
+			else if (payload.getEmployee() != null && id.contentEquals("1"))
+			{
+		    	requests = creditLineDao.getRequestsAutoRejected();
+			}
 		}
-		else
+		
+		if (requests == null)
 		{
 	    	requests = creditLineDao.getRequestsAvailableToAll();
 		}
@@ -72,7 +77,22 @@ public class CreditLineController {
 		else
 			return null;
 	}
-	
+	@GetMapping
+	public ArrayList<CreditLineRequest> getRequestsAvailableToAll(HttpSession session) 
+	{
+		List<CreditLineRequest> requests = null;
+		LoginResponsePayload payload = (LoginResponsePayload)session.getAttribute("user");
+		
+		if (payload == null)
+			return null;
+
+    	requests = creditLineDao.getRequestsAvailableToAll();
+    	
+		if (requests != null)
+			return new ArrayList<CreditLineRequest>(requests);
+		else
+			return null;
+	}
 	@PutMapping
 	public SimpleMessage optionRequest(@RequestBody CreditLineRequestOption option, HttpSession session)
 	{
@@ -80,7 +100,6 @@ public class CreditLineController {
 		
 		if (payload == null || payload.getEmployee() == null)
 		{
-			System.out.println("NO EMPLOYEE LOGGED IN!");
 			return SimpleMessage.failureMessage;
 		}
 		
@@ -91,7 +110,7 @@ public class CreditLineController {
 		}
 		else if ("APPROVE".equals(option.getOption()))
 		{
-			val = creditLineDao.approveRequest(option.getId(), payload.getEmployee());
+			val = creditLineDao.approveRequest(option.getId(), payload.getEmployee(), option);
 		}
 		
 		return val == 1 ? SimpleMessage.successMessage : SimpleMessage.failureMessage;  //S = success, F = failure.
@@ -115,7 +134,7 @@ public class CreditLineController {
 			
 			if (apr == -1)
 			{
-				request.setStatus("REJECTED");
+				request.setStatus("AUTOREJECT");
 			}
 			else
 			{
