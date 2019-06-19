@@ -6,12 +6,11 @@ import { CreditFormComponent } from './core/creditform/creditform.component';
 import { CreditRequestService } from './shared/services/credit-request.service';
 import { UserService } from './core/login/login.service';
 import { UrlService } from './shared/url.service';
-import { CreditRequestComponent } from './core/credit-request/credit-request.component';
+import { CreditRequestComponent } from './core/credit-request-components/credit-request/credit-request.component';
 import { CreateAccountComponent } from './core/register/create-account/create-account.component';
 import { NavBarComponent } from './shared/nav-bar/nav-bar.component';
 import { DisplaybankaccountsComponent } from './core/displaybankaccounts/displaybankaccounts.component';
 import { HomeComponent } from './core/home/home.component';
-import { LoanofficerhomeComponent } from './core/loanofficerhome/loanofficerhome.component';
 import { AccountComponent } from './core/account/account.component';
 import { AccountlistComponent } from './core/accountlist/accountlist.component';
 import { AccountService } from './core/account/services/account.service';
@@ -20,13 +19,20 @@ import { SetUpAccountComponent } from './core/register/set-up-account/set-up-acc
 import { LoginComponent } from './core/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { TransactionComponent } from './core/transaction/transaction.component';
-import { TransactionlistComponent } from './core/transactionlist/transactionlist.component';
-import { TransactionService } from './core/transaction/service/transaction.service';
-import { AccounttransactionComponent } from './core/accounttransaction/accounttransaction.component';
-import { CreditRequestCustomerComponent } from './core/credit-request-customer/credit-request-customer.component';
-import { CreditRequestListCustomerComponent } from './core/credit-request-list-customer/credit-request-list-customer.component';
-import { CreditRequestListComponent } from './core/credit-request-list/credit-request-list.component';
+import { TransactionComponent } from './core/account-info/transaction/transaction.component';
+import { TransactionlistComponent } from './core/account-info/transactionlist/transactionlist.component';
+import { TransactionService } from './core/account-info/transaction/service/transaction.service';
+import { CreditRequestCustomerComponent } from './core/credit-request-components/credit-request-customer/credit-request-customer.component';
+import { CreditRequestListCustomerComponent } from './core/credit-request-components/credit-request-list-customer/credit-request-list-customer.component';
+import { CreditRequestListComponent } from './core/credit-request-components/credit-request-list/credit-request-list.component';
+import { CreditRequestRejectedComponent } from './core/credit-request-components/credit-request-rejected/credit-request-rejected.component';
+import { CreditRequestRejectedListComponent } from './core/credit-request-components/credit-request-rejected-list/credit-request-rejected-list.component';
+import { LoanOfficerHomeComponent } from './core/loan-officer-home/loan-officer-home.component';
+import { CustomerOpenAccountComponent } from './core/customer-open-account/customer-open-account.component';
+
+import { AccountInfoComponent } from './core/account-info/account-info.component';
+import { StatementComponent } from './core/account-info/statement/statement.component';
+
 
 
 
@@ -41,16 +47,20 @@ import { CreditRequestListComponent } from './core/credit-request-list/credit-re
     NavBarComponent,
     DisplaybankaccountsComponent,
     HomeComponent,
-    LoanofficerhomeComponent,
     AccountComponent,
     AccountlistComponent,
     CustomerhomeComponent,
     SetUpAccountComponent,
     TransactionComponent,
     TransactionlistComponent,
-    AccounttransactionComponent,
+    AccountInfoComponent,
     CreditRequestCustomerComponent,
-    CreditRequestListCustomerComponent
+    CreditRequestListCustomerComponent,
+    CustomerOpenAccountComponent,
+    CreditRequestRejectedComponent,
+    CreditRequestRejectedListComponent,
+    StatementComponent,
+    LoanOfficerHomeComponent
   ],
   imports: [
     BrowserModule,

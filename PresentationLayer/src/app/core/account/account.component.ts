@@ -20,11 +20,16 @@ export class AccountComponent implements OnInit {
   ngOnInit() {
   }
 
-  viewAccount(accountid : number){
-    this.acc.id = accountid;
+  viewAccounts(accountId : number){
+    this.acc.id = accountId;
     this.userService.setAccount(this.acc);
     this.router.navigate(['transactions'])
   }
 
+  viewStatements(accountId:number){
+    this.acc.id = accountId;
+    this.userService.setAccount(this.acc);
+    this.router.navigate(['statements'])
+  }
 
 }

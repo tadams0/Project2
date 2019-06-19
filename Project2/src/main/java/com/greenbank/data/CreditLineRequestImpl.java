@@ -16,12 +16,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.greenbank.beans.CreditLineRequest;
+import com.greenbank.beans.CreditLineRequestOption;
 import com.greenbank.beans.Customer;
 import com.greenbank.beans.Employee;
 import com.greenbank.utils.HibernateUtil;
 
 @Component
-public class CreditLineRequestImpl implements CreditLineRequestDao {
+public class CreditLineRequestImpl implements CreditLineRequestDAO {
 	
 	@Autowired
 	private HibernateUtil hu;
@@ -46,7 +47,7 @@ public class CreditLineRequestImpl implements CreditLineRequestDao {
 	public List<CreditLineRequest> getRequestsByCustomer(Customer customer) {
 		ArrayList<CreditLineRequest> requests = null;
 		Session session = hu.getSession();
-		String hqlString = "from com.greenbank.beans.CreditLineRequest req where req.customer.id=:id and req.status!='REJECTED'";
+		String hqlString = "from com.greenbank.beans.CreditLineRequest req where req.customer.id=:id and req.status!='REJECTED' and req.status!='AUTOREJECT'";
 		Query<CreditLineRequest> query = session.createQuery(hqlString, CreditLineRequest.class);
         query.setParameter("id", customer.getId());
 		requests = new ArrayList<CreditLineRequest>(query.getResultList());
@@ -61,6 +62,17 @@ public class CreditLineRequestImpl implements CreditLineRequestDao {
 		String hqlString = "from com.greenbank.beans.CreditLineRequest req where req.id=:id and req.status='PENDING'";
 		Query<CreditLineRequest> query = session.createQuery(hqlString, CreditLineRequest.class);
         query.setParameter("id", id);
+		requests = new ArrayList<CreditLineRequest>(query.getResultList());
+		session.close();
+		return requests;
+	}
+	
+	@Override
+	public List<CreditLineRequest> getRequestsAutoRejected() {
+		ArrayList<CreditLineRequest> requests = null;
+		Session session = hu.getSession();
+		String hqlString = "from com.greenbank.beans.CreditLineRequest req where req.status='AUTOREJECT'";
+		Query<CreditLineRequest> query = session.createQuery(hqlString, CreditLineRequest.class);
 		requests = new ArrayList<CreditLineRequest>(query.getResultList());
 		session.close();
 		return requests;
@@ -113,15 +125,29 @@ public class CreditLineRequestImpl implements CreditLineRequestDao {
 	}
 
 	@Override
-	public int approveRequest(int requestID, Employee loggedInEmployee) {
+	public int approveRequest(int requestID, Employee loggedInEmployee, CreditLineRequestOption option) {
 		Session s = hu.getSession();
 		org.hibernate.Transaction t = s.beginTransaction();
 		CreditLineRequest req = s.get(CreditLineRequest.class, requestID);
-		System.out.println("Logged in employee: " + loggedInEmployee);
-		System.out.println("Manager: " + loggedInEmployee.getManager());
+		if ("AUTOREJECT".equals(req.getStatus()) && option.getData() != null)
+		{
+			int apr = (int)option.getData();
+			req.setCreditAPR(apr);
+			req.setStatus("PENDING");
+		}
+
+		System.out.println("Logged in employee: " + loggedInEmployee.getId() + " Request approver ID: " + req.getEmployeeApprover());
+		
 		if (req.getEmployeeApprover() == null)
 		{ //If no employee approver, then escalate to the manager.
-			req.setEmployeeApprover(loggedInEmployee.getManager());
+			if (loggedInEmployee.getManager() == null)
+			{ //If this user has no manager, then we can simply approve it by default.
+				req.setStatus("APPROVED");
+			}
+			else
+			{
+				req.setEmployeeApprover(loggedInEmployee.getManager());
+			}
 		}
 		else if (req.getEmployeeApprover().getId() == loggedInEmployee.getId())
 		{ //If there is an approver, then that is the manager. So set the status to finally approved.
