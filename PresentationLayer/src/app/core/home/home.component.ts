@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/core/login/login.service';
 import { Router } from '@angular/router';
+import { Employee } from 'src/app/shared/models/employee';
 
 @Component({
   selector: 'app-home',
@@ -26,4 +27,19 @@ export class HomeComponent implements OnInit {
     return this.userService.isEmployee();
   }
 
+  isLoanOfficer() : boolean {
+    if (this.userService.isEmployee())
+    {
+      const employee : Employee  = this.userService.getEmployee();
+      return employee !== null && employee.employeeType === 'LOAN OFFICER';
+    }
+  }
+
+  isManager() : boolean {
+    if (this.userService.getEmployee())
+    {
+      const employee : Employee  = this.userService.getEmployee();
+      return employee !== null && employee.employeeType === 'MANAGER';
+    }    
+  }
 }
