@@ -10,18 +10,10 @@
         <ul class="navbar-nav mr-auto">
             <li  class="nav-item">
                 <a *ngIf="route.url!=='/form' && isCustomer()" class="nav-link" routerLink="/form">
-                    Request Credit Line
+                    Credit Lines
                 </a>
                 <span *ngIf="route.url==='/form' && isCustomer()" class="nav-link font-weight-bold">
-                    Request Credit Line
-                </span>
-            </li> 
-            <li  class="nav-item">
-                <a *ngIf="route.url!=='/myrequests' && isCustomer()" class="nav-link" routerLink="/myrequests">
-                    My Credit Lines
-                </a>
-                <span *ngIf="route.url==='/myrequests' && isCustomer()" class="nav-link font-weight-bold">
-                    My Credit Lines
+                    Credit Lines
                 </span>
             </li> 
             <li class="nav-item dropdown" *ngIf="isEmployee()">

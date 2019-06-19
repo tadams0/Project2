@@ -29,6 +29,8 @@ import { CreditRequestListComponent } from './core/credit-request-components/cre
 import { CreditRequestRejectedComponent } from './core/credit-request-components/credit-request-rejected/credit-request-rejected.component';
 import { CreditRequestRejectedListComponent } from './core/credit-request-components/credit-request-rejected-list/credit-request-rejected-list.component';
 import { LoanOfficerHomeComponent } from './core/loan-officer-home/loan-officer-home.component';
+import { CustomerOpenAccountComponent } from './core/customer-open-account/customer-open-account.component';
+
 
 
 
@@ -52,6 +54,7 @@ import { LoanOfficerHomeComponent } from './core/loan-officer-home/loan-officer-
     AccounttransactionComponent,
     CreditRequestCustomerComponent,
     CreditRequestListCustomerComponent,
+    CustomerOpenAccountComponent,
     CreditRequestRejectedComponent,
     CreditRequestRejectedListComponent,
     LoanOfficerHomeComponent
