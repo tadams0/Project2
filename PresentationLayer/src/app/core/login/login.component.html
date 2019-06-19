@@ -1,6 +1,6 @@
 
 <div class="container border">
-  <h4>BankApp</h4>
+  <h4>Green Bank Login Portal</h4>
   <p class="lead">Welcome</p>
   <hr class="my-4">
 
@@ -17,12 +17,12 @@
       <input  #inputPassword 
       (keydown.enter)="login(inputUsername.value, inputPassword.value)"
       class="form-text" type="password" name="password"/>
-      <p>{{password}}</p>
+      <p>{{loginMessage}}</p>
     </div>
 
 
     <div class="buttons">
-      <button  (click)="login(inputUsername.value, inputPassword.value)" id="login" type="button" class="btn btn-primary btn-md">LogIn</button>
+      <button  (click)="login(inputUsername.value, inputPassword.value)" id="login" type="button" class="btn btn-primary btn-md">Login</button>
       <button  (click)="openAccount()" id="register" type="button" class="btn btn-warning btn-md">Open an Account</button>
       <button  (click)="setUpAccount()" id="register" type="button" class="btn btn-success btn-md">Set up Account</button>
     </div>

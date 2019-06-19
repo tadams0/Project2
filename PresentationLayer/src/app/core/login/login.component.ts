@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
   public loggedUser: LoginResponsePayload;
   public username: string;
   public password: string;
+  public loginMessage :string;
   constructor( private userService: UserService, private router: Router ) { }
 
   ngOnInit() {
@@ -21,12 +22,23 @@ export class LoginComponent implements OnInit {
   login(username: string, password: string): void {
     this.username = username;
     this.password = password;
-    console.log("logging in "+this.username+" "+this.password)
+    
+    this.loginMessage = "Logging in... Please wait."
+
     this.userService.login(this.username, this.password).subscribe(
       resp => {
         this.loggedUser = resp;
         this.userService.setPayload(resp);
-        this.router.navigate(['/home'])
+
+        if (this.userService.isLoggedIn())
+        {
+          this.loginMessage = "Login successful!"
+          this.router.navigate(['/home'])
+        }
+        else
+        {
+          this.loginMessage = "Could not log in. No username matches that password."
+        }
       }
     );
   }

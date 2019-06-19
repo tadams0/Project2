@@ -34,9 +34,9 @@
             </li>
             
             <li class="nav-item" (click)="onLogoutPressed()">
-                <span *ngIf="isEmployee() || isCustomer()" class="nav-link font-weight-bold">
+                <a *ngIf="isEmployee() || isCustomer()" class="nav-link font-weight-bold"  routerLink="">
                     Logout
-                </span>
+                </a>
             </li>
         </ul>
     </div>
