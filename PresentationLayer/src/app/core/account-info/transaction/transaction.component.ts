@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { TransactionService } from './service/transaction.service';
 import { Transaction } from 'src/app/shared/models/transaction';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-transaction',
@@ -10,12 +11,12 @@ import { Transaction } from 'src/app/shared/models/transaction';
 export class TransactionComponent implements OnInit {
   @Input() public transaction : Transaction;
 
-  constructor(private transactionService : TransactionService) { }
+  constructor(private transactionService : TransactionService, private router : Router) { }
 
   ngOnInit() {
   }
 
   disputeTransaction(transactionId : number){
-    console.log("Disputing lol");
+    this.router.navigate(["/disputing", transactionId]);
   }
 }

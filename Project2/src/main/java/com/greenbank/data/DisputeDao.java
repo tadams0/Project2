@@ -5,7 +5,7 @@ import java.util.Set;
 
 import com.greenbank.beans.Dispute;
 
-public interface DisputeDAO {
+public interface DisputeDao {
 
 	//create
 	public int addDispute(Dispute dispute);

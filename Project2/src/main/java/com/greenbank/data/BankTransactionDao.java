@@ -8,7 +8,7 @@ import org.hibernate.Transaction;
 import com.greenbank.beans.BankAccount;
 import com.greenbank.beans.BankTransaction;
 
-public interface AccountTransactionDAO {
+public interface BankTransactionDao {
 
 	//create
 	public int addTransaction(BankTransaction at);

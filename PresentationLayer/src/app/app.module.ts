@@ -29,9 +29,9 @@ import { CreditRequestRejectedComponent } from './core/credit-request-components
 import { CreditRequestRejectedListComponent } from './core/credit-request-components/credit-request-rejected-list/credit-request-rejected-list.component';
 import { LoanOfficerHomeComponent } from './core/loan-officer-home/loan-officer-home.component';
 import { CustomerOpenAccountComponent } from './core/customer-open-account/customer-open-account.component';
-
 import { AccountInfoComponent } from './core/account-info/account-info.component';
 import { StatementComponent } from './core/account-info/statement/statement.component';
+import { DisputeComponent } from './core/dispute/dispute.component';
 
 
 
@@ -60,7 +60,8 @@ import { StatementComponent } from './core/account-info/statement/statement.comp
     CreditRequestRejectedComponent,
     CreditRequestRejectedListComponent,
     StatementComponent,
-    LoanOfficerHomeComponent
+    LoanOfficerHomeComponent,
+    DisputeComponent
   ],
   imports: [
     BrowserModule,

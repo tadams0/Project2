@@ -2,54 +2,76 @@ package com.greenbank.beans;
 
 import javax.persistence.*;
 
-//@Entity
-//@Table(name="dispute")
+@Entity
+@Table(name="dispute")
 public class Dispute {
 
-	//@Id
-	//@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="disputes")
-	//@SequenceGenerator(name="disputes", sequenceName="DISPUTE_SEQ", allocationSize=1)
-	//@Column(name="dispute_id")
+	@Id
+	@Column(name="dispute_id")
+	@SequenceGenerator(name="disputeGenerator", sequenceName="DISPUTE_SEQ", allocationSize=1)
+	@GeneratedValue(generator="disputeGenerator", strategy=GenerationType.SEQUENCE)
 	private int id;
 	
+	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@JoinColumn(name="customer_id")
 	private Customer customer;
-	private BankTransaction transaction;
-	private Employee employee; //The approver.
-	private String comments;
 	
+	
+	@OneToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@JoinColumn(name="transaction_id")
+	private BankTransaction transaction;
+	
+	@OneToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@JoinColumn(name="employee_id")
+	private Employee employee; //The approver.
+	
+	@Column(name="comments")
+	private String comments;
+
 	public Dispute() {
 		super();
 	}
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public Customer getCustomer() {
 		return customer;
 	}
+
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
+
 	public BankTransaction getTransaction() {
 		return transaction;
 	}
+
 	public void setTransaction(BankTransaction transaction) {
 		this.transaction = transaction;
 	}
+
 	public Employee getEmployee() {
 		return employee;
 	}
+
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
 	}
+
 	public String getComments() {
 		return comments;
 	}
+
 	public void setComments(String comments) {
 		this.comments = comments;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -61,6 +83,7 @@ public class Dispute {
 		result = prime * result + ((transaction == null) ? 0 : transaction.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -94,6 +117,7 @@ public class Dispute {
 			return false;
 		return true;
 	}
+
 	@Override
 	public String toString() {
 		return "Dispute [id=" + id + ", customer=" + customer + ", transaction=" + transaction + ", employee="
