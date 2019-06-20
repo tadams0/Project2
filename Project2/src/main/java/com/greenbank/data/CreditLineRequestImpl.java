@@ -35,10 +35,12 @@ public class CreditLineRequestImpl implements CreditLineRequestDAO {
 	public List<CreditLineRequest> getRequestsByManager(Employee manager) {
 		ArrayList<CreditLineRequest> requests = null;
 		Session session = hu.getSession();
-		String hqlString = "from com.greenbank.beans.CreditLineRequest req where req.id=:id and req.status='PENDING'";
+
+		String hqlString = "from com.greenbank.beans.CreditLineRequest req where (req.employeeApprover=null or req.employeeApprover.id=:id) and req.status='PENDING'";
 		Query<CreditLineRequest> query = session.createQuery(hqlString, CreditLineRequest.class);
         query.setParameter("id", manager.getId());
 		requests = new ArrayList<CreditLineRequest>(query.getResultList());
+		
 		session.close();
 		return requests;
 	}	
