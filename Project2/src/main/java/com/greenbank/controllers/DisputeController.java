@@ -1,7 +1,12 @@
 package com.greenbank.controllers;
 
+import java.util.Set;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +26,11 @@ public class DisputeController {
 	private DisputeImpl disputeImpl;
 	@Autowired
 	private BankTransactionImpl btImpl;
+	
+	@GetMapping
+	public Set<Dispute> getDisputesForManager(HttpSession session){
+		return disputeImpl.getDisputes();
+	}
 	
 	@PostMapping
 	public int addDispute(@RequestBody Dispute dispute) {

@@ -42,14 +42,6 @@ public class DisputeImpl implements DisputeDao {
 	}
 
 	@Override
-	public Dispute getDispute(Dispute dispute) {
-		Session s = hu.getSession();
-		Dispute ret = s.get(Dispute.class, dispute.getId());
-		s.close();
-		return ret;
-	}
-
-	@Override
 	public Dispute getDisputeById(int i) {
 		Session s = hu.getSession();
 		Dispute ret = s.get(Dispute.class, i);
@@ -58,7 +50,7 @@ public class DisputeImpl implements DisputeDao {
 	}
 
 	@Override
-	public Set<Dispute> getDisputes(Dispute dispute) {
+	public Set<Dispute> getDisputes() {
 		Session s = hu.getSession();
 		String query = "from Dispute";
 		Query<Dispute> q = s.createQuery(query, Dispute.class);
