@@ -8,7 +8,9 @@ import java.util.Set;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import javax.transaction.Transaction;
 
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
@@ -91,6 +93,13 @@ public class CreditLineRequestImpl implements CreditLineRequestDAO {
 		return requests;
 	}
 
+	@Override
+	public long getTotalNumberOfRequests() {
+		Session session = hu.getSession();
+		long count = (long)session.createQuery("SELECT COUNT(e) FROM CreditLineRequest e").getSingleResult();
+		return count;
+	}
+	
 	@Override
 	public int addRequest(CreditLineRequest req) {
 		Session s = hu.getSession();

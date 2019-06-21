@@ -1,7 +1,7 @@
 <div>
   <div>
-      <div id="approvalCreditLine" *ngIf="request.employeeApprover!==null">
-          <p class="card-text" data-toggle="collapse" [attr.data-target]="'#acceptrejectbuttons' + request.id">
+      <div id="approvalCreditLine" *ngIf="request.employeeApprover!==null" data-toggle="collapse" [attr.data-target]="'#acceptrejectbuttons' + request.id">
+          <p class="card-text">
               Request ID: {{request.id}} <br>
               APR: {{request.creditAPR}}%<br>
               Created By: {{request.customer.userInfo.firstName}} {{request.customer.userInfo.lastName}}<br>
@@ -15,8 +15,8 @@
           </div>
       </div>
       
-      <div id ="normalCreditLine"*ngIf="request.employeeApprover===null">
-        <p class="card-text" data-toggle="collapse" [attr.data-target]="'#acceptrejectbuttons' + request.id">
+      <div id ="normalCreditLine"*ngIf="request.employeeApprover===null" data-toggle="collapse" [attr.data-target]="'#acceptrejectbuttons' + request.id">
+        <p class="card-text">
             Request ID: {{request.id}} <br>
             APR: {{request.creditAPR}}%<br>
             Created By: {{request.customer.userInfo.firstName}} {{request.customer.userInfo.lastName}}

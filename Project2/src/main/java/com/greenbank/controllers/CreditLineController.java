@@ -80,11 +80,6 @@ public class CreditLineController {
 			}
 		}
 		
-//		if (requests == null && payload != null && payload.getEmployee() != null)
-//		{
-//	    	requests = creditLineDao.getRequestsAvailableToAll();
-//		}
-		
 		if (requests != null)
 			return new ArrayList<CreditLineRequest>(requests);
 		else

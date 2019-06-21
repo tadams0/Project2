@@ -17,4 +17,5 @@ public interface CreditLineRequestDAO {
 	List<CreditLineRequest> getRequestsByCustomer(Customer customer);
 	List<CreditLineRequest> getRequestsAutoRejected();
 	int approveRequest(int requestID, Employee loggedInEmployee, CreditLineRequestOption option);
+	long getTotalNumberOfRequests();
 }
