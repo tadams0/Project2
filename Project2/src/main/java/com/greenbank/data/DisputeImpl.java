@@ -16,6 +16,8 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.greenbank.beans.BankAccount;
+import com.greenbank.beans.BankTransaction;
 import com.greenbank.beans.Dispute;
 import com.greenbank.utils.HibernateUtil;
 
@@ -34,6 +36,7 @@ public class DisputeImpl implements DisputeDao {
 			id = (int) s.save(dispute);
 			t.commit();
 		} catch(HibernateException e) {
+			e.printStackTrace();
 			t.rollback();
 		} finally {
 			s.close();
@@ -45,6 +48,21 @@ public class DisputeImpl implements DisputeDao {
 	public Dispute getDisputeById(int i) {
 		Session s = hu.getSession();
 		Dispute ret = s.get(Dispute.class, i);
+		s.close();
+		return ret;
+	}
+	
+	@Override
+	public Dispute getDisputeByTransactionId(int i) {
+		BankTransaction tran = new BankTransaction();
+		tran.setId(i);
+		Session s = hu.getSession();
+		CriteriaBuilder critBuilder = s.getCriteriaBuilder();
+		CriteriaQuery<Dispute> query = critBuilder.createQuery(Dispute.class);
+		Root<Dispute> root = query.from(Dispute.class);
+		query.select(root).where(critBuilder.equal(root.get("transaction"), tran));
+		Query<Dispute> q = s.createQuery(query);
+		Dispute ret = q.uniqueResult();
 		s.close();
 		return ret;
 	}

@@ -34,12 +34,12 @@ public class DisputeController {
 	
 	@PostMapping
 	public int addDispute(@RequestBody Dispute dispute) {
-		System.out.println("add Dispute started");
 		BankTransaction transaction = btImpl.getTransaction(dispute.getTransaction().getId());
-		System.out.println(transaction);
 		dispute.setTransaction(transaction);
-		int id = disputeImpl.addDispute(dispute);
-		System.out.println("--------------------------id\t"+id);
-		return id;
+		Dispute tempDis = disputeImpl.getDisputeByTransactionId(dispute.getTransaction().getId());
+		if (tempDis == null)
+			return disputeImpl.addDispute(dispute);
+		else
+			return 0;
 	}
 }

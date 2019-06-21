@@ -12,6 +12,7 @@ public interface DisputeDao {
 	
 	//retrieve
 	public Dispute getDisputeById(int i);
+	public Dispute getDisputeByTransactionId(int i);
 	public Set<Dispute> getDisputes();
 	public ArrayList<Dispute> getDisputesById(int i);
 	

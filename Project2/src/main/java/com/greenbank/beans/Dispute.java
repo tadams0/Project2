@@ -12,7 +12,7 @@ public class Dispute {
 	@GeneratedValue(generator="disputeGenerator", strategy=GenerationType.SEQUENCE)
 	private int id;
 	
-	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
 	@JoinColumn(name="customer_id")
 	private Customer customer;
 	

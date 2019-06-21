@@ -34,6 +34,7 @@ export class DisputeComponent implements OnInit {
     let customer : Customer = this.userService.getCustomer();
     tempDispute.setCustomer(customer);
     tempDispute.setTransaction(this.transaction);
+    tempDispute.setComments(comment);
     this.disputeService.addDispute(tempDispute).subscribe((resp)=>{
       console.log(resp);
     });
