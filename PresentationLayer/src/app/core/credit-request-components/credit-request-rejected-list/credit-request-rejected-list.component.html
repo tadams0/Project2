@@ -1,5 +1,7 @@
-<p class="centerInfo">
-  Below is a list of credit line requests that were rejected.
-</p>
-<small id="help1" class="form-text text-muted centerInfo">A request can be clicked to reveal options.</small>
+<div class ="centerInfo">
+    <p>
+        Below is a list of credit line requests that were rejected.
+    </p>
+    <small id="help1" class="form-text text-muted">A request can be clicked to reveal options.</small>
+</div>
 <app-credit-request-rejected *ngFor="let r of requests" [request]="r" (removeCreditLine)="removeRequest($event)"></app-credit-request-rejected>

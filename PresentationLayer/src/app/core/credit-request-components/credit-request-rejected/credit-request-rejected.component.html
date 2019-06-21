@@ -1,7 +1,7 @@
 
 <div *ngIf="request.status==='AUTOREJECT'">
   <div class="card autoRejectCreditLine" style="width: 20rem;">
-    <div class="card-block">
+    <div class="card-block creditLineGradient4 whiteText">
       <p class="card-text" data-toggle="collapse" [attr.data-target]="'#acceptrejectbuttons' + request.id">
         Request ID: {{request.id}} <br>
         Created By: {{request.customer.userInfo.firstName}} {{request.customer.userInfo.lastName}}
@@ -23,7 +23,7 @@
 
 <div *ngIf="request.status==='REJECTED'">
   <div class="card rejectCreditLine" style="width: 20rem;">
-    <div class="card-block">
+    <div class="card-block creditLineGradient3 whiteText">
       <p class="card-text" data-toggle="collapse" [attr.data-target]="'#acceptrejectbuttons' + request.id">
         Request ID: {{request.id}} <br>
         Created By: {{request.customer.userInfo.firstName}} {{request.customer.userInfo.lastName}}
