@@ -15,6 +15,7 @@ import { CreditRequestRejectedListComponent } from './core/credit-request-compon
 import { DisputeComponent } from './core/dispute/dispute.component';
 import { DecidedDisputesComponent } from './core/decided-disputes/decided-disputes.component';
 import { DisputeSubmitComponent } from './core/dispute-submit/dispute-submit.component';
+import { DisputePendingListComponent } from './core/dispute-pending-list/dispute-pending-list.component';
 
 
 const routes: Routes = [
@@ -62,6 +63,10 @@ const routes: Routes = [
   {
     path: 'disputed',
     component : DecidedDisputesComponent
+  },
+  {
+    path: 'pendingDispute',
+    component : DisputePendingListComponent
   }
 ];
 

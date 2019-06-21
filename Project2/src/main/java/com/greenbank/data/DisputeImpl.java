@@ -101,6 +101,18 @@ public class DisputeImpl implements DisputeDao {
 		s.close();
 		return disputeList;
 	}
+	
+	public ArrayList<Dispute> getDisputesPending(){
+		Session s = hu.getSession();
+		CriteriaBuilder critBuilder = s.getCriteriaBuilder();
+		CriteriaQuery<Dispute> query = critBuilder.createQuery(Dispute.class);
+		Root<Dispute> root = query.from(Dispute.class);
+		query.select(root).where(critBuilder.like(root.get("status"), "PENDING"));
+		ArrayList<Dispute> disputeList = (ArrayList<Dispute>) s.createQuery(query).getResultList();
+		s.close();
+		System.out.println("This method is called.");
+		return disputeList;
+	}
 
 	@Override
 	public void updateDispute(Dispute dispute) {

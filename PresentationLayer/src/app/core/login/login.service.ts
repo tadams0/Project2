@@ -76,10 +76,22 @@ export class UserService {
     this.account = account;
   }
   isEmployee(): boolean {
-    return this.employee !== null && this.employee !== undefined;
+    return this.employee !== null && this.employee !== undefined && this.employee.employeeType !== 'CUST REP';
   }
   isCustomer(): boolean {
     return this.customer !== null && this.customer !== undefined;
+  }
+
+  isCustRep(): boolean {
+    // if(this.isEmployee()){
+    //   if(this.employee.employeeType === 'CUST REP'){
+    //     console.log("This is the customer rep");
+    //     return true;
+    //   }
+    // }
+    // return false;
+    // console.log("This is the customer rep");
+    return this.employee !== null && this.employee !== undefined && this.employee.employeeType === 'CUST REP';
   }
 
   isLoggedIn() : boolean {

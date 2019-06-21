@@ -27,4 +27,10 @@ export class DisputeService {
     {withCredentials: true}).pipe(
       map(resp => resp as Dispute[]));
     }
+  
+  getDisputesForRep() : Observable<Dispute[]>{
+    return this.http.get(this.appUrl,
+      {withCredentials: true}).pipe(
+        map(resp => resp as Dispute[]));
+  }
 }
