@@ -26,6 +26,10 @@ export class NavBarComponent implements OnInit {
     return this.userService.isCustomer();
   }
 
+  isCustRep(): boolean {
+    return this.userService.isCustRep();
+  }
+
   onLogoutPressed(): void {
     
     this.userService.logout().subscribe((resp)=> {

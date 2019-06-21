@@ -35,6 +35,8 @@ import { DisputeComponent } from './core/dispute/dispute.component';
 import { ManagerHomeComponent } from './core/manager-home/manager-home.component';
 import { DecidedDisputesComponent } from './core/decided-disputes/decided-disputes.component';
 import { DisputeSubmitComponent } from './core/dispute-submit/dispute-submit.component';
+import { CustomerRepHomeComponent } from './core/customer-rep-home/customer-rep-home.component';
+import { DisputePendingListComponent } from './core/dispute-pending-list/dispute-pending-list.component';
 
 
 
@@ -67,7 +69,9 @@ import { DisputeSubmitComponent } from './core/dispute-submit/dispute-submit.com
     DisputeComponent,
     ManagerHomeComponent,
     DecidedDisputesComponent,
-    DisputeSubmitComponent
+    DisputeSubmitComponent,
+    CustomerRepHomeComponent,
+    DisputePendingListComponent
   ],
   imports: [
     BrowserModule,

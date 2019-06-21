@@ -16,6 +16,7 @@ public interface DisputeDao {
 	public Set<Dispute> getDisputes();
 	public ArrayList<Dispute> getDisputesById(int i);
 	public ArrayList<Dispute> getDisputesNonPending();
+	public ArrayList<Dispute> getDisputesPending();
 	
 	//update
 	public void updateDispute(Dispute dispute);

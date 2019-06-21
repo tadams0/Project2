@@ -4,13 +4,13 @@ insert into bankuser (user_id, username, user_password, first_name, last_name, e
     values (USER_SEQ.nextVal,'test','test','Bobby','McGiggleCainMcGee','giggles@example.com','194-229-3919','431 Fakers Blvd','Kansas City','Kansas','United States','66012');
 
 insert into bankuser (user_id, username, user_password, first_name, last_name, email, phone, address, city, add_state, country, zip)
-    values (USER_SEQ.nextVal,'test2','test','Manager','Man','manager@example.com','155-529-3991','2 Fig Newtons Pkwy','Kansas City','Kansas','United States','66043');
+    values (USER_SEQ.nextVal,'officer','test','Manager','Man','manager@example.com','155-529-3991','2 Fig Newtons Pkwy','Kansas City','Kansas','United States','66043');
     
 insert into bankuser (user_id, username, user_password, first_name, last_name, email, phone, address, city, add_state, country, zip)
     values (USER_SEQ.nextVal,'manager','test','Johnny','Bravo','ohmomma@example.com','199-339-3611','76 Fig Newtons Pkwy','Kansas City','Kansas','United States','66043');
     
 insert into bankuser (user_id, username, user_password, first_name, last_name, email, phone, address, city, add_state, country, zip)
-    values (USER_SEQ.nextVal,'test3','test','Dennis','Parkuli','d.park@example.com','137-298-5591','75 Fig Newtons Pkwy','Kansas City','Kansas','United States','66043');
+    values (USER_SEQ.nextVal,'rep','test','Dennis','Parkuli','d.park@example.com','137-298-5591','75 Fig Newtons Pkwy','Kansas City','Kansas','United States','66043');
     
 insert into bankuser (user_id, username, user_password, first_name, last_name, email, phone, address, city, add_state, country, zip)
     values (USER_SEQ.nextVal,'customer1','test','Karry','Pachinkle','pachin@example.com','166-3994-2222','19 Fig Newtons Pkwy','Kansas City','Kansas','United States','66043');

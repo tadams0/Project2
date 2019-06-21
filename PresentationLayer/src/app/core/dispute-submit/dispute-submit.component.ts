@@ -34,6 +34,7 @@ export class DisputeSubmitComponent implements OnInit {
     tempDispute.setCustomer(customer);
     tempDispute.setTransaction(this.transaction);
     tempDispute.setComments(comment);
+    tempDispute.setStatus("PENDING");
     this.disputeService.addDispute(tempDispute).subscribe((resp)=>{
       console.log(resp);
     });

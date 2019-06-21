@@ -42,4 +42,11 @@ export class HomeComponent implements OnInit {
       return employee !== null && employee.employeeType === 'MANAGER';
     }    
   }
+
+  isRep() : boolean {
+    if(this.userService.getEmployee()){
+      const employee : Employee = this.userService.getEmployee();
+      return employee != null && employee.employeeType === 'CUST REP';
+    }
+  }
 }
