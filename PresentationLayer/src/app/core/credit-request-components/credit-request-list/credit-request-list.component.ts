@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CreditRequestService } from '../../../shared/services/credit-request.service';  
 import { CreditLineRequest } from 'src/app/shared/models/creditlinerequest';
+import { UserService } from '../../login/login.service';
 
 @Component({
   selector: 'app-credit-request-list',
@@ -10,12 +11,25 @@ import { CreditLineRequest } from 'src/app/shared/models/creditlinerequest';
 export class CreditRequestListComponent implements OnInit {
   public requests : CreditLineRequest[];
 
-  constructor(private creditService : CreditRequestService) { }
+  constructor(private creditService : CreditRequestService, private userService : UserService) { }
 
   ngOnInit() {
-    this.creditService.getRequestsForAll().subscribe((requestsIn)=>{
-      this.requests = requestsIn;
-    })
+    const employee = this.userService.getEmployee();
+    if (employee)
+    {
+      if (employee.employeeType === "MANAGER")
+      {
+        this.creditService.getRequestsForManager().subscribe((requestsIn)=>{
+          this.requests = requestsIn;
+        })
+      }
+      else
+      {
+        this.creditService.getRequestsForAll().subscribe((requestsIn)=>{
+          this.requests = requestsIn;
+        })
+      }
+    }
   }
  
   removeRequest(request: CreditLineRequest) {

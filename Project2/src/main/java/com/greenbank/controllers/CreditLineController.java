@@ -54,23 +54,36 @@ public class CreditLineController {
 		if (payload == null)
 			return null;
 		
+		boolean isCustomer = payload.getCustomer() != null;
+		boolean isEmployee = payload.getEmployee() != null;
+		
 		if (id != null)
-		{
-			if (payload.getCustomer() != null && id.contentEquals("0"))
+		{ 
+			if (isCustomer)
 			{
-				Customer loggedInCustomer = payload.getCustomer();
-		    	requests = creditLineDao.getRequestsByCustomer(loggedInCustomer);
+				if (id.equals("0"))
+				{
+					Customer loggedInCustomer = payload.getCustomer();
+			    	requests = creditLineDao.getRequestsByCustomer(loggedInCustomer);
+				}
 			}
-			else if (payload.getEmployee() != null && id.contentEquals("1"))
+			else if (isEmployee)
 			{
-		    	requests = creditLineDao.getRequestsAutoRejected();
+				if (id.equals("1"))
+				{
+			    	requests = creditLineDao.getRequestsAutoRejected();
+				}
+				else if (id.equals("managerlines"))
+				{
+					requests = creditLineDao.getRequestsByManager(payload.getEmployee());
+				}
 			}
 		}
 		
-		if (requests == null)
-		{
-	    	requests = creditLineDao.getRequestsAvailableToAll();
-		}
+//		if (requests == null && payload != null && payload.getEmployee() != null)
+//		{
+//	    	requests = creditLineDao.getRequestsAvailableToAll();
+//		}
 		
 		if (requests != null)
 			return new ArrayList<CreditLineRequest>(requests);
@@ -85,7 +98,7 @@ public class CreditLineController {
 		
 		if (payload == null)
 			return null;
-
+		//Could do a check if this is an employee requesting..
     	requests = creditLineDao.getRequestsAvailableToAll();
     	
 		if (requests != null)
