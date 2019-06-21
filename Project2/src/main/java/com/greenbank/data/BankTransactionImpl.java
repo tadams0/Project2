@@ -22,12 +22,12 @@ import com.greenbank.beans.BankTransaction;
 import com.greenbank.utils.HibernateUtil;
 
 @Component
-public class AccountTransactionImpl implements AccountTransactionDAO {
+public class BankTransactionImpl implements BankTransactionDao {
 
 	@Autowired
 	private HibernateUtil hu;
 	
-	private Logger log = Logger.getLogger(AccountTransactionImpl.class);
+	private Logger log = Logger.getLogger(BankTransactionImpl.class);
 	
 	@Override
 	public int addTransaction(BankTransaction at) {

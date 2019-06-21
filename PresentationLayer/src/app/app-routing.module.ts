@@ -12,6 +12,9 @@ import { TransactionlistComponent } from './core/account-info/transactionlist/tr
 import { AccountInfoComponent } from './core/account-info/account-info.component';
 import { CreditRequestListCustomerComponent } from './core/credit-request-components/credit-request-list-customer/credit-request-list-customer.component';
 import { CreditRequestRejectedListComponent } from './core/credit-request-components/credit-request-rejected-list/credit-request-rejected-list.component';
+import { DisputeComponent } from './core/dispute/dispute.component';
+import { DecidedDisputesComponent } from './core/decided-disputes/decided-disputes.component';
+import { DisputeSubmitComponent } from './core/dispute-submit/dispute-submit.component';
 
 
 const routes: Routes = [
@@ -51,6 +54,14 @@ const routes: Routes = [
   {
     path: 'transactions',
     component : AccountInfoComponent
+  },
+  {
+    path: 'disputing/:transactionId',
+    component : DisputeSubmitComponent
+  },
+  {
+    path: 'disputed',
+    component : DecidedDisputesComponent
   }
 ];
 

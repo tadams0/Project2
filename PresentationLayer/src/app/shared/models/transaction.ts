@@ -7,7 +7,7 @@ export class Transaction{
    public balance : number;
    public name : string;
 
-   // getBalance(){
-   //    return this.balance;
-   // }
+   public setId(id : number){
+      this.id = id;
+   }
 }

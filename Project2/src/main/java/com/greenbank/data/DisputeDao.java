@@ -5,16 +5,17 @@ import java.util.Set;
 
 import com.greenbank.beans.Dispute;
 
-public interface DisputeDAO {
+public interface DisputeDao {
 
 	//create
 	public int addDispute(Dispute dispute);
 	
 	//retrieve
-	public Dispute getDispute(Dispute dispute);
 	public Dispute getDisputeById(int i);
-	public Set<Dispute> getDisputes(Dispute dispute);
+	public Dispute getDisputeByTransactionId(int i);
+	public Set<Dispute> getDisputes();
 	public ArrayList<Dispute> getDisputesById(int i);
+	public ArrayList<Dispute> getDisputesNonPending();
 	
 	//update
 	public void updateDispute(Dispute dispute);

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.greenbank.beans.BankAccount;
 import com.greenbank.beans.BankTransaction;
 import com.greenbank.data.BankAccountImpl;
-import com.greenbank.data.AccountTransactionImpl;
+import com.greenbank.data.BankTransactionImpl;
 
 @RestController
 @CrossOrigin(origins="*")
@@ -21,7 +21,7 @@ import com.greenbank.data.AccountTransactionImpl;
 public class BankTransactionController {
 	
 	@Autowired
-	private AccountTransactionImpl atHibernate;
+	private BankTransactionImpl atHibernate;
 	@Autowired
 	private BankAccountImpl accountHibernate;
 	
