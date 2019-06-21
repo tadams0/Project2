@@ -1,0 +1,12 @@
+<p>
+  Please add a comment for the transaction dispute (optional).
+</p>
+<div class="form-group">
+    <label for="inputComment">Comments</label>
+    <input #inputComment
+    (keydown.enter)="disputeTransaction(inputComment.value)"
+      class="form-text" type="text" name="comments"/>
+</div>
+<div class="buttons">
+  <button  (click)="disputeTransaction(inputComment.value)" id="submitDisputeButton" type="button" class="btn btn-primary btn-md">Dispute</button>
+</div>

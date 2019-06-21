@@ -50,4 +50,7 @@ insert into transaction values (TRANSACTION_SEQ.nextVal, 2, TO_DATE('2004/05/03 
 insert into transaction values (TRANSACTION_SEQ.nextVal, 1, TO_DATE('2004/07/03 17:00:44', 'yyyy/mm/dd hh24:mi:ss'), -50.45, 'Green Bank ATM');
 insert into transaction values (TRANSACTION_SEQ.nextVal, 1, TO_DATE('2004/07/03 13:05:44', 'yyyy/mm/dd hh24:mi:ss'), -500.59, 'Green Bank ATM');
 insert into transaction values (TRANSACTION_SEQ.nextVal, 1, TO_DATE('2004/07/03 13:05:44', 'yyyy/mm/dd hh24:mi:ss'), 450.59, 'Green Bank ATM');    
+
+insert into dispute values (DISPUTE_SEQ.nextVal, 1, 1, 3, 'lol', 'REJECTED');
+insert into dispute values (DISPUTE_SEQ.nextVal, 1, 2, 3, 'lmao', 'APPROVED');
 commit;

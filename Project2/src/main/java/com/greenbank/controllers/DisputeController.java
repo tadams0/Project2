@@ -1,6 +1,6 @@
 package com.greenbank.controllers;
 
-import java.util.Set;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpSession;
 
@@ -28,8 +28,8 @@ public class DisputeController {
 	private BankTransactionImpl btImpl;
 	
 	@GetMapping
-	public Set<Dispute> getDisputesForManager(HttpSession session){
-		return disputeImpl.getDisputes();
+	public ArrayList<Dispute> getDisputesForManager(HttpSession session){
+		return disputeImpl.getDisputesNonPending();
 	}
 	
 	@PostMapping

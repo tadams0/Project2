@@ -8,6 +8,7 @@ export class Dispute{
    private transaction : Transaction;
    private employee : Employee; // Approver
    private comments : string;
+   private status : string;
 
    public setId(id : number){
       this.id = id;
@@ -27,5 +28,9 @@ export class Dispute{
 
    public setComments(comments : string){
       this.comments = comments;
+   }
+
+   public setStatus(status : string){
+      this.status = status;
    }
 }

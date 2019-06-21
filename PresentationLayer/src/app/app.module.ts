@@ -32,6 +32,9 @@ import { CustomerOpenAccountComponent } from './core/customer-open-account/custo
 import { AccountInfoComponent } from './core/account-info/account-info.component';
 import { StatementComponent } from './core/account-info/statement/statement.component';
 import { DisputeComponent } from './core/dispute/dispute.component';
+import { ManagerHomeComponent } from './core/manager-home/manager-home.component';
+import { DecidedDisputesComponent } from './core/decided-disputes/decided-disputes.component';
+import { DisputeSubmitComponent } from './core/dispute-submit/dispute-submit.component';
 
 
 
@@ -61,7 +64,10 @@ import { DisputeComponent } from './core/dispute/dispute.component';
     CreditRequestRejectedListComponent,
     StatementComponent,
     LoanOfficerHomeComponent,
-    DisputeComponent
+    DisputeComponent,
+    ManagerHomeComponent,
+    DecidedDisputesComponent,
+    DisputeSubmitComponent
   ],
   imports: [
     BrowserModule,

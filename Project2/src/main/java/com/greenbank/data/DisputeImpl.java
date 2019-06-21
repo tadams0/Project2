@@ -16,7 +16,6 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.greenbank.beans.BankAccount;
 import com.greenbank.beans.BankTransaction;
 import com.greenbank.beans.Dispute;
 import com.greenbank.utils.HibernateUtil;
@@ -86,6 +85,18 @@ public class DisputeImpl implements DisputeDao {
 		CriteriaQuery<Dispute> query = critBuilder.createQuery(Dispute.class);
 		Root<Dispute> root = query.from(Dispute.class);
 		query.select(root).where(critBuilder.equal(root.get("id"), i));
+		ArrayList<Dispute> disputeList = (ArrayList<Dispute>) s.createQuery(query).getResultList();
+		s.close();
+		return disputeList;
+	}
+	
+	@Override
+	public ArrayList<Dispute> getDisputesNonPending(){
+		Session s = hu.getSession();
+		CriteriaBuilder critBuilder = s.getCriteriaBuilder();
+		CriteriaQuery<Dispute> query = critBuilder.createQuery(Dispute.class);
+		Root<Dispute> root = query.from(Dispute.class);
+		query.select(root).where(critBuilder.notLike(root.get("status"), "PENDING"));
 		ArrayList<Dispute> disputeList = (ArrayList<Dispute>) s.createQuery(query).getResultList();
 		s.close();
 		return disputeList;
