@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CreditFormComponent } from './creditform.component';
+import { CreditFormComponent } from './credit-form.component';
 
 describe('CreditFormComponent', () => {
   let component: CreditFormComponent;

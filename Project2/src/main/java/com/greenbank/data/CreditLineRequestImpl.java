@@ -70,12 +70,23 @@ public class CreditLineRequestImpl implements CreditLineRequestDAO {
 		session.close();
 		return requests;
 	}
-	
+
 	@Override
 	public List<CreditLineRequest> getRequestsAutoRejected() {
 		ArrayList<CreditLineRequest> requests = null;
 		Session session = hu.getSession();
 		String hqlString = "from com.greenbank.beans.CreditLineRequest req where req.status='AUTOREJECT'";
+		Query<CreditLineRequest> query = session.createQuery(hqlString, CreditLineRequest.class);
+		requests = new ArrayList<CreditLineRequest>(query.getResultList());
+		session.close();
+		return requests;
+	}
+
+	@Override
+	public List<CreditLineRequest> getAllRejectedRequests() {
+		ArrayList<CreditLineRequest> requests = null;
+		Session session = hu.getSession();
+		String hqlString = "from com.greenbank.beans.CreditLineRequest req where req.status='AUTOREJECT' or req.status='REJECTED'";
 		Query<CreditLineRequest> query = session.createQuery(hqlString, CreditLineRequest.class);
 		requests = new ArrayList<CreditLineRequest>(query.getResultList());
 		session.close();

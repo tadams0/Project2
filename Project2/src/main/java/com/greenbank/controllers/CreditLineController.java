@@ -77,6 +77,10 @@ public class CreditLineController {
 				{
 					requests = creditLineDao.getRequestsByManager(payload.getEmployee());
 				}
+				else if (id.equals("rejected"))
+				{
+					requests = creditLineDao.getAllRejectedRequests();
+				}
 			}
 		}
 		

@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CreditFormComponent } from './core/creditform/creditform.component';
+import { CreditFormComponent } from './core/credit-form/credit-form.component';
 import { CreditRequestService } from './shared/services/credit-request.service';
 import { UserService } from './core/login/login.service';
 import { UrlService } from './shared/url.service';

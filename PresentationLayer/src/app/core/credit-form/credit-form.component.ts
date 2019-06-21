@@ -6,8 +6,8 @@ import { CreditRequestListCustomerComponent } from '../credit-request-components
 
 @Component({
   selector: 'app-creditform',
-  templateUrl: './creditform.component.html',
-  styleUrls: ['./creditform.component.css']
+  templateUrl: './credit-form.component.html',
+  styleUrls: ['./credit-form.component.css']
 })
 export class CreditFormComponent implements OnInit {
   public resultText : string;
