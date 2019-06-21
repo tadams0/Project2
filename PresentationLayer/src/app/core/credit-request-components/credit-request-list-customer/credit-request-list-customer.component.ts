@@ -19,4 +19,8 @@ export class CreditRequestListCustomerComponent implements OnInit {
     })
   }
 
+  addRequest(request:CreditLineRequest) {
+    this.requests.push(request);
+  }
+
 }

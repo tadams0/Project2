@@ -1,7 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, ViewChild } from '@angular/core';
 import { CreditRequestService } from '../../shared/services/credit-request.service';
 import { CreditLineRequest } from 'src/app/shared/models/creditlinerequest';
 import { Customer } from 'src/app/shared/models/customer';
+import { CreditRequestListCustomerComponent } from '../credit-request-components/credit-request-list-customer/credit-request-list-customer.component';
 
 @Component({
   selector: 'app-creditform',
@@ -10,6 +11,10 @@ import { Customer } from 'src/app/shared/models/customer';
 })
 export class CreditFormComponent implements OnInit {
   public resultText : string;
+
+  @ViewChild(CreditRequestListCustomerComponent, {static: false}) requestListComponent: CreditRequestListCustomerComponent;
+  @Output() addCreditLine = new EventEmitter<CreditLineRequest>();
+  
   constructor(private creditService : CreditRequestService) { }
 
   ngOnInit() {
@@ -21,9 +26,10 @@ export class CreditFormComponent implements OnInit {
     const req = new CreditLineRequest();
     req.customer = new Customer();
     this.creditService.addRequest(req).subscribe((request)=>{
-      if (request.status !== "REJECTED")
+      if (request.status !== "AUTOREJECT")
       {
         this.resultText = 'A new request has been submitted!';
+        this.requestListComponent.addRequest(request);
       }
       else
       {
