@@ -1,13 +1,33 @@
 <nav class="navbar navbar-expand-lg navbar-light backGradient ">
-    <a class="navbar-brand" routerLink="/home">
+    <a class="navbar-brand">
         <h1><span class="badge whiteText">{{title}}</span></h1>
     </a>
+    
     <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        
         <ul class="navbar-nav mr-auto">
-            <li  class="nav-item">
+            <a *ngIf="route.url!=='/home' && isCustomer()" class="nav-link whiteText" routerLink="/home">
+                Home
+            </a>
+            <span *ngIf="route.url==='/home' && isCustomer()" class="nav-link font-weight-bold whiteText">
+                Home
+            </span>
+            <a *ngIf="route.url!=='/home' && isCustRep()" class="nav-link whiteText" routerLink="/home">
+                Home
+            </a>
+            <span *ngIf="route.url==='/home' && isCustRep()" class="nav-link font-weight-bold whiteText">
+                Home
+            </span>    
+            <a *ngIf="route.url!=='/home' && isEmployee()" class="nav-link whiteText" routerLink="/home">
+                Home
+            </a>
+            <span *ngIf="route.url==='/home' && isEmployee()" class="nav-link font-weight-bold whiteText">
+                Home
+            </span>
+            <li  class="nav-item">                
                 <a *ngIf="route.url!=='/form' && isCustomer()" class="nav-link whiteText" routerLink="/form">
                     Credit Lines
                 </a>
