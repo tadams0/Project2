@@ -32,7 +32,7 @@ insert into credit_score (credit_score_id, customer_id, credit_score_estimation)
 
 insert into employee (employee_id, user_id, employee_type) values(EMPLOYEE_SEQ.nextVal,2,'LOAN OFFICER');
 insert into employee (employee_id, user_id, employee_type) values(EMPLOYEE_SEQ.nextVal,3,'MANAGER');
-insert into employee (employee_id, user_id, employee_type) values(EMPLOYEE_SEQ.nextVal,4,'CUST REP');
+insert into employee (employee_id, user_id, employee_type, manager_id) values(EMPLOYEE_SEQ.nextVal,4,'CUST REP', 2);
 insert into employee (employee_id, user_id, employee_type, manager_id) values(EMPLOYEE_SEQ.nextVal,6,'LOAN OFFICER', 2);
 
 insert into credit_request(credit_request_id,customer_id,credit_apr,credit_max,employee_id)
@@ -51,6 +51,6 @@ insert into transaction values (TRANSACTION_SEQ.nextVal, 1, TO_DATE('2004/07/03 
 insert into transaction values (TRANSACTION_SEQ.nextVal, 1, TO_DATE('2004/07/03 13:05:44', 'yyyy/mm/dd hh24:mi:ss'), -500.59, 'Green Bank ATM');
 insert into transaction values (TRANSACTION_SEQ.nextVal, 1, TO_DATE('2004/07/03 13:05:44', 'yyyy/mm/dd hh24:mi:ss'), 450.59, 'Green Bank ATM');    
 
-insert into dispute values (DISPUTE_SEQ.nextVal, 1, 1, 3, 'lol', 'REJECTED');
-insert into dispute values (DISPUTE_SEQ.nextVal, 1, 2, 3, 'lmao', 'APPROVED');
+--insert into dispute values (DISPUTE_SEQ.nextVal, 1, 1, 3, 'lol', 'REJECTED');
+--insert into dispute values (DISPUTE_SEQ.nextVal, 1, 2, 3, 'lmao', 'APPROVED');
 commit;

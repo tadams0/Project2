@@ -3,12 +3,12 @@ import { Transaction } from './transaction';
 import { Employee } from './employee';
 
 export class Dispute{
-   private id : number;
-   private customer : Customer;
-   private transaction : Transaction;
-   private employee : Employee; // Approver
-   private comments : string;
-   private status : string;
+   public id : number;
+   public customer : Customer;
+   public transaction : Transaction;
+   public employee : Employee; // Approver
+   public comments : string;
+   public status : string;
 
    public setId(id : number){
       this.id = id;

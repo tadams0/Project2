@@ -17,7 +17,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.greenbank.beans.BankTransaction;
+import com.greenbank.beans.CreditLineRequest;
+import com.greenbank.beans.CreditLineRequestOption;
 import com.greenbank.beans.Dispute;
+import com.greenbank.beans.Employee;
 import com.greenbank.utils.HibernateUtil;
 
 @Component
@@ -121,6 +124,67 @@ public class DisputeImpl implements DisputeDao {
 		s.update(dispute.getId());
 		t.commit();
 		s.close();
+	}
+	
+	@Override
+	public int rejectDispute(int idNumber, Employee emp) {
+		Session s = hu.getSession();
+		Transaction t = s.beginTransaction();
+		Dispute updateDispute = s.get(Dispute.class, idNumber);
+		if(updateDispute.getEmployee() != null) {
+			updateDispute.setStatus("MANAGER REJECTED");
+		}
+//		if("MANAGER".equals(updateDispute.getEmployee().getEmployeeType())) {
+//			
+//		}
+		else {
+			updateDispute.setStatus("REJECT");
+			updateDispute.setEmployee(emp);
+		}
+	
+		int id = 0;
+		try {
+			s.update(updateDispute);
+			t.commit();
+			id = 1;
+			System.out.println("Transaction Status is Updated to REJECT");
+		} catch(HibernateException e) {
+			t.rollback();
+		} finally {
+			s.close();
+		}
+		
+		return id;
+	}
+	
+	@Override
+	public int approveDispute(int idNumber, Employee emp, CreditLineRequestOption option) {
+		Session s = hu.getSession();
+		org.hibernate.Transaction t = s.beginTransaction();
+		Dispute updateDispute = s.get(Dispute.class, idNumber);
+		
+		if (updateDispute.getEmployee() == null)
+		{ 
+			System.out.println("Approving as an employee");
+			updateDispute.setStatus("APPROVED");
+			updateDispute.setEmployee(emp);
+		}
+		else {
+			System.out.println("Approving as a Manager but entering else statement");
+			updateDispute.setStatus("MANAGER APPROVED");
+			
+		}
+		int id = 0;
+		try {
+			s.update(updateDispute);
+			t.commit();
+			id = 1;
+		} catch(HibernateException e) {
+			t.rollback();
+		} finally {
+			s.close();
+		}
+		return id;
 	}
 
 	@Override

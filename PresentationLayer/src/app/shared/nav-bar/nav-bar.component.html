@@ -16,29 +16,24 @@
                     Credit Lines
                 </span>
             </li> 
-            <li class="nav-item" *ngIf="isCustRep()">
-                <!-- <a class="nav-link menu-item dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Credit Lines</a>      
+            <li class="nav-item dropdown" *ngIf="isCustRep()">
+                <a class="nav-link menu-item dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Tasks</a>      
                 <div class=" dropdown dropdown-menu">
-                    <a *ngIf="route.url!=='/pendingrequests'" class="nav-link" routerLink="/pendingrequests">
+                    <a *ngIf="route.url!=='/pendingDispute'" class="nav-link" routerLink="/pendingDispute">
                         View Disputes
                     </a>
-                    <span *ngIf="route.url==='/pendingrequests'" class="nav-link font-weight-bold">
+                    <span *ngIf="route.url==='/pendingDispute'" class="nav-link font-weight-bold">
                         View Disputes
                     </span> 
-                    <div class="dropdown-divider"></div>
+                    <!-- <div class="dropdown-divider"></div>
                     <a *ngIf="route.url!=='/autorejects'" class="nav-link" routerLink="/autorejects">
                         View Inquiries
                     </a>
                     <span *ngIf="route.url==='/autorejects'" class="nav-link font-weight-bold">
                         View Inquiries
-                    </span> 
-                </div> -->
-                <a class="nav-item" href="#" role="button" aria-haspopup="true" aria-expanded="false">Disputes</a>
-                <a *ngIf="route.url!=='/disputed'" class="nav-link" routerLink="/pendingDispute">
-                </a>
-                <a class="nav-item" href="#" role="button" aria-haspopup="true" aria-expanded="false">Inquiries</a>
-                <a *ngIf="route.url!=='/disputed'" class="nav-link" routerLink="/disputed">
-                </a>
+                    </span>  -->
+                </div>
+               
             </li>
             <li class="nav-item dropdown" *ngIf="isEmployee()">
                 <a class="nav-link menu-item dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Credit Lines</a>      

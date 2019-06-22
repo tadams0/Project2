@@ -4,6 +4,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { UrlService } from 'src/app/shared/url.service';
+import { SimpleMessage } from 'src/app/shared/models/simplemessage';
+import { CreditLineRequestOption } from 'src/app/shared/models/creditlinerequestoption';
 
 @Injectable({
   providedIn: 'root'
@@ -33,4 +35,14 @@ export class DisputeService {
       {withCredentials: true}).pipe(
         map(resp => resp as Dispute[]));
   }
+
+  sendDisputeOption(option: CreditLineRequestOption): Observable<SimpleMessage> {
+
+    const body = JSON.stringify(option);
+    const headers = new HttpHeaders({'Content-Type': 'application/json'});
+    return this.http.put(this.appUrl, body, 
+    {headers, withCredentials: true}).pipe(map((resp)=>resp as SimpleMessage));
+  }
+
+  
 }

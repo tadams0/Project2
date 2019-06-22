@@ -3,7 +3,9 @@ package com.greenbank.data;
 import java.util.ArrayList;
 import java.util.Set;
 
+import com.greenbank.beans.CreditLineRequestOption;
 import com.greenbank.beans.Dispute;
+import com.greenbank.beans.Employee;
 
 public interface DisputeDao {
 
@@ -20,6 +22,8 @@ public interface DisputeDao {
 	
 	//update
 	public void updateDispute(Dispute dispute);
+	public int rejectDispute(int idNumber, Employee emp);
+	public int approveDispute(int requestID, Employee emp, CreditLineRequestOption option);
 	
 	//delete
 	public void deleteDispute(Dispute dispute);

@@ -1,4 +1,4 @@
-<div class="card" style="width: 20rem;">
+<!-- <div class="card" style="width: 20rem;">
   <div class="card-block">
     <p class="card-text">
       Dispute ID: {{dispute.id}} <br>
@@ -9,4 +9,43 @@
       Dispute Status: {{dispute.status}}
     </p>
   </div>
+</div>  -->
+<div>
+  <div>
+      <div id="approvalCreditLine" *ngIf="dispute.employee !==null">
+          <p class="card-text" data-toggle="collapse" [attr.data-target]="'#acceptrejectbuttons' + dispute.id">
+            Dispute ID: {{dispute.id}} <br>
+            Customer ID: {{dispute.customer.id}}<br>
+            Transaction ID: {{dispute.transaction.id}}<br>
+            Employee ID: {{dispute.employee.id}}<br>
+            Dispute Comments: {{dispute.comments}}<br>
+            Dispute Status: {{dispute.status}}
+          </p>
+          <!-- <div id = "finalApprovalText">
+              This request has been approved once before and requires your final approval.
+          </div> -->
+          <div id = "acceptrejectbuttons{{dispute.id}}" class="card-block collapse centerButtons">
+            <input class="btn btn-primary" type="submit" value="Approve" (click)="onApprove()">
+            <input class="btn btn-primary" type="submit" value="Reject" (click)="onReject()">
+          </div>
+      </div>
+      
+      <div id ="normalCreditLine"*ngIf="dispute.employee===null">
+        <p class="card-text" data-toggle="collapse" [attr.data-target]="'#acceptrejectbuttons' + dispute.id">
+          Dispute ID: {{dispute.id}} <br>
+          Customer ID: {{dispute.customer.id}}<br>
+          Transaction ID: {{dispute.transaction.id}}<br>
+          
+          Dispute Comments: {{dispute.comments}}<br>
+          Dispute Status: {{dispute.status}}
+        </p>        
+        <div id = "acceptrejectbuttons{{dispute.id}}" class="card-block collapse centerButtons">
+          <input class="btn btn-primary" type="submit" value="Approve" (click)="onApprove()">
+          <input class="btn btn-primary" type="submit" value="Reject" (click)="onReject()">
+        </div>
+      </div>
+    
+  </div>
 </div> 
+
+  
