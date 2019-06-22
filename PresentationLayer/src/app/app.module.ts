@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CreditFormComponent } from './core/creditform/creditform.component';
+import { CreditFormComponent } from './core/credit-form/credit-form.component';
 import { CreditRequestService } from './shared/services/credit-request.service';
 import { UserService } from './core/login/login.service';
 import { UrlService } from './shared/url.service';
@@ -18,7 +18,7 @@ import { CustomerhomeComponent } from './core/customerhome/customerhome.componen
 import { SetUpAccountComponent } from './core/register/set-up-account/set-up-account.component';
 import { LoginComponent } from './core/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { NgModule } from '@angular/core'; 
 import { TransactionComponent } from './core/account-info/transaction/transaction.component';
 import { TransactionlistComponent } from './core/account-info/transactionlist/transactionlist.component';
 import { TransactionService } from './core/account-info/transaction/service/transaction.service';
@@ -37,7 +37,8 @@ import { DecidedDisputesComponent } from './core/decided-disputes/decided-disput
 import { DisputeSubmitComponent } from './core/dispute-submit/dispute-submit.component';
 import { CustomerRepHomeComponent } from './core/customer-rep-home/customer-rep-home.component';
 import { DisputePendingListComponent } from './core/dispute-pending-list/dispute-pending-list.component';
-
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { PieChartComponent } from './core/pie-chart/pie-chart.component';
 
 
 
@@ -71,13 +72,15 @@ import { DisputePendingListComponent } from './core/dispute-pending-list/dispute
     DecidedDisputesComponent,
     DisputeSubmitComponent,
     CustomerRepHomeComponent,
-    DisputePendingListComponent
+    DisputePendingListComponent,
+    PieChartComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    MDBBootstrapModule.forRoot()
   ],
   providers: [
     CreditRequestService,

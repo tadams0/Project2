@@ -14,7 +14,7 @@ export class CreditRequestRejectedListComponent implements OnInit {
   constructor(private creditService : CreditRequestService, private userService: UserService) { }
 
   ngOnInit() {
-    this.creditService.getRequestsAutoRejected().subscribe((requestsIn)=>{
+    this.creditService.getRequestsRejected().subscribe((requestsIn)=>{
       this.requests = requestsIn;
     })
   }

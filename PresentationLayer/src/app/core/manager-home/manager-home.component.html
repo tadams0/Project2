@@ -1,14 +1,20 @@
-<h2>
-  Welcome {{employee.userInfo.firstName}} {{employee.userInfo.lastName}}
-</h2>
-<p>
-  
-</p>
 
-<hr>
-<input class="btn btn-primary" type="submit" value="View Pending Requests" routerLink="/pendingrequests">
-<hr>
-<input class="btn btn-primary" type="submit" value="View Automatically Rejected Requests" routerLink="/autorejects">
-<hr>
-<input class="btn btn-primary" type="submit" value="View Approved and Rejected Disputes" routerLink="/disputed">
-<hr>
+<div class="centerText">
+    <h2>
+        Welcome {{employee.userInfo.firstName}} {{employee.userInfo.lastName}}
+      </h2>
+      <hr>
+      <input class="btn btn-primary" type="submit" value="View Pending Requests" routerLink="/pendingrequests">
+      <hr>
+      <input class="btn btn-primary" type="submit" value="View Rejected Requests" routerLink="/autorejects">
+      <hr>
+      <input class="btn btn-primary" type="submit" value="View Approved and Rejected Disputes" routerLink="/disputed">
+      <hr>
+      <h4>
+        Statistics
+      </h4>
+</div>
+<div class="pieChart">
+  <h4>Credit Line Request Breakdown</h4>
+    <pie-chart id="creditLinePieChart"></pie-chart>
+</div>

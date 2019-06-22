@@ -1,7 +1,7 @@
 import { LoginComponent } from './core/login/login.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CreditFormComponent } from './core/creditform/creditform.component';
+import { CreditFormComponent } from './core/credit-form/credit-form.component';
 import { CreateAccountComponent } from './core/register/create-account/create-account.component';
 import { CreditRequestListComponent } from './core/credit-request-components/credit-request-list/credit-request-list.component';
 import { DisplaybankaccountsComponent } from './core/displaybankaccounts/displaybankaccounts.component';

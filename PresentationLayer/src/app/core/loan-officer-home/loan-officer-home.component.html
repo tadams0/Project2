@@ -1,12 +1,11 @@
-<h2>
-  Welcome {{employee.userInfo.firstName}} {{employee.userInfo.lastName}}
-</h2>
-<p>
-  
-</p>
-
-<hr>
-<input class="btn btn-primary" type="submit" value="View Pending Requests" routerLink="/pendingrequests">
-<hr>
-<input class="btn btn-primary" type="submit" value="View Automatically Rejected Requests" routerLink="/autorejects">
-<hr>
+<div class="center-block centerText">
+    <h2>
+        Welcome {{employee.userInfo.firstName}} {{employee.userInfo.lastName}}
+    </h2>
+      
+      <hr>
+      <input class="btn btn-primary" type="submit" value="View Pending Requests" routerLink="/pendingrequests">
+      <hr>
+      <input class="btn btn-primary" type="submit" value="View Rejected Requests" routerLink="/autorejects">
+      <hr>
+</div>

@@ -77,13 +77,12 @@ public class CreditLineController {
 				{
 					requests = creditLineDao.getRequestsByManager(payload.getEmployee());
 				}
+				else if (id.equals("rejected"))
+				{
+					requests = creditLineDao.getAllRejectedRequests();
+				}
 			}
 		}
-		
-//		if (requests == null && payload != null && payload.getEmployee() != null)
-//		{
-//	    	requests = creditLineDao.getRequestsAvailableToAll();
-//		}
 		
 		if (requests != null)
 			return new ArrayList<CreditLineRequest>(requests);

@@ -1,5 +1,5 @@
 
-<div class="container border">
+<div class="container border backGradient2" id ="loginPortal">
   <h4>Green Bank Login Portal</h4>
   <p class="lead">Welcome</p>
   <hr class="my-4">
@@ -8,7 +8,7 @@
       <label for="inputUser">Username</label>
       <input #inputUsername
       (keydown.enter)="login(inputUsername.value, inputPassword.value)"
-        class="form-text" type="text" name="username"/>
+        class="form-text center-block" type="text" name="username"/>
     </div>
  
 
@@ -16,7 +16,7 @@
       <label for="inputPassword">Password:</label>
       <input  #inputPassword 
       (keydown.enter)="login(inputUsername.value, inputPassword.value)"
-      class="form-text" type="password" name="password"/>
+      class="form-text center-block" type="password" name="password"/>
       <p>{{loginMessage}}</p>
     </div>
 
