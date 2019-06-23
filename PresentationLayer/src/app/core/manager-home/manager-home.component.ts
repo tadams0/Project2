@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit, QueryList, ViewChildren } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { Employee } from 'src/app/shared/models/employee';
 import { UserService } from '../login/login.service';
 import { StatServiceService } from 'src/app/shared/services/stat-service.service';
@@ -12,10 +12,8 @@ import { StatPayload } from 'src/app/shared/models/statpayload';
 })
 export class ManagerHomeComponent implements OnInit, AfterViewInit {
   public employee :Employee;
-  @ViewChildren(PieChartComponent) pieCharts :QueryList<PieChartComponent> ;
+  @ViewChild(PieChartComponent, {static: false}) creditLinePieChart: PieChartComponent;
   private needsRefresh : boolean = false;
-  private creditLinePieChart : PieChartComponent;
-  private disputePieChart : PieChartComponent;
 
   constructor(private userService : UserService, private statService : StatServiceService) 
   { 
@@ -24,30 +22,9 @@ export class ManagerHomeComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.employee = this.userService.getEmployee();
-
-    this.refreshPieCharts();
-  }
-
-  ngAfterViewInit() {
-    this.creditLinePieChart = this.pieCharts.first;
-    this.disputePieChart = this.pieCharts.last;
-
-    if (this.needsRefresh)
-    {
-      const payload = this.statService.getStatPayloadCache();
-      this.createPieChart(payload);
-      this.needsRefresh = false;
-    }
-  }
-
-  onRefresh() {
-    this.statService.clearCache();
-    this.refreshPieCharts();
-  }
-
-  refreshPieCharts() {
     const payload = this.statService.getStatPayloadCache();
-
+    console.log("payload:");
+    console.log(payload);
     if (!payload)
     {
       this.statService.getStatPayload().subscribe((response)=>{
@@ -60,6 +37,14 @@ export class ManagerHomeComponent implements OnInit, AfterViewInit {
       this.needsRefresh = true;
     }
   }
+  ngAfterViewInit() {
+    if (this.needsRefresh)
+    {
+      const payload = this.statService.getStatPayloadCache();
+      this.createPieChart(payload);
+      this.needsRefresh = false;
+    }
+  }
 
   createPieChart(payload : StatPayload)
   {
@@ -70,11 +55,5 @@ export class ManagerHomeComponent implements OnInit, AfterViewInit {
       'Rejected Requests', '#B22222', '#DC143C');
     this.creditLinePieChart.addDataSet(payload.rejectedCreditLineRequestsAuto,
       'Auto Rejected Requests', '#CD5C5C', '#F08080');
-      
-    this.disputePieChart.resetChart();
-    this.disputePieChart.addDataSet(payload.rejectedDisputes,
-      'Rejected Disputes', '#38ea61', '#2dff5e');
-    this.disputePieChart.addDataSet(payload.approvedDisputes,
-      'Approved Disputes', '#B22222', '#DC143C');
   }
 }

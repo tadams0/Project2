@@ -18,7 +18,6 @@ export class UserService {
   private employee: Employee;
   private customer: Customer;
   private account : Account;
-  public lastLoginDate : Date;
 
   constructor( private urlSource: UrlService, private http: HttpClient) { }
 
@@ -101,7 +100,6 @@ export class UserService {
 
   setPayload(payload : LoginResponsePayload)
   {
-    this.lastLoginDate = new Date();
     this.employee = payload.employee;
     this.customer = payload.customer;
   }

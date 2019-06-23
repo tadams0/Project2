@@ -3,15 +3,14 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { StatPayload } from '../models/statpayload';
-import { UserService } from 'src/app/core/login/login.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StatServiceService {
   private payload : StatPayload = null;
-  constructor(private http: HttpClient, private userService: UserService) { }
-
+  constructor(private http: HttpClient) { }
+  
   getStatPayload(): Observable<StatPayload> {
     return this.http.get('http://localhost:8080/Project2/stats',
     {withCredentials: true}).pipe(
