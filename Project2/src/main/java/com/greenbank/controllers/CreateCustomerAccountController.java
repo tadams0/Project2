@@ -5,10 +5,15 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -78,11 +83,53 @@ public class CreateCustomerAccountController {
 		System.out.println("----------------------------------");
 		System.out.println(username);
 		System.out.println(password);
-		//response with temp username/password instead of email for testing
+		
+
+		try {
+			sendEmail(newCustomer.getUserInfo().getEmail(), username, password);
+		} catch (Exception e) {
+			System.out.println("Email Sending Failure");
+			e.printStackTrace();
+		}
+		
+		//response with temp username/password for testing
 		Map<String, Object> response = new HashMap<String, Object>();
 		response.put("username", username);
 		response.put("password", password);
 		return response;
+	}
+	
+	private void sendEmail(String email, String username, String password) throws MessagingException {
+		JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+		
+		Properties properties = new Properties();
+		properties.put("mail.smtp.host", "smtp.gmail.com");
+		properties.put("mail.smtp.port", "465");
+		properties.put("mail.smtp.ssl.enable", "true");
+		mailSender.setJavaMailProperties(properties);
+		
+		mailSender.setUsername("greenbanktheonlybank@gmail.com");
+		mailSender.setPassword("GreenBankPassword!");
+		
+		MimeMessage message = mailSender.createMimeMessage();
+		MimeMessageHelper helper = new MimeMessageHelper(message, true);
+		
+		String text = "<html><body>"
+				+ "<p>Your Username: "+username+"</p>"
+				+ "<p>Your Password: "+password+"</p>"
+				+ "<p>Thank you for using GreenBank!</p>"
+				+ "</body></html>";
+		
+		helper.setFrom("GreenBank");
+		helper.setSubject("GreenBank Account Registration");
+		helper.setText(text, true); // true to activate multipart
+		helper.addTo(email);
+		
+//		ByteArrayDataSource dataSource = new ByteArrayDataSource(inputStream, "text/plain");
+//		helper.addAttachment("file.txt", dataSource);
+		
+		mailSender.send(message);
+
 	}
 }
 

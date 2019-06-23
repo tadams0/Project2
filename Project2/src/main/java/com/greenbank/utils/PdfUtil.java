@@ -75,14 +75,14 @@ public class PdfUtil {
 	                .add(sdf.format(new Date())));		
 		
 		// Add Company Material
-		String para1 = "This is propriatary GreenBank Information"
-				+ "attempt to share distribute or disclose material contained"
+		String para1 = "This is propriatary GreenBank Information any "
+				+ "attempt to share distribute or disclose material contained "
 				+ "in this document may result in civil or criminal penalties fully subject the law of United States of America.";
 
 		String para2 = "This document contains transaction information tied to "
-				+ "a customers account. It is recommended that the machine you are using is a machine provided by the bank"
-				+ "Please always use secure passwords that are unique across your other accounts."
-				+ "GreenBank reserves the right to conduct checks and diagnostics on the machine being used to view"
+				+ "a customers account. It is recommended that the machine you are using is a machine provided by the bank "
+				+ "Please always use secure passwords that are unique across your other accounts. "
+				+ "GreenBank reserves the right to conduct checks and diagnostics on the machine being used to view "
 				+ "this sensitive proprietary material.";
 
 		// Creating Paragraphs
