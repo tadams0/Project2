@@ -7,12 +7,11 @@
             Customer ID: {{dispute.customer.id}}<br>
             Transaction ID: {{dispute.transaction.id}}<br>
             Employee ID: {{dispute.employee.id}}<br>
+            Account ID: {{dispute.transaction.account.id}}<br>
+            Balance Amount: {{dispute.transaction.balance}}<br>
             Dispute Comments: {{dispute.comments}}<br>
             Dispute Status: {{dispute.status}}
           </p>
-          <!-- <div id = "finalApprovalText">
-              This request has been approved once before and requires your final approval.
-          </div> -->
           <div id = "acceptrejectbuttons{{dispute.id}}" class="card-block collapse centerButtons">
             <input class="btn btn-primary" type="submit" value="Approve" (click)="onApprove()">
             <input class="btn btn-primary" type="submit" value="Reject" (click)="onReject()">
@@ -24,7 +23,8 @@
           Dispute ID: {{dispute.id}} <br>
           Customer ID: {{dispute.customer.id}}<br>
           Transaction ID: {{dispute.transaction.id}}<br>
-          
+          Account ID: {{dispute.transaction.account.id}}<br>
+          Balance Amount: {{dispute.transaction.balance}}<br>
           Dispute Comments: {{dispute.comments}}<br>
           Dispute Status: {{dispute.status}}
         </p>        

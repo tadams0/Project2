@@ -45,11 +45,25 @@ insert into account values (ACCOUNT_SEQ.nextVal, 'CHECKING', 900, TO_DATE('2003/
     
 insert into transaction values (TRANSACTION_SEQ.nextVal, 1, TO_DATE('2004/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), -50.54, 'Corner Store - Candy');
 insert into transaction values (TRANSACTION_SEQ.nextVal, 1, TO_DATE('2004/06/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), -50.45, 'Corner Store - Soda');
+insert into transaction values (TRANSACTION_SEQ.nextVal, 1, TO_DATE('2004/07/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), -50.54, 'Corner Store - Water');
+insert into transaction values (TRANSACTION_SEQ.nextVal, 1, TO_DATE('2004/05/04 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), -50.54, 'Corner Store - Milk');
+insert into transaction values (TRANSACTION_SEQ.nextVal, 1, TO_DATE('2004/06/04 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), -50.54, 'Corner Store - Cheetos');
+insert into transaction values (TRANSACTION_SEQ.nextVal, 1, TO_DATE('2004/07/04 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), -50.54, 'Corner Store - Cereal');
+insert into transaction values (TRANSACTION_SEQ.nextVal, 1, TO_DATE('2004/08/04 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), -50.54, 'Corner Store - Orange Juice');
+insert into transaction values (TRANSACTION_SEQ.nextVal, 1, TO_DATE('2004/06/05 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), -50.54, 'Corner Store - Bread');
+insert into transaction values (TRANSACTION_SEQ.nextVal, 1, TO_DATE('2004/07/05 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), -50.54, 'Corner Store - Gum');
+insert into transaction values (TRANSACTION_SEQ.nextVal, 1, TO_DATE('2004/08/05 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), -50.54, 'Corner Store - Donut');
+insert into transaction values (TRANSACTION_SEQ.nextVal, 1, TO_DATE('2004/09/05 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), -50.54, 'Corner Store - Hot dog');
+insert into transaction values (TRANSACTION_SEQ.nextVal, 1, TO_DATE('2004/10/05 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), -50.54, 'Corner Store - Eggs');
+
 
 insert into transaction values (TRANSACTION_SEQ.nextVal, 2, TO_DATE('2004/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), -50.60, 'Corner Store - Milk');
 insert into transaction values (TRANSACTION_SEQ.nextVal, 1, TO_DATE('2004/07/03 17:00:44', 'yyyy/mm/dd hh24:mi:ss'), -50.45, 'Green Bank ATM');
 insert into transaction values (TRANSACTION_SEQ.nextVal, 1, TO_DATE('2004/07/03 13:05:44', 'yyyy/mm/dd hh24:mi:ss'), -500.59, 'Green Bank ATM');
 insert into transaction values (TRANSACTION_SEQ.nextVal, 1, TO_DATE('2004/07/03 13:05:44', 'yyyy/mm/dd hh24:mi:ss'), 450.59, 'Green Bank ATM');    
+
+insert into dispute values (DISPUTE_SEQ.nextVal, 1, 1, 3, 'lol', 'REJECTED');
+insert into dispute values (DISPUTE_SEQ.nextVal, 1, 2, 3, 'lmao', 'APPROVED');
 
 --insert into dispute values (DISPUTE_SEQ.nextVal, 1, 1, 3, 'lol', 'REJECTED');
 --insert into dispute values (DISPUTE_SEQ.nextVal, 1, 2, 3, 'lmao', 'APPROVED');

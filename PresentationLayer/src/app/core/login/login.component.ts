@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
     this.userService.login(this.username, this.password).subscribe(
       resp => {
         this.loggedUser = resp;
+        console.log(this.loggedUser);
         this.userService.setPayload(resp);
 
         if (this.userService.isLoggedIn())

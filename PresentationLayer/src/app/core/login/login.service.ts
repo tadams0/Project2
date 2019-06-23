@@ -24,8 +24,8 @@ export class UserService {
   login(username: string, password: string): Observable<LoginResponsePayload> {
     
     if ( username && password ) {
-      // actually log in
-      const body ={"username": username, "password": password}; // "user=rorr&pass=pswd"
+      
+      const body ={"username": username, "password": password};
 
       console.log(this.appUrl +" "+body+" "+
       {headers: this.headers, withCredentials: true});
@@ -85,14 +85,6 @@ export class UserService {
     return this.employee && this.employee.employeeType==="MANAGER";
   }
   isCustRep(): boolean {
-    // if(this.isEmployee()){
-    //   if(this.employee.employeeType === 'CUST REP'){
-    //     console.log("This is the customer rep");
-    //     return true;
-    //   }
-    // }
-    // return false;
-    // console.log("This is the customer rep");
     return this.employee !== null && this.employee !== undefined && this.employee.employeeType === 'CUST REP';
   }
 
