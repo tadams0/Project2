@@ -27,6 +27,7 @@ export class TransactionlistComponent implements OnInit {
     this.transactionService.getTransactionsForAccount(this.account).subscribe((tran)=>{
       this.transactionList = tran;
       this.filterAll();
+      console.log(this.transactionList);
     });
   }
 
