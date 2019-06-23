@@ -69,13 +69,14 @@ public class StatImpl implements StatDAO {
 		{
 			switch (disputes.get(i).getStatus())
 			{
+			case "MANAGER REJECTED":
 			case "REJECT":
 				rejectedDisputes++;
 				break;
 			case "MANAGER APPROVED":
 				approvedDisputes++;
 				break;
-			default:
+			case "PENDING":
 				pendingDisputes++;
 				break;
 			}
