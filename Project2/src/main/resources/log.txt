@@ -1,0 +1,92 @@
+2019-06-21 20:50:33 DEBUG AmazonWebServiceClient:89 - Internal logging successfully configured to commons logger: true
+2019-06-21 20:50:33 DEBUG AwsSdkMetrics:412 - Admin mbean registered under com.amazonaws.management:type=AwsSdkMetrics
+2019-06-21 20:50:33 DEBUG CsmConfigurationProviderChain:48 - Unable to load configuration from com.amazonaws.monitoring.EnvironmentVariableCsmConfigurationProvider@7d4f9aae: Unable to load Client Side Monitoring configurations from environment variables!
+2019-06-21 20:50:33 DEBUG CsmConfigurationProviderChain:48 - Unable to load configuration from com.amazonaws.monitoring.SystemPropertyCsmConfigurationProvider@72e5a8e: Unable to load Client Side Monitoring configurations from system properties variables!
+2019-06-21 20:50:33 DEBUG CsmConfigurationProviderChain:48 - Unable to load configuration from com.amazonaws.monitoring.ProfileCsmConfigurationProvider@272113c4: Unable to load config file
+2019-06-21 20:50:33 DEBUG request:1244 - Sending Request: HEAD https://statement1.s3.amazonaws.com /accountStatement.pdf.13.2 Headers: (User-Agent: aws-sdk-java/1.11.577 Windows_10/10.0 Java_HotSpot(TM)_64-Bit_Server_VM/25.211-b12 java/1.8.0_211 vendor/Oracle_Corporation, amz-sdk-invocation-id: 18f4f8a3-d4e9-8f51-a3f2-d2043da61749, Content-Type: application/octet-stream, ) 
+2019-06-21 20:50:34 DEBUG AWS4Signer:33 - AWS4 Canonical Request: '"HEAD
+/accountStatement.pdf.13.2
+
+amz-sdk-invocation-id:18f4f8a3-d4e9-8f51-a3f2-d2043da61749
+amz-sdk-retry:0/0/500
+content-type:application/octet-stream
+host:statement1.s3.amazonaws.com
+user-agent:aws-sdk-java/1.11.577 Windows_10/10.0 Java_HotSpot(TM)_64-Bit_Server_VM/25.211-b12 java/1.8.0_211 vendor/Oracle_Corporation
+x-amz-content-sha256:UNSIGNED-PAYLOAD
+x-amz-date:20190622T005033Z
+
+amz-sdk-invocation-id;amz-sdk-retry;content-type;host;user-agent;x-amz-content-sha256;x-amz-date
+UNSIGNED-PAYLOAD"
+2019-06-21 20:50:34 DEBUG AWS4Signer:33 - AWS4 String to Sign: '"AWS4-HMAC-SHA256
+20190622T005033Z
+20190622/us-east-1/s3/aws4_request
+458e094e2f41ce34c85e2c332d029db0f39f6f7e3c9f68c27781734a3eaf4541"
+2019-06-21 20:50:34 DEBUG AWS4Signer:33 - Generating a new signing key as the signing key not available in the cache for the date 1561161600000
+2019-06-21 20:50:34 DEBUG SdkTLSSocketFactory:137 - connecting to statement1.s3.amazonaws.com/52.216.171.3:443
+2019-06-21 20:50:34 DEBUG SdkTLSSocketFactory:337 - Connecting socket to statement1.s3.amazonaws.com/52.216.171.3:443 with timeout 10000
+2019-06-21 20:50:34 DEBUG SdkTLSSocketFactory:390 - Enabled protocols: [TLSv1, TLSv1.1, TLSv1.2]
+2019-06-21 20:50:34 DEBUG SdkTLSSocketFactory:391 - Enabled cipher suites:[TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384, TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384, TLS_RSA_WITH_AES_256_CBC_SHA256, TLS_ECDH_ECDSA_WITH_AES_256_CBC_SHA384, TLS_ECDH_RSA_WITH_AES_256_CBC_SHA384, TLS_DHE_RSA_WITH_AES_256_CBC_SHA256, TLS_DHE_DSS_WITH_AES_256_CBC_SHA256, TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA, TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA, TLS_RSA_WITH_AES_256_CBC_SHA, TLS_ECDH_ECDSA_WITH_AES_256_CBC_SHA, TLS_ECDH_RSA_WITH_AES_256_CBC_SHA, TLS_DHE_RSA_WITH_AES_256_CBC_SHA, TLS_DHE_DSS_WITH_AES_256_CBC_SHA, TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256, TLS_RSA_WITH_AES_128_CBC_SHA256, TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA256, TLS_ECDH_RSA_WITH_AES_128_CBC_SHA256, TLS_DHE_RSA_WITH_AES_128_CBC_SHA256, TLS_DHE_DSS_WITH_AES_128_CBC_SHA256, TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA, TLS_RSA_WITH_AES_128_CBC_SHA, TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDH_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_DSS_WITH_AES_128_CBC_SHA, TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384, TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256, TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384, TLS_RSA_WITH_AES_256_GCM_SHA384, TLS_ECDH_ECDSA_WITH_AES_256_GCM_SHA384, TLS_ECDH_RSA_WITH_AES_256_GCM_SHA384, TLS_DHE_RSA_WITH_AES_256_GCM_SHA384, TLS_DHE_DSS_WITH_AES_256_GCM_SHA384, TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256, TLS_RSA_WITH_AES_128_GCM_SHA256, TLS_ECDH_ECDSA_WITH_AES_128_GCM_SHA256, TLS_ECDH_RSA_WITH_AES_128_GCM_SHA256, TLS_DHE_RSA_WITH_AES_128_GCM_SHA256, TLS_DHE_DSS_WITH_AES_128_GCM_SHA256, TLS_EMPTY_RENEGOTIATION_INFO_SCSV]
+2019-06-21 20:50:34 DEBUG SdkTLSSocketFactory:84 - socket.getSupportedProtocols(): [SSLv2Hello, SSLv3, TLSv1, TLSv1.1, TLSv1.2], socket.getEnabledProtocols(): [TLSv1, TLSv1.1, TLSv1.2]
+2019-06-21 20:50:34 DEBUG SdkTLSSocketFactory:112 - TLS protocol enabled for SSL handshake: [TLSv1.2, TLSv1.1, TLSv1]
+2019-06-21 20:50:34 DEBUG SdkTLSSocketFactory:395 - Starting handshake
+2019-06-21 20:50:34 DEBUG SdkTLSSocketFactory:425 - Secure session established
+2019-06-21 20:50:34 DEBUG SdkTLSSocketFactory:426 -  negotiated protocol: TLSv1.2
+2019-06-21 20:50:34 DEBUG SdkTLSSocketFactory:427 -  negotiated cipher suite: TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA
+2019-06-21 20:50:34 DEBUG SdkTLSSocketFactory:435 -  peer principal: CN=*.s3.amazonaws.com, O=Amazon.com Inc., L=Seattle, ST=Washington, C=US
+2019-06-21 20:50:34 DEBUG SdkTLSSocketFactory:444 -  peer alternative names: [*.s3.amazonaws.com, s3.amazonaws.com]
+2019-06-21 20:50:34 DEBUG SdkTLSSocketFactory:448 -  issuer principal: CN=DigiCert Baltimore CA-2 G2, OU=www.digicert.com, O=DigiCert Inc, C=US
+2019-06-21 20:50:34 DEBUG SdkSSLSocket:31 - created: statement1.s3.amazonaws.com/52.216.171.3:443
+2019-06-21 20:50:34 DEBUG request:87 - Received successful response: 200, AWS Request ID: D154A4C7DEB45705
+2019-06-21 20:50:34 DEBUG requestId:136 - x-amzn-RequestId: not available
+2019-06-21 20:50:34 DEBUG requestId:156 - AWS Request ID: D154A4C7DEB45705
+2019-06-21 20:50:34 DEBUG request:1244 - Sending Request: HEAD https://statement1.s3.amazonaws.com /accountStatement.pdf.13.2 Parameters: ({"partNumber":["1"]}Headers: (User-Agent: aws-sdk-java/1.11.577 Windows_10/10.0 Java_HotSpot(TM)_64-Bit_Server_VM/25.211-b12 java/1.8.0_211 vendor/Oracle_Corporation, amz-sdk-invocation-id: 1c21b432-2e73-c208-e18f-7b7a094184f7, Content-Type: application/octet-stream, ) 
+2019-06-21 20:50:34 DEBUG AWS4Signer:33 - AWS4 Canonical Request: '"HEAD
+/accountStatement.pdf.13.2
+partNumber=1
+amz-sdk-invocation-id:1c21b432-2e73-c208-e18f-7b7a094184f7
+amz-sdk-retry:0/0/500
+content-type:application/octet-stream
+host:statement1.s3.amazonaws.com
+user-agent:aws-sdk-java/1.11.577 Windows_10/10.0 Java_HotSpot(TM)_64-Bit_Server_VM/25.211-b12 java/1.8.0_211 vendor/Oracle_Corporation
+x-amz-content-sha256:UNSIGNED-PAYLOAD
+x-amz-date:20190622T005034Z
+
+amz-sdk-invocation-id;amz-sdk-retry;content-type;host;user-agent;x-amz-content-sha256;x-amz-date
+UNSIGNED-PAYLOAD"
+2019-06-21 20:50:34 DEBUG AWS4Signer:33 - AWS4 String to Sign: '"AWS4-HMAC-SHA256
+20190622T005034Z
+20190622/us-east-1/s3/aws4_request
+4f57b1bb9814f92ec0a884306a949abf60e33f18fcfc5044ab7299a0baf7aecc"
+2019-06-21 20:50:34 DEBUG request:87 - Received successful response: 206, AWS Request ID: A3DCE49E2D308DEB
+2019-06-21 20:50:34 DEBUG requestId:136 - x-amzn-RequestId: not available
+2019-06-21 20:50:34 DEBUG requestId:156 - AWS Request ID: A3DCE49E2D308DEB
+2019-06-21 20:50:34 DEBUG request:1244 - Sending Request: GET https://statement1.s3.amazonaws.com /accountStatement.pdf.13.2 Headers: (User-Agent: aws-sdk-java/1.11.577 Windows_10/10.0 Java_HotSpot(TM)_64-Bit_Server_VM/25.211-b12 java/1.8.0_211 vendor/Oracle_Corporation com.amazonaws.services.s3.transfer.TransferManager/1.11.577, amz-sdk-invocation-id: 84c8678e-085b-391f-183a-fbbb35b5f2e7, Range: bytes=0-903, Content-Type: application/octet-stream, ) 
+2019-06-21 20:50:34 DEBUG AWS4Signer:33 - AWS4 Canonical Request: '"GET
+/accountStatement.pdf.13.2
+
+amz-sdk-invocation-id:84c8678e-085b-391f-183a-fbbb35b5f2e7
+amz-sdk-retry:0/0/500
+content-type:application/octet-stream
+host:statement1.s3.amazonaws.com
+range:bytes=0-903
+user-agent:aws-sdk-java/1.11.577 Windows_10/10.0 Java_HotSpot(TM)_64-Bit_Server_VM/25.211-b12 java/1.8.0_211 vendor/Oracle_Corporation com.amazonaws.services.s3.transfer.TransferManager/1.11.577
+x-amz-content-sha256:UNSIGNED-PAYLOAD
+x-amz-date:20190622T005034Z
+
+amz-sdk-invocation-id;amz-sdk-retry;content-type;host;range;user-agent;x-amz-content-sha256;x-amz-date
+UNSIGNED-PAYLOAD"
+2019-06-21 20:50:34 DEBUG AWS4Signer:33 - AWS4 String to Sign: '"AWS4-HMAC-SHA256
+20190622T005034Z
+20190622/us-east-1/s3/aws4_request
+e66f0d58ac27f177a150d784c0a6a867cd93dae069147f31bada3f9d3b806a7f"
+2019-06-21 20:50:34 DEBUG request:87 - Received successful response: 206, AWS Request ID: 6B6A926668C488F2
+2019-06-21 20:50:34 DEBUG requestId:136 - x-amzn-RequestId: not available
+2019-06-21 20:50:34 DEBUG requestId:156 - AWS Request ID: 6B6A926668C488F2
+2019-06-21 20:50:34 DEBUG FileLocks:91 - Locked file src\main\resources\accountStatement.pdf with null
+2019-06-21 20:50:34 DEBUG FileLocks:129 - Unlocked file src\main\resources\accountStatement.pdf
+2019-06-21 20:50:34 DEBUG SdkSSLSocket:76 - shutting down output of statement1.s3.amazonaws.com/52.216.171.3:443
+2019-06-21 20:50:34 DEBUG SdkSSLSocket:62 - closing statement1.s3.amazonaws.com/52.216.171.3:443
+2019-06-21 20:50:34 DEBUG IdleConnectionReaper:190 - Reaper thread: 
+java.lang.InterruptedException: sleep interrupted
+	at java.lang.Thread.sleep(Native Method)
+	at com.amazonaws.http.IdleConnectionReaper.run(IdleConnectionReaper.java:188)
