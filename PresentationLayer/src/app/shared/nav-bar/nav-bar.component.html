@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light backGradient ">
-    <a class="navbar-brand">
+    <a class="navbar-brand" routerLink="/home">
         <h1><span class="badge whiteText">{{title}}</span></h1>
     </a>
     
@@ -35,8 +35,8 @@
                     Credit Lines
                 </span>
             </li> 
-            <li class="nav-item dropdown" *ngIf="isCustRep()">
-                <a class="nav-link menu-item dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Tasks</a>      
+            <li class="nav-item dropdown" *ngIf="isCustRep() || isManager()">
+                <a class="nav-link menu-item dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Disputes</a>      
                 <div class=" dropdown dropdown-menu">
                     <a *ngIf="route.url!=='/pendingDispute'" class="nav-link" routerLink="/pendingDispute">
                         View Disputes
