@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../account/services/account.service';
 import { BankAccount } from './model/BankAccount';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-customer-open-account',
@@ -19,7 +18,7 @@ export class CustomerOpenAccountComponent implements OnInit {
     this.bankAccount = new BankAccount;
   }
 
-  openSavingsAccount(type: String){
+  openSavingsAccount(){
     this.popualteBankAccount();
 
     this.bankAccount.type ="Savings";
@@ -30,7 +29,7 @@ export class CustomerOpenAccountComponent implements OnInit {
     )
   }
 
-  openCheckingsAccount(type: String){
+  openCheckingAccount(){
     this.popualteBankAccount();
 
     this.bankAccount.type ="Savings";

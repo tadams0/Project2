@@ -16,6 +16,7 @@ import { DisputeComponent } from './core/dispute/dispute.component';
 import { DecidedDisputesComponent } from './core/decided-disputes/decided-disputes.component';
 import { DisputeSubmitComponent } from './core/dispute-submit/dispute-submit.component';
 import { DisputePendingListComponent } from './core/dispute-pending-list/dispute-pending-list.component';
+import { StatementComponent } from './core/account-info/statement/statement.component';
 
 
 const routes: Routes = [
@@ -67,6 +68,10 @@ const routes: Routes = [
   {
     path: 'pendingDispute',
     component : DisputePendingListComponent
+  },
+  {
+    path: 'statements',
+    component: StatementComponent
   }
 ];
 

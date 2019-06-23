@@ -13,7 +13,7 @@ export class TransactionService {
   constructor(private http : HttpClient) { }
 
   getTransactionsForAccount(account : Account) : Observable<Transaction[]>{
-    return this.http.get('http://localhost:8080/Project2/accounttransaction/'+account.id).pipe(
+    return this.http.get('http://localhost:8080/Project2/account/'+account.id).pipe(
       map(resp => resp as Transaction[]));
   }
 

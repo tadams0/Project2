@@ -56,6 +56,7 @@ export class SetUpAccountComponent implements OnInit {
           this.loggedUser = resp;
           console.log(this.loggedUser);
           this.userInformationBody = JSON.stringify(this.loggedUser.customer.userInfo);
+          this.router.navigate(['/home']);
         }
       }
     );

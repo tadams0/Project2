@@ -1,20 +1,30 @@
 
 <div class="centerText">
-    <h2>
-        Welcome {{employee.userInfo.firstName}} {{employee.userInfo.lastName}}
-      </h2>
-      <hr>
-      <input class="btn btn-primary" type="submit" value="View Pending Requests" routerLink="/pendingrequests">
-      <hr>
-      <input class="btn btn-primary" type="submit" value="View Rejected Requests" routerLink="/autorejects">
-      <hr>
-      <input class="btn btn-primary" type="submit" value="View Approved and Rejected Disputes" routerLink="/disputed">
-      <hr>
-      <h4>
-        Statistics
-      </h4>
+  <h2>
+      Welcome {{employee.userInfo.firstName}} {{employee.userInfo.lastName}}
+    </h2>
+    <hr>
+    <input class="btn btn-primary" type="submit" value="View Pending Requests" routerLink="/pendingrequests">
+    <hr>
+    <input class="btn btn-primary" type="submit" value="View Rejected Requests" routerLink="/autorejects">
+    <hr>
+    <input class="btn btn-primary" type="submit" value="View Approved and Rejected Disputes" routerLink="/disputed">
+    <hr>
 </div>
-<div class="pieChart">
-  <h4>Credit Line Request Breakdown</h4>
-    <pie-chart id="creditLinePieChart"></pie-chart>
+<div class = "stats">    
+  <h4 class ="centerText">
+    Statistics
+  </h4>
+  <div class="centerText" id ="chartData">
+  <input type="button" class="btn btn-primary" value="Update" (click)="onRefresh()">
+
+  <div class="pieChart">
+    <h4>Credit Line Request Breakdown</h4>
+      <pie-chart id="creditLinePieChart"></pie-chart>
+  </div>
+  <div class="pieChart">
+    <h4>Dispute Breakdown</h4>
+      <pie-chart id="disputePieChart"></pie-chart>
+  </div>
+</div>
 </div>

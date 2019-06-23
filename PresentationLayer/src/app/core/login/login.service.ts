@@ -81,7 +81,9 @@ export class UserService {
   isCustomer(): boolean {
     return this.customer !== null && this.customer !== undefined;
   }
-
+  isManager() : boolean {
+    return this.employee && this.employee.employeeType==="MANAGER";
+  }
   isCustRep(): boolean {
     return this.employee !== null && this.employee !== undefined && this.employee.employeeType === 'CUST REP';
   }
