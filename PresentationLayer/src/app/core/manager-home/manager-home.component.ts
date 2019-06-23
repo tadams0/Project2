@@ -12,10 +12,14 @@ import { StatPayload } from 'src/app/shared/models/statpayload';
 })
 export class ManagerHomeComponent implements OnInit, AfterViewInit {
   public employee :Employee;
-  @ViewChildren(PieChartComponent) pieCharts :QueryList<PieChartComponent> ;
   private needsRefresh : boolean = false;
   private creditLinePieChart : PieChartComponent;
   private disputePieChart : PieChartComponent;
+  public hasCreditLineStats: boolean = true;
+  public hasDisputeStats: boolean = true;
+  @ViewChildren(PieChartComponent) pieCharts :QueryList<PieChartComponent> ;
+    
+
 
   constructor(private userService : UserService, private statService : StatServiceService) 
   { 
@@ -63,18 +67,28 @@ export class ManagerHomeComponent implements OnInit, AfterViewInit {
 
   createPieChart(payload : StatPayload)
   {
-    this.creditLinePieChart.resetChart();
-    this.creditLinePieChart.addDataSet(payload.approvedCreditLineRequests,
-      'Approved Requests', '#38ea61', '#2dff5e');
-    this.creditLinePieChart.addDataSet(payload.rejectedCreditLineRequests,
-      'Rejected Requests', '#B22222', '#DC143C');
-    this.creditLinePieChart.addDataSet(payload.rejectedCreditLineRequestsAuto,
-      'Auto Rejected Requests', '#CD5C5C', '#F08080');
+    // this.hasCreditLineStats = (payload.approvedCreditLineRequests !== 0 
+    //     || payload.rejectedCreditLineRequests !==0 
+    //     || payload.rejectedCreditLineRequestsAuto !==0); 
+
+    // this.hasDisputeStats = (payload.approvedDisputes !==0
+    //     || payload.rejectedDisputes !==0 );
+        
+
+      this.creditLinePieChart.resetChart();
+      this.creditLinePieChart.addDataSet(payload.approvedCreditLineRequests,
+        'Approved Requests', '#38ea61', '#2dff5e');
+      this.creditLinePieChart.addDataSet(payload.rejectedCreditLineRequests,
+        'Rejected Requests', '#B22222', '#DC143C');
+      this.creditLinePieChart.addDataSet(payload.rejectedCreditLineRequestsAuto,
+        'Auto Rejected Requests', '#CD5C5C', '#F08080');
+    
+
+      this.disputePieChart.resetChart();
+      this.disputePieChart.addDataSet(payload.rejectedDisputes,
+        'Rejected Disputes', '#38ea61', '#2dff5e');
+      this.disputePieChart.addDataSet(payload.approvedDisputes,
+        'Approved Disputes', '#B22222', '#DC143C');
       
-    this.disputePieChart.resetChart();
-    this.disputePieChart.addDataSet(payload.rejectedDisputes,
-      'Rejected Disputes', '#38ea61', '#2dff5e');
-    this.disputePieChart.addDataSet(payload.approvedDisputes,
-      'Approved Disputes', '#B22222', '#DC143C');
   }
 }
