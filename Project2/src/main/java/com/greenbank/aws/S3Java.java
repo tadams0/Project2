@@ -27,10 +27,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class S3Java {
 
-	private final String fileDirectory = "C:/Users/andre/Project2/Project2/src/main/resources/accountStatement.pdf";
+	private final String fileDirectory = System.getProperty("user.dir")+"\\src\\main\\resources\\accountStatement.pdf";
 
     public static void main(String[] args)throws Exception {
-
+    	
 //    	S3Java s3 = new S3Java();
 
 
