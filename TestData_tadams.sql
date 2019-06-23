@@ -43,13 +43,13 @@ insert into account values (ACCOUNT_SEQ.nextVal, 'CHECKING', 1000, TO_DATE('2003
 insert into account values (ACCOUNT_SEQ.nextVal, 'CHECKING', 900, TO_DATE('2003/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'),
     TO_DATE('2005/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 1);
     
-insert into transaction values (TRANSACTION_SEQ.nextVal, 1, TO_DATE('2004/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), -50.54, 'Corner Store - Candy');
-insert into transaction values (TRANSACTION_SEQ.nextVal, 1, TO_DATE('2004/06/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), -50.45, 'Corner Store - Soda');
+insert into transaction values (TRANSACTION_SEQ.nextVal, 1, TO_DATE('2019/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), -50.54, 'Corner Store - Candy');
+insert into transaction values (TRANSACTION_SEQ.nextVal, 1, TO_DATE('2019/06/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), -50.45, 'Corner Store - Soda');
 
-insert into transaction values (TRANSACTION_SEQ.nextVal, 2, TO_DATE('2004/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), -50.60, 'Corner Store - Milk');
-insert into transaction values (TRANSACTION_SEQ.nextVal, 1, TO_DATE('2004/07/03 17:00:44', 'yyyy/mm/dd hh24:mi:ss'), -50.45, 'Green Bank ATM');
-insert into transaction values (TRANSACTION_SEQ.nextVal, 1, TO_DATE('2004/07/03 13:05:44', 'yyyy/mm/dd hh24:mi:ss'), -500.59, 'Green Bank ATM');
-insert into transaction values (TRANSACTION_SEQ.nextVal, 1, TO_DATE('2004/07/03 13:05:44', 'yyyy/mm/dd hh24:mi:ss'), 450.59, 'Green Bank ATM');    
+insert into transaction values (TRANSACTION_SEQ.nextVal, 2, TO_DATE('2019/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), -50.60, 'Corner Store - Milk');
+insert into transaction values (TRANSACTION_SEQ.nextVal, 1, TO_DATE('2019/05/13 17:00:44', 'yyyy/mm/dd hh24:mi:ss'), -50.45, 'Green Bank ATM');
+insert into transaction values (TRANSACTION_SEQ.nextVal, 1, TO_DATE('2019/06/20 13:05:44', 'yyyy/mm/dd hh24:mi:ss'), -500.59, 'Green Bank ATM');
+insert into transaction values (TRANSACTION_SEQ.nextVal, 1, TO_DATE('2019/06/03 13:05:44', 'yyyy/mm/dd hh24:mi:ss'), 450.59, 'Green Bank ATM');    
 
 --insert into dispute values (DISPUTE_SEQ.nextVal, 1, 1, 3, 'lol', 'REJECTED');
 --insert into dispute values (DISPUTE_SEQ.nextVal, 1, 2, 3, 'lmao', 'APPROVED');

@@ -16,7 +16,15 @@ export class LoginComponent implements OnInit {
   constructor( private userService: UserService, private router: Router ) { }
 
   ngOnInit() {
-    
+    console.log(this.loggedUser);
+    if(this.loggedUser!=null){
+      this.router.navigate(['/home']);
+    }
+    else{
+      // console.log(this.loggedUser);
+      this.loggedUser;
+    }
+     
   }
 
   login(username: string, password: string): void {
@@ -28,6 +36,7 @@ export class LoginComponent implements OnInit {
     this.userService.login(this.username, this.password).subscribe(
       resp => {
         this.loggedUser = resp;
+        console.log(this.loggedUser);
         this.userService.setPayload(resp);
 
         if (this.userService.isLoggedIn())
