@@ -16,7 +16,10 @@ export class LoginComponent implements OnInit {
   constructor( private userService: UserService, private router: Router ) { }
 
   ngOnInit() {
-    
+    if (this.userService.isLoggedIn())
+    {
+      this.router.navigate(['/home'])
+    }
   }
 
   login(username: string, password: string): void {
