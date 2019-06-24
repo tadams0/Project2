@@ -18,8 +18,4 @@ export class TransactionService {
       map(resp => resp as Transaction[]));
   }
 
-  // getTransactionsWithFilter(account: Account, transactionType: String): Observable<Transaction[]>{
-  //   return this.http.get('http://localhost:8080/Project2/accounttransaction/'+account.id+transactionType).pipe(
-  //     map(resp => resp as Transaction[]));
-  // }
 }

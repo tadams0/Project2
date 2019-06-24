@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/core/login/login.service';
 import { Router } from '@angular/router';
 import { LoginResponsePayload } from 'src/app/shared/models/loginresponsepayload';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ export class LoginComponent implements OnInit {
   public username: string;
   public password: string;
   public loginMessage :string;
-  constructor( private userService: UserService, private router: Router ) { }
+  constructor( private userService: UserService, private router: Router, private cookie: CookieService ) { }
 
   ngOnInit() {
     if (this.userService.isLoggedIn())
@@ -31,6 +32,8 @@ export class LoginComponent implements OnInit {
     this.userService.login(this.username, this.password).subscribe(
       resp => {
         this.loggedUser = resp;
+        
+        // this.cookie.set('user', resp);
         console.log(this.loggedUser);
         this.userService.setPayload(resp);
 

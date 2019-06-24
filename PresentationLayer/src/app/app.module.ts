@@ -39,6 +39,7 @@ import { CustomerRepHomeComponent } from './core/customer-rep-home/customer-rep-
 import { DisputePendingListComponent } from './core/dispute-pending-list/dispute-pending-list.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { PieChartComponent } from './core/pie-chart/pie-chart.component';
+import { CookieService } from 'ngx-cookie-service';
 
 
 
@@ -87,7 +88,8 @@ import { PieChartComponent } from './core/pie-chart/pie-chart.component';
     AccountService,
     TransactionService,
     UserService,
-    UrlService
+    UrlService,
+    CookieService
   ],
   bootstrap: [AppComponent]
 })

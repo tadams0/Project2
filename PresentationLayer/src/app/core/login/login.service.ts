@@ -8,6 +8,7 @@ import { Employee } from 'src/app/shared/models/employee';
 import { Customer } from 'src/app/shared/models/customer';
 import { UrlService } from 'src/app/shared/url.service';
 import { Account } from 'src/app/shared/models/account';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +19,8 @@ export class UserService {
   private employee: Employee;
   private customer: Customer;
   private account : Account;
-
-  constructor( private urlSource: UrlService, private http: HttpClient) { }
+  public logged
+  constructor( private urlSource: UrlService, private http: HttpClient, private cookie: CookieService) { }
 
   login(username: string, password: string): Observable<LoginResponsePayload> {
     
@@ -90,6 +91,7 @@ export class UserService {
 
   isLoggedIn() : boolean {
     return (this.customer !== null && this.customer !== undefined) || (this.employee !== null && this.employee !== undefined);
+
   }
 
   setPayload(payload : LoginResponsePayload)
