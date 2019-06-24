@@ -1,13 +1,6 @@
 # Compiled class file
 *.class
 
-# Hibernate files
-*.cfg.xml
-
-
-# Log file
-*.log
-
 # BlueJ files
 *.ctxt
 

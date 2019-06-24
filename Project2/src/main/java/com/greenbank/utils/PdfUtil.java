@@ -58,7 +58,7 @@ public class PdfUtil {
 		Document doc = new Document(pdf);
 
 		// Creating a table
-		float[] pointColumnWidths = { 50F, 200F, 150F, 100F };
+		float[] pointColumnWidths = { 30F, 200F, 125F, 125F };
 		Table table = new Table(pointColumnWidths);
 
 		//add header
@@ -95,12 +95,12 @@ public class PdfUtil {
 
 		// Adding cells to the table
 
-		Cell c1 = new Cell().add("Transaction ID");
+		Cell c1 = new Cell().add("ID");
 		c1.setBackgroundColor(Color.LIGHT_GRAY);
 		c1.setBorder(new SolidBorder(Color.BLACK, 1f, .7f));
 		c1.setTextAlignment(TextAlignment.CENTER);
 
-		Cell c2 = new Cell().add("Name");
+		Cell c2 = new Cell().add("Transaction Details");
 		c2.setBackgroundColor(Color.LIGHT_GRAY);
 		c2.setBorder(new SolidBorder(Color.BLACK, 1f, .7f));
 		c2.setTextAlignment(TextAlignment.CENTER);
@@ -110,7 +110,7 @@ public class PdfUtil {
 		c3.setBorder(new SolidBorder(Color.BLACK, 1f, .7f));
 		c3.setTextAlignment(TextAlignment.CENTER);
 
-		Cell c4 = new Cell().add("Balance");
+		Cell c4 = new Cell().add("Transfer Amount");
 		c4.setBackgroundColor(Color.LIGHT_GRAY);
 		c4.setBorder(new SolidBorder(Color.BLACK, 1f, .7f));
 		c4.setTextAlignment(TextAlignment.CENTER);
@@ -121,12 +121,21 @@ public class PdfUtil {
 		table.addCell(c4);
 
 		for (BankTransaction transaction : transactions) {
-			table.addCell(new Cell().add(String.valueOf(transaction.getId())));
-			table.addCell(new Cell().add(transaction.getName()));
-			table.addCell(new Cell().add(
-					String.valueOf(transaction.getDate().getMonth()) + " "+ String.valueOf(transaction.getDate().getYear()
-							)));
-			table.addCell(new Cell().add(String.valueOf(transaction.getBalance())));
+			Cell cId = new Cell().add(String.valueOf(transaction.getId()));
+			cId.setTextAlignment(TextAlignment.CENTER);
+			table.addCell(cId);
+			
+			Cell cDetails = new Cell().add(transaction.getName());
+			cDetails.setTextAlignment(TextAlignment.CENTER);
+			table.addCell(cDetails);
+			
+			Cell cDate = new Cell().add(String.valueOf(transaction.getDate().getMonth()) + " "+ String.valueOf(transaction.getDate().getYear()));
+			cDate.setTextAlignment(TextAlignment.CENTER);
+			table.addCell(cDate);
+			
+			Cell cAmount = new Cell().add(String.valueOf(transaction.getBalance()));
+			cAmount.setTextAlignment(TextAlignment.CENTER);
+			table.addCell(cAmount);
 		}
 
 		// Adding Table to document
