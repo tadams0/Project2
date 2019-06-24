@@ -1,1 +1,44 @@
 /* You can add global styles to this file, and also import other style files */
+.backGradient{
+   background-image: linear-gradient(rgb(31, 211, 46),rgb(29, 153, 77));
+}
+.backGradient2{
+   background-image: linear-gradient(rgb(141, 226, 148, rgb(63, 185, 80)4));
+}
+
+.requestAlignment{
+   border: 1px solid rgb(59, 77, 54);
+   margin-top: 8px;
+   margin-left: 30%;
+   margin-right: 30%;
+}
+.creditLineGradient1{
+   background-image: linear-gradient(to bottom right,rgb(23, 187, 37),rgb(0, 107, 14));
+}
+.creditLineGradient2{
+   background-image: linear-gradient(to bottom right,rgb(23, 154, 187),rgb(15, 80, 155));
+}
+.creditLineGradient3{
+   background-image: linear-gradient(to bottom right,rgb(247, 102, 102),rgb(201, 31, 31));
+}
+.creditLineGradient4{
+   background-image: linear-gradient(to bottom right,rgb(243, 177, 177),rgb(219, 82, 82));
+}
+.creditLineGradient5{
+   background-image: linear-gradient(to bottom right,rgb(83, 247, 96),rgb(21, 187, 43));
+}
+
+.centerText{
+   text-align: center;
+}
+.center-block {
+   display: block;
+   margin-right: auto;
+   margin-left: auto;
+ }
+
+ .whiteText{
+    color:white;
+ }
+
+ 

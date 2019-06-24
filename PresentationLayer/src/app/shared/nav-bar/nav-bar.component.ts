@@ -25,6 +25,13 @@ export class NavBarComponent implements OnInit {
   isCustomer(): boolean {
     return this.userService.isCustomer();
   }
+  isManager(): boolean {
+    return this.userService.isManager();
+  }
+
+  isCustRep(): boolean {
+    return this.userService.isCustRep();
+  }
 
   onLogoutPressed(): void {
     

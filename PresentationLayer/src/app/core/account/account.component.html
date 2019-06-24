@@ -1,14 +1,15 @@
-<div class="card" style="width: 20rem;">
-  <div class="card-block">
-    <p class="card-text" [attr.data-target]="'#viewbutton' + account.id">
-      Account ID: {{account.id}} <br>
-      Account Type: {{account.accountType}}<br>
-      Account Balance: {{account.balance}}
-    </p>
-  </div>
-  <div id = "viewbutton{{account.id}}" class="card-block">
-      <input class="btn btn-primary" type="submit" value="View" (click)="viewAccount(account.id)">
-  </div>
-</div> 
-
+<div class="">
+  <div class="card centerText center-block" style="width: 20rem;">
+    <div class="card-block center-block">
+      <p class="card-text" [attr.data-target]="'#viewbutton' + account.id">
+        Account ID: {{account.id}} <br>
+        Account Type: {{account.accountType}}<br>
+        Account Balance: {{account.balance}}
+      </p>
+    </div>
+    <div id = "viewbutton{{account.id}}" class="card-block ">
+        <input class="btn btn-primary" type="submit" value="View Transactions" class="btn btn-danger" (click)="viewAccounts(account.id)">
+    </div>
+  </div> 
+</div>
   

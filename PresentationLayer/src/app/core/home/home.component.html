@@ -1,1 +1,13 @@
-<app-customerhome *ngIf="isCustomer()"></app-customerhome>
+
+<div *ngIf="isCustomer()" id="customerHomeDiv">
+   <app-customerhome ></app-customerhome>
+</div>
+<div *ngIf="isLoanOfficer()" id="loanOfficerHomeDiv">
+      <app-loan-officer-home ></app-loan-officer-home>
+</div>
+<div *ngIf="isManager()" id="managerHomeDiv">
+      <app-manager-home ></app-manager-home>
+</div>
+<div *ngIf="isRep()" id="repHomeDiv">
+      <app-customer-rep-home></app-customer-rep-home>
+</div>

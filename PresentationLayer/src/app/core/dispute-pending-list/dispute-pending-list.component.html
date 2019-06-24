@@ -1,0 +1,6 @@
+
+<p class = "centerInfo">
+  Below is a list of dispute requests that require approval.
+</p>
+<small id="help1" class="form-text text-muted centerInfo">A request can be clicked to reveal options.</small>
+<app-dispute *ngFor="let r of disputes" [dispute]="r" (removeDisputeRequest)="removeDispute($event)"></app-dispute>

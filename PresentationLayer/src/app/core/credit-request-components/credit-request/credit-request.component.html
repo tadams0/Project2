@@ -1,0 +1,33 @@
+<div>
+  <div>
+      <div class ="creditLineGradient2 requestAlignment" *ngIf="request.employeeApprover!==null" data-toggle="collapse" [attr.data-target]="'#acceptrejectbuttons' + request.id">
+          <p class="card-text whiteText">
+              Request ID: {{request.id}} <br>
+              APR: {{request.creditAPR}}%<br>
+              Created By: {{request.customer.userInfo.firstName}} {{request.customer.userInfo.lastName}}<br>
+          </p>
+          <div id = "finalApprovalText">
+              This request has been approved once before and requires your final approval.
+          </div>
+          <div id = "acceptrejectbuttons{{request.id}}" class="card-block collapse centerButtons">
+            <input class="btn btn-primary" type="submit" value="Approve" (click)="onApprove()">
+            <input class="btn btn-primary" type="submit" value="Reject" (click)="onReject()">
+          </div>
+      </div>
+      
+      <div class ="creditLineGradient1 requestAlignment"*ngIf="request.employeeApprover===null" data-toggle="collapse" [attr.data-target]="'#acceptrejectbuttons' + request.id">
+        <p class="card-text whiteText">
+            Request ID: {{request.id}} <br>
+            APR: {{request.creditAPR}}%<br>
+            Created By: {{request.customer.userInfo.firstName}} {{request.customer.userInfo.lastName}}
+        </p>        
+        <div id = "acceptrejectbuttons{{request.id}}" class="card-block collapse centerButtons">
+          <input class="btn btn-primary" type="submit" value="Approve" (click)="onApprove()">
+          <input class="btn btn-primary" type="submit" value="Reject" (click)="onReject()">
+        </div>
+      </div>
+    
+  </div>
+</div> 
+
+  

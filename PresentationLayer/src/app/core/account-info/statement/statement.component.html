@@ -1,0 +1,4 @@
+<div *ngFor="let date of displayDates; let i = index" class="card-block">
+
+  <input type="submit" value={{date}} class="btn-block btn-light" (click)="getStatement(i)">
+</div>

@@ -1,0 +1,27 @@
+#approvalCreditLine{
+    background-color: rgb(184, 253, 191);
+    border: 1px solid rgb(59, 77, 54);
+    margin-top: 8px;
+    margin-left: auto;
+    margin-right: auto;
+    width:60%;
+ }
+ 
+ #normalCreditLine{
+    background-color: rgb(236, 255, 238);
+    border: 1px solid rgb(59, 77, 54);
+    margin-top: 8px;
+    margin-left: auto;
+    margin-right: auto;
+    width:60%;
+ }
+
+ .centerButtons{
+   text-align: center;
+   margin-bottom: 5px;
+}
+
+.btn{
+   margin-left: 5px;
+   margin-right: 5px;
+}

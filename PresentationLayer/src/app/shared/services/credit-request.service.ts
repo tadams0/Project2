@@ -21,10 +21,28 @@ export class CreditRequestService {
        map( resp => resp as CreditLineRequest[] ));
   }
 
+  getRequestsForManager(): Observable<CreditLineRequest[]> {
+    return this.http.get('http://localhost:8080/Project2/creditline/managerlines',
+    {withCredentials: true}).pipe(
+       map( resp => resp as CreditLineRequest[] ));
+  }
+
   getRequestsForCustomer(): Observable<CreditLineRequest[]> {
     return this.http.get('http://localhost:8080/Project2/creditline/0',
     {withCredentials: true}).pipe(
        map( resp => resp as CreditLineRequest[] ));
+  }
+
+  getRequestsAutoRejected(): Observable<CreditLineRequest[]> {
+    return this.http.get('http://localhost:8080/Project2/creditline/1',
+    {withCredentials: true}).pipe(
+       map( resp => resp as CreditLineRequest[]));
+  }
+
+  getRequestsRejected(): Observable<CreditLineRequest[]> {
+    return this.http.get('http://localhost:8080/Project2/creditline/rejected',
+    {withCredentials: true}).pipe(
+       map( resp => resp as CreditLineRequest[]));
   }
 
   addRequest(request : CreditLineRequest): Observable<CreditLineRequest> {

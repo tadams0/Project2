@@ -1,42 +1,85 @@
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light backGradient ">
     <a class="navbar-brand" routerLink="/home">
-        <h1><span class="badge">{{title}}</span></h1>
+        <h1><span class="badge whiteText">{{title}}</span></h1>
     </a>
+    
     <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        
         <ul class="navbar-nav mr-auto">
-            <li  class="nav-item">
-                <a *ngIf="route.url!=='/form' && isCustomer()" class="nav-link" routerLink="/form">
-                    Request Credit Line
+            <a *ngIf="route.url!=='/home' && isCustomer()" class="nav-link whiteText" routerLink="/home">
+                Home
+            </a>
+            <span *ngIf="route.url==='/home' && isCustomer()" class="nav-link font-weight-bold whiteText">
+                Home
+            </span>
+            <a *ngIf="route.url!=='/home' && isCustRep()" class="nav-link whiteText" routerLink="/home">
+                Home
+            </a>
+            <span *ngIf="route.url==='/home' && isCustRep()" class="nav-link font-weight-bold whiteText">
+                Home
+            </span>    
+            <a *ngIf="route.url!=='/home' && isEmployee()" class="nav-link whiteText" routerLink="/home">
+                Home
+            </a>
+            <span *ngIf="route.url==='/home' && isEmployee()" class="nav-link font-weight-bold whiteText">
+                Home
+            </span>
+            <li  class="nav-item">                
+                <a *ngIf="route.url!=='/form' && isCustomer()" class="nav-link whiteText" routerLink="/form">
+                    Credit Lines
                 </a>
-                <span *ngIf="route.url==='/form' && isCustomer()" class="nav-link font-weight-bold">
-                    Request Credit Line
+                <span *ngIf="route.url==='/form' && isCustomer()" class="nav-link font-weight-bold whiteText">
+                    Credit Lines
                 </span>
             </li> 
-            <li  class="nav-item">
-                <a *ngIf="route.url!=='/myrequests' && isCustomer()" class="nav-link" routerLink="/myrequests">
-                    My Credit Lines
-                </a>
-                <span *ngIf="route.url==='/myrequests' && isCustomer()" class="nav-link font-weight-bold">
-                    My Credit Lines
-                </span>
-            </li> 
-            <li class="nav-item">
-                <a *ngIf="route.url!=='/pendingrequests' && isEmployee()" class="nav-link" routerLink="/pendingrequests">
-                    View Credit Line Requests
-                </a>
-                <span *ngIf="route.url==='/pendingrequests' && isEmployee()" class="nav-link font-weight-bold">
-                    View Credit Line Requests
-                </span>
+            <li class="nav-item dropdown" *ngIf="isCustRep() || isManager()">
+                <a class="nav-link menu-item dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Disputes</a>      
+                <div class=" dropdown dropdown-menu">
+                    <a *ngIf="route.url!=='/pendingDispute'" class="nav-link" routerLink="/pendingDispute">
+                        View Disputes
+                    </a>
+                    <span *ngIf="route.url==='/pendingDispute'" class="nav-link font-weight-bold">
+                        View Disputes
+                    </span> 
+                    <!-- <div class="dropdown-divider"></div>
+                    <a *ngIf="route.url!=='/autorejects'" class="nav-link" routerLink="/autorejects">
+                        View Inquiries
+                    </a>
+                    <span *ngIf="route.url==='/autorejects'" class="nav-link font-weight-bold">
+                        View Inquiries
+                    </span>  -->
+                </div>
+               
+            </li>
+            <li class="nav-item dropdown" *ngIf="isEmployee()">
+                <a class="nav-link menu-item dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Credit Lines</a>      
+                <div class=" dropdown dropdown-menu">
+                    <a *ngIf="route.url!=='/pendingrequests'" class="nav-link" routerLink="/pendingrequests">
+                        View Credit Line Requests
+                    </a>
+                    <span *ngIf="route.url==='/pendingrequests'" class="nav-link font-weight-bold">
+                        View Credit Line Requests
+                    </span>
+                    <div class="dropdown-divider"></div>
+                    <a *ngIf="route.url!=='/autorejects'" class="nav-link" routerLink="/autorejects">
+                        Rejected Credit Lines
+                    </a>
+                    <span *ngIf="route.url==='/autorejects'" class="nav-link font-weight-bold">
+                        Rejected Credit Lines
+                    </span>
+                    <!-- Seperator here:
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Separated link</a>-->
+                </div>
             </li>
             
             <li class="nav-item" (click)="onLogoutPressed()">
-                <span *ngIf="isEmployee() || isCustomer()" class="nav-link font-weight-bold">
+                <a *ngIf="isEmployee() || isCustomer() || isCustRep()" class="nav-link font-weight-bold"  routerLink="">
                     Logout
-                </span>
+                </a>
             </li>
         </ul>
     </div>

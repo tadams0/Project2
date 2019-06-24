@@ -1,0 +1,16 @@
+<div class="center-block">
+  <p class="filtering">
+    List of transactions for bank account. 
+
+
+    <button class="filter" id="Credit" (click)="filterCredit()">Credit</button>
+
+    <button class="filter" id="Debit" (click)="filterDebit()" >Debit</button>
+
+    <button class="filter" id="All" (click)="filterAll()">All</button>
+    
+    
+  </p>
+
+  <app-transaction *ngFor="let t of filteredList" [transaction]="t"></app-transaction>
+</div>

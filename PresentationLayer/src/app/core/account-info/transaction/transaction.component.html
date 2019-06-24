@@ -1,0 +1,13 @@
+<div class="card  center-block" style="width: 20rem;">
+  <div class="card-block">
+    <p class="card-text" [attr.data-target]="'#disputebutton' + transaction.id">
+      Transaction ID: {{transaction.id}} <br>
+      Transaction Name: {{transaction.name}}<br>
+      Transaction Balance: {{transaction.balance}} <br>
+      Transaction Date: {{transaction.date | date : 'dd/MM/yyyy hh:mm:ss'}}
+    </p>
+  </div>
+  <div id = "disputebutton{{transaction.id}}" class="card-block">
+      <input class="btn btn-primary" type="submit" value="Dispute" (click)="disputeTransaction(transaction.id)">
+  </div>
+</div> 

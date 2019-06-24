@@ -111,6 +111,7 @@ create table dispute(
     transaction_id number(20) not null,
     employee_id number(20) default 0, -- approverId
     comments varchar2(500),
+    status varchar2(20) default 'PENDING',
     constraint fk_dispute_customer foreign key (customer_id) references customer(customer_id),
     constraint fk_dispute_transaction foreign key (transaction_id) references transaction(transaction_id),
     constraint fk_dispute_approver foreign key (employee_id) references employee(employee_id)

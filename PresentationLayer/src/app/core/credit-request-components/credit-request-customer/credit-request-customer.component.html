@@ -1,0 +1,27 @@
+<div *ngIf="request.status==='APPROVED'">
+  <div class="card approvalCreditLine" style="width: 20rem;">
+    <div class="card-block creditLineGradient5">
+      <p class="card-text">
+        Request ID: {{request.id}} <br>
+        APR: {{request.creditAPR}}% <br>
+        Status: {{request.status}}
+      </p>
+      <div class="card-block">
+        <img src="assets\images\cardexample_sm.png">
+      </div>
+    </div>
+  </div> 
+</div>
+
+<div *ngIf="request.status!=='APPROVED'"> 
+  <div class="card normalCreditLine" style="width: 20rem;">
+    <div class="card-block creditLineGradient1">
+      <p class="card-text">
+        Request ID: {{request.id}} <br>
+        APR: {{request.creditAPR}}% <br>
+        Status: {{request.status}}
+      </p>
+    </div>
+  </div> 
+</div>
+

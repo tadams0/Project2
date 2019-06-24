@@ -12,6 +12,7 @@ import { map } from 'rxjs/operators';
 export class SetUpService {
 
   private headers = new HttpHeaders({'Content-Type': 'application/json'});
+  private appUrl = this.urlSource.getURL() + '/update';
   private loggedUser: LoginResponsePayload;
 
   constructor (private urlSource: UrlService, private http: HttpClient){}
@@ -19,13 +20,14 @@ export class SetUpService {
   
     login(username: string, password: string): Observable<LoginResponsePayload> {
       if ( username && password ) {
-        const appUrl = this.urlSource.getURL() + '/update';
         const body ={"username": username, "password": password};
 
-        console.log(appUrl +" "+body+" "+
+        //logging
+        console.log(this.appUrl +" "+body+" "+
         {headers: this.headers, withCredentials: true});
 
-        return this.http.post(appUrl, body,
+        //method
+        return this.http.post(this.appUrl, body,
           {headers: this.headers, withCredentials: true})
           .pipe( map( resp => {
             const user: LoginResponsePayload = resp as LoginResponsePayload;
@@ -40,16 +42,15 @@ export class SetUpService {
 
   update(username: string, password: string): Observable<LoginResponsePayload> {
     if ( username && password ) {
-      const appUrl = this.urlSource.getURL() + '/update';
       
       this.loggedUser.customer.userInfo.username = username;
       this.loggedUser.customer.userInfo.password = password;
       const body = this.loggedUser.customer;
 
-      console.log(appUrl +" "+body+" "+
+      console.log(this.appUrl +" "+body+" "+
         {headers: this.headers, withCredentials: true});
 
-        return this.http.put(appUrl, body,
+        return this.http.put(this.appUrl, body,
           {headers: this.headers, withCredentials: true})
           .pipe( map( resp => {
             const user: LoginResponsePayload = resp as LoginResponsePayload;
